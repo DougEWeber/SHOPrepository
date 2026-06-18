@@ -1,0 +1,84 @@
+     A*****************************************************************
+     A*     FILE NAME:  SCHNAMD                                       *
+     A*  RELATED PGMS:  SCHNAM                                        *
+     A* RELATED FILES:  CUSMSTL3   (LOGICAL FILE)                     *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE SCHNAMD. IT HAS 7    *
+     A*                 RECORD FORMATS.                               *
+     A*****************************************************************
+     A                                      REF(CUSMSTL3)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A                                      CA03(03 'END OF JOB')
+     A          R HEAD
+     A                                      OVERLAY
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 25'CUSTOMER SEARCH & INQUIRY BY NAME'
+     A                                      DSPATR(HI UL)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A          R FOOT1
+     A                                 23  6'ENTER - Continue'
+     A                                      DSPATR(HI)
+     A                                 23 29'F3 - End Job'
+     A                                      DSPATR(HI)
+     A          R FOOT2
+     A                                 23  6'ENTER - Continue'
+     A                                      DSPATR(HI)
+     A                                 23 29'F3 - End Job'
+     A                                      DSPATR(HI)
+     A                                 23 47'F4 - Restart Name'
+     A                                      DSPATR(HI)
+     A          R PROMPT
+     A                                      OVERLAY
+     A                                  5  4'Enter Search Name'
+     A                                      DSPATR(HI)
+     A            SRCNAM    R        I  5 23REFFLD(NAME CUSMSTL3)
+     A                                      DSPATR(CS)
+     A          R SUBFILE                   SFL
+     A                                      CHANGE(99 'FIELD CHANGED')
+     A            SEL            1A  B  9  8DSPATR(CS)
+     A                                      VALUES(' ' 'X')
+     A            ZIP       R        O  9 54
+     A            CUST      R        O  9 43
+     A            NAME      R        O  9 17
+     A          R SUBCTL                    SFLCTL(SUBFILE)
+     A                                      SFLSIZ(0013)
+     A                                      SFLPAG(0013)
+     A  55                                  SFLCLR
+     A N55                                  SFLDSPCTL
+     A N55                                  SFLDSP
+     A                                      ROLLUP(95 'ROLL UP')
+     A                                      OVERLAY
+     A                                      CF04(04 'RESTART SEARCH NAME')
+     A                                  5  4'Search Name'
+     A            SRCNAM    R        O  5 17REFFLD(NAME CUSMSTL3)
+     A                                      DSPATR(HI)
+     A                                  7  6'Select'
+     A                                      DSPATR(HI)
+     A                                  8  6' "X"       Customer Name '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  8 42' Number     Zip Code   '
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A          R CUSDSP
+     A                                      OVERLAY
+     A                                  6 25'Customer'
+     A            CUST           5S 0O  6 35DSPATR(HI)
+     A                                  8 25'Name'
+     A            NAME          20A  O  8 35DSPATR(HI)
+     A                                 10 25'Address'
+     A            ADDR1         20A  O 10 35DSPATR(HI)
+     A            ADDR2         20A  O 11 35DSPATR(HI)
+     A                                 13 25'City'
+     A            CITY          20A  O 13 35DSPATR(HI)
+     A                                 15 25'State'
+     A            STATE          2A  O 15 35DSPATR(HI)
+     A                                 15 41'Zip Code'
+     A            ZIP            5S 0O 15 50DSPATR(HI)
+     A                                 17 25'A/R Balance'
+     A            ARBAL         10Y 2O 17 42DSPATR(HI)
+     A                                      EDTCDE(J)

@@ -1,0 +1,17 @@
+     A*****************************************************************
+     A*     FILE NAME:  CUSMSTL3                                      *
+     A*  RELATED PGMS:  SCHNAM                                        *
+     A* RELATED FILES:  CUSMST                                        *
+     A*   DESCRIPTION:  THIS IS THE LOGICAL FILE CUSMSTL3. IT HAS     *
+     A*                 ONE RECORD FORMAT CALLED CUSREC.              *
+     A*                 LOGICAL VIEW OF CUSTOMER MASTER FILE (CUSMST) *
+     A*                 BY NAME (NAME)                                *
+     A*****************************************************************
+     A          R CUSREC                    PFILE(CUSMST)
+     A          K NAME
+     A*
+     A*****************************************************************
+     A* NOTE: SINCE THE RECORD FORMAT OF THE PHYSICAL FILE (CUSMST)   *
+     A*       HAS THE SAME RECORD-FORMAT-NAME, NO LISTING OF FIELDS   *
+     A*       IS REQUIRED IN THIS DDS FILE.                           *
+     A*****************************************************************

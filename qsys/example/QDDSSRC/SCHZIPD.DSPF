@@ -1,0 +1,59 @@
+     A*****************************************************************
+     A*     FILE NAME:  SCHZIPD                                       *
+     A*  RELATED PGMS:  SCHZIP                                        *
+     A* RELATED FILES:  CUSMSTL2   (LOGICAL FILE)                     *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE SCHZIPD. IT HAS 6    *
+     A*                 RECORD FORMATS.                               *
+     A*****************************************************************
+     A                                      REF(CUSMSTL2)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A                                      CA03(03 'END OF JOB')
+     A          R HEAD
+     A                                      OVERLAY
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 28'CUSTOMER SEARCH BY ZIP'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A          R FOOT1
+     A                                 23  6'ENTER - Continue'
+     A                                      DSPATR(HI)
+     A                                 23 29'F3 - End Job'
+     A                                      DSPATR(HI)
+     A          R FOOT2
+     A                                 23  6'ENTER - Continue'
+     A                                      DSPATR(HI)
+     A                                 23 29'F3 - End Job'
+     A                                      DSPATR(HI)
+     A                                 23 47'F4 - RESTART ZIP CODE'
+     A                                      DSPATR(HI)
+     A          R PROMPT
+     A                                      OVERLAY
+     A                                  4  4'Enter Zip Code'
+     A                                      DSPATR(HI)
+     A            ZIP       R     Y  I  4 19DSPATR(CS)
+     A                                      CHECK(RZ)
+     A  61                                  ERRMSG('ZIP CODE NOT FOUND' +
+     A                                      61)
+     A          R SUBFILE                   SFL
+     A            NAME      R           9  4
+     A            ARBAL     R           9 27EDTCDE(J)
+     A          R SUBCTL                    SFLCTL(SUBFILE)
+     A  55                                  SFLCLR
+     A N55                                  SFLDSPCTL
+     A N55                                  SFLDSP
+     A                                      SFLSIZ(13)
+     A                                      SFLPAG(13)
+     A                                      ROLLUP(95 'ROLL UP')
+     A                                      OVERLAY
+     A                                      CA04(04 'RESTART ZIP CDE')
+     A                                  4  4'Zip Code'
+     A            ZIP       R        O  4 14DSPATR(HI)
+     A                                  7  4'Customer Name'
+     A                                      DSPATR(HI UL)
+     A                                  7 27'A/R Balance'
+     A                                      DSPATR(HI UL)

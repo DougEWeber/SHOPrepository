@@ -1,0 +1,14 @@
+     A*****************************************************************
+     A*     FILE NAME:  CUSMSTL2                                      *
+     A*  RELATED PGMS:  SCHZIP                                        *
+     A* RELATED FILES:  CUSMST   (PHYSICAL FILE)                      *
+     A*   DESCRIPTION:  THIS IS LOGICAL FILE CUSMSTL2.                *
+     A*                 IT CONTAINS ONE RECORD FORMAT CALLED CMLREC2. *
+     A*                 LOGICAL VIEW OF CUSTOMER MASTER FILE (CUSMST) *
+     A*                 BY CUSTOMER ZIP CODE (ZIP)                    *
+     A*****************************************************************
+     A          R CMLREC2                   PFILE(CUSMST)
+     A            ZIP
+     A            NAME
+     A            ARBAL
+     A          K ZIP
