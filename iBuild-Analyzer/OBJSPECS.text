@@ -1,0 +1,43 @@
+Object Selection Report (*OBJSEL)
+Input object selection Criteria:
+   SHOPSRC/*ALL (*PGM *SRVPGM *SQLPKG *MODULE *BNDDIR *CMD *MSGF *FILE *MENU *PNLGRP *NOTTGT) ~
+   SHOPLIVE/*ALL (*PGM *SRVPGM *SQLPKG *MODULE *BNDDIR *CMD *MSGF *FILE *MENU *PNLGRP *NOTTGT) ~
+
+Result of object selection:
+   SHOPSRC/*ALL (*PGM *SRVPGM *SQLPKG *MODULE *BNDDIR *CMD *MSGF *FILE *MENU *PNLGRP *NOTTGT) ~
+     SHOPSRC
+          *FILE
+               QCLSRC      PF      
+               QCMDSRC     PF      
+               QDDSSRC     PF      
+               QRPGLESRC   PF      
+               QSQLSRC     PF      
+               QTXTSRC     PF      
+          *DTAARA
+               ERAALZDIR           
+               GITREPO             
+               IGITOFFSET          
+               IGITPRPCTL          
+               LASTSAVE            
+   SHOPLIVE/*ALL (*PGM *SRVPGM *SQLPKG *MODULE *BNDDIR *CMD *MSGF *FILE *MENU *PNLGRP *NOTTGT) ~
+     SHOPLIVE
+          *PGM
+               CUSTMAINT   RPGLE   
+               SCHNAMRPG   RPGLE   
+          *MODULE
+               CUSMAIN     RPGLE   
+               CUSMNT      RPGLE   
+               SCHNAM      RPGLE   
+               SCHZIP      RPGLE   
+          *CMD
+               CUSTMAINT           
+          *FILE
+               CUSMST      PF      
+               CUSMSTL1    LF      
+               CUSMSTL2    LF      
+               CUSMSTL3    LF      
+               MAINMENU    DSPF    
+               MNTMENU     DSPF    
+               SCHNAMD     DSPF    
+               SCHZIPD     DSPF    
+End of Object Selection Report

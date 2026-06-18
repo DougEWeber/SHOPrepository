@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-MNTMENU-FILE :
+    objlib: LIB2
+    objname: MNTMENU
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: MNTMENU
+      -
+        name: CUSMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-MNTMENU
+      - LIB2-CUSMSTL1-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/MNTMENU)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/MNTMENU) SRCFILE(QDDSSRC) SRCMBR(MNTMENU) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Customer Master Maintenance'')')"
+  LIBL-QDDSSRC-SRCMBR-MNTMENU :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: MNTMENU

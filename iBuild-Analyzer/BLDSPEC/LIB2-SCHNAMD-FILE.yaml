@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-SCHNAMD-FILE :
+    objlib: LIB2
+    objname: SCHNAMD
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: SCHNAMD
+      -
+        name: CUSMSTL3
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-SCHNAMD
+      - LIB2-CUSMSTL3-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/SCHNAMD)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/SCHNAMD) SRCFILE(QDDSSRC) SRCMBR(SCHNAMD) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Customer Search by Name'')')"
+  LIBL-QDDSSRC-SRCMBR-SCHNAMD :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: SCHNAMD

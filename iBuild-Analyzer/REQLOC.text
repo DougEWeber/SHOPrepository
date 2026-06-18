@@ -1,0 +1,26 @@
+Requisite Location Report
+Summary report:
+SHOPLIVE objects:
+    Objects with requisites in library SHOPLIVE: 6
+    Objects with requisites in library SHOPLIVE: 6
+    Objects with requisites in library SHOPSRC: 8
+
+Detail report:
+SHOPLIVE objects:
+    Objects with requisites in library SHOPLIVE:
+        *FILE LF        SHOPLIVE/CUSMSTL1                   
+        *FILE LF        SHOPLIVE/CUSMSTL2                   
+        *FILE LF        SHOPLIVE/CUSMSTL3                   
+        *FILE DSPF      SHOPLIVE/MNTMENU                    
+        *FILE DSPF      SHOPLIVE/SCHNAMD                    
+        *FILE DSPF      SHOPLIVE/SCHZIPD                    
+    Objects with requisites in library SHOPSRC:
+        *FILE PF        SHOPLIVE/CUSMST                     
+        *FILE LF        SHOPLIVE/CUSMSTL1                   
+        *FILE LF        SHOPLIVE/CUSMSTL2                   
+        *FILE LF        SHOPLIVE/CUSMSTL3                   
+        *FILE DSPF      SHOPLIVE/MAINMENU                   
+        *FILE DSPF      SHOPLIVE/MNTMENU                    
+        *FILE DSPF      SHOPLIVE/SCHNAMD                    
+        *FILE DSPF      SHOPLIVE/SCHZIPD                    
+End of Requisite Location Report.

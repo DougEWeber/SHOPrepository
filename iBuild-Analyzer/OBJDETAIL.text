@@ -1,0 +1,815 @@
+Object Detail Report (*OBJDETAIL)
+ [0] *FILE PF        SHOPSRC/QCLSRC                       (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QCLSRC PF, IGITTRAIN, 2024-11-10 10:41:56
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QCLSRC PF, IGITTRAIN, 2024-11-10 10:41:56
+
+  Printing File Information for PF SHOPSRC/QCLSRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1241110104156)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(0)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(112)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [1] *FILE PF        SHOPSRC/QCMDSRC                      (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QCMDSRC PF, IGITTRAIN, 2024-09-11 01:58:47
+  Text: Command Source
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QCMDSRC PF, IGITTRAIN, 2024-09-11 01:58:47
+  Text: Command Source
+
+  Printing File Information for PF SHOPSRC/QCMDSRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1240911015847)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(92)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [2] *FILE PF        SHOPSRC/QDDSSRC                      (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QDDSSRC PF, IGITTRAIN, 2024-09-11 01:58:54
+  Text: File Source
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QDDSSRC PF, IGITTRAIN, 2024-09-11 01:58:54
+  Text: File Source
+
+  Printing File Information for PF SHOPSRC/QDDSSRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(8)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1240911015854)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(92)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [3] *FILE PF        SHOPSRC/QRPGLESRC                    (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QRPGLESRC PF, IGITTRAIN, 2024-09-11 01:59:02
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QRPGLESRC PF, IGITTRAIN, 2024-09-11 01:59:02
+
+  Printing File Information for PF SHOPSRC/QRPGLESRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(5)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1240911015902)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(0)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(112)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [4] *FILE PF        SHOPSRC/QSQLSRC                      (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QSQLSRC PF, IGITTRAIN, 2024-11-27 11:55:03
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QSQLSRC PF, IGITTRAIN, 2024-11-27 11:55:03
+
+  Printing File Information for PF SHOPSRC/QSQLSRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(7)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1241127115503)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(0)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(112)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [5] *FILE PF        SHOPSRC/QTXTSRC                      (Exists)
+  Object, Owner, TS: *FILE SHOPSRC/QTXTSRC PF, IGITTRAIN, 2024-09-11 02:42:14
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPSRC/QTXTSRC PF, IGITTRAIN, 2024-09-11 02:42:14
+
+  Printing File Information for PF SHOPSRC/QTXTSRC
+   pf_or_lf(0)  data_or_src(1)  arrival_or_keyed(0)  level_check(0)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(0)  max_wait_time(0)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1240911024214)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(0)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(112)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [6] *DTAARA         SHOPSRC/ERAALZDIR                    (Exists)
+ [7] *DTAARA         SHOPSRC/GITREPO                      (Exists)
+ [8] *DTAARA         SHOPSRC/IGITOFFSET                   (Exists)
+ [9] *DTAARA         SHOPSRC/IGITPRPCTL                   (Exists)
+ [10] *DTAARA         SHOPSRC/LASTSAVE                     (Exists)
+ [11] *PGM RPGLE      SHOPLIVE/CUSTMAINT                   (Exists)
+        REQ{00}->[12] *MODULE RPGLE SHOPLIVE/CUSMAIN       (Exists)
+           REQ{0}->[13] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(CUSMAIN)         (Exists)
+           REQ{1}->[14] *FILE DSPF SHOPLIVE/MAINMENU      (Exists)
+              REQ{0}->[15] *SRCMBR DDS SHOPSRC/QDDSSRC(MAINMENU)          (Exists)
+        REQ{01}->[16] *MODULE RPGLE SHOPLIVE/CUSMNT        (Exists)
+           REQ{0}->[17] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(CUSMNT)          (Exists)
+           REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+              REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+           REQ{2}->[22] *FILE DSPF SHOPLIVE/MNTMENU       (Exists)
+              REQ{0}->[23] *SRCMBR DDS SHOPSRC/QDDSSRC(MNTMENU)           (Exists)
+              REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+                 REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+                 REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                    REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{02}->[24] *MODULE RPGLE SHOPLIVE/SCHNAM        (Exists)
+           REQ{0}->[25] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHNAM)          (Exists)
+           REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+              REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+           REQ{2}->[28] *FILE DSPF SHOPLIVE/SCHNAMD       (Exists)
+              REQ{0}->[29] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHNAMD)           (Exists)
+              REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+                 REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+                 REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                    REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{03}->[30] *MODULE RPGLE SHOPLIVE/SCHZIP        (Exists)
+           REQ{0}->[31] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHZIP)          (Exists)
+           REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+              REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+           REQ{2}->[34] *FILE DSPF SHOPLIVE/SCHZIPD       (Exists)
+              REQ{0}->[35] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHZIPD)           (Exists)
+              REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+                 REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+                 REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                    REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{04}->[14] *FILE DSPF SHOPLIVE/MAINMENU      (Exists)
+           REQ{0}->[15] *SRCMBR DDS SHOPSRC/QDDSSRC(MAINMENU)          (Exists)
+        REQ{05}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+           REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{06}->[22] *FILE DSPF SHOPLIVE/MNTMENU       (Exists)
+           REQ{0}->[23] *SRCMBR DDS SHOPSRC/QDDSSRC(MNTMENU)           (Exists)
+           REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+              REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{07}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+           REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{08}->[28] *FILE DSPF SHOPLIVE/SCHNAMD       (Exists)
+           REQ{0}->[29] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHNAMD)           (Exists)
+           REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+              REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{09}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+           REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{10}->[34] *FILE DSPF SHOPLIVE/SCHZIPD       (Exists)
+           REQ{0}->[35] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHZIPD)           (Exists)
+           REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+              REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *PGM SHOPLIVE/CUSTMAINT RPGLE, DOUGW, 2026-06-18 01:16:02
+  Created on release V7R4M0 for release V7R4M0
+
+
+ Pgm Data:
+  Object, Owner, TS: *PGM SHOPLIVE/CUSTMAINT RPGLE, DOUGW, 2026-06-18 01:16:02
+  Created on release V7R4M0 for release V7R4M0
+
+  isILE(1)  allowReinit()  allowRtvCLsrc(*NO)
+  fixDecData(*NO)  useAdoptedAut(*YES)  logCmds(*NO)
+  pgmDomain(*USER)  pgmState(*USER)
+  stgModel(*SNGLVL)  usrProfileOpt(*USER)
+  ILE Data:
+   PEP(SHOPLIVE/CUSMAIN)  actvGroup(QILE)   argumentOpt(*NO)   profilingData(*NOCOL)
+   pgmCCSID(65535)   nbrModules(4)   nbrSrvpgms(4)
+   nbrCopyrights(0)   nbrUnresolvedRefs(0)
+   allowReinit(*NO)   allowUpdate(*YES)   allowLibUpdate(*NO)
+   sharedActvGroup(*NO)
+
+ [12] *MODULE RPGLE   SHOPLIVE/CUSMAIN                     (Exists)
+        REQ{0}->[13] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(CUSMAIN)         (Exists)
+        REQ{1}->[14] *FILE DSPF SHOPLIVE/MAINMENU      (Exists)
+           REQ{0}->[15] *SRCMBR DDS SHOPSRC/QDDSSRC(MAINMENU)          (Exists)
+  Object, Owner, TS: *MODULE SHOPLIVE/CUSMAIN RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMAIN)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *MODULE SHOPLIVE/CUSMAIN RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMAIN)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [13] *SRCMBR RPGLE   SHOPSRC/QRPGLESRC      (CUSMAIN)     (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMAIN)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMAIN)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [14] *FILE DSPF      SHOPLIVE/MAINMENU                    (Exists)
+        REQ{0}->[15] *SRCMBR DDS SHOPSRC/QDDSSRC(MAINMENU)          (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/MAINMENU DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MAINMENU)  
+
+
+ File Data for a DSPF
+  Object, Owner, TS: *FILE SHOPLIVE/MAINMENU DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MAINMENU)  
+
+  
+
+ [15] *SRCMBR DDS     SHOPSRC/QDDSSRC        (MAINMENU)    (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MAINMENU)  
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MAINMENU)  
+
+  
+
+ [16] *MODULE RPGLE   SHOPLIVE/CUSMNT                      (Exists)
+        REQ{0}->[17] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(CUSMNT)          (Exists)
+        REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+           REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{2}->[22] *FILE DSPF SHOPLIVE/MNTMENU       (Exists)
+           REQ{0}->[23] *SRCMBR DDS SHOPSRC/QDDSSRC(MNTMENU)           (Exists)
+           REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+              REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *MODULE SHOPLIVE/CUSMNT RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMNT)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *MODULE SHOPLIVE/CUSMNT RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMNT)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [17] *SRCMBR RPGLE   SHOPSRC/QRPGLESRC      (CUSMNT)      (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMNT)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(CUSMNT)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [18] *FILE LF        SHOPLIVE/CUSMSTL1                    (Exists)
+        REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+        REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+           REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL1 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL1)  
+  Text: Customer Master L1
+
+
+ File Data for a LF
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL1 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL1)  
+  Text: Customer Master L1
+
+  Printing File Information for LF SHOPLIVE/CUSMSTL1
+   pf_or_lf(1)  data_or_src(0)  arrival_or_keyed(1)  level_check(1)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+   src_file(QDDSSRC   )  src_mbr(CUSMSTL1  )  src_lib(SHOPSRC   )
+  Keyed Access Path:
+   accpth_jrnld(0)  allow_null_in_key(0)  accpth_is_primary_key(0)  accpth_is_unique(0)
+   accpth_is_1TB_max(1)  max_key_len(3)  acc_path_maint(I)  acc_pth_pgsiz(0)
+   accpth_type(KN)  accpth_recovery(N)  generic_key_len(3)  key_field_cnt(1)  Inl_nbr_of_EVI(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(1)  max_wait_time(30)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1260618011600)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(7)  max_rcd_len(88)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [19] *SRCMBR DDS     SHOPSRC/QDDSSRC        (CUSMSTL1)    (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL1)  
+  Text: Customer Master L1
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL1)  
+  Text: Customer Master L1
+
+  
+
+ [20] *FILE PF        SHOPLIVE/CUSMST                      (Exists)
+        REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMST PF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMST)  
+  Text: Customer Master
+
+
+ File Data for a PF
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMST PF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMST)  
+  Text: Customer Master
+
+  Printing File Information for PF SHOPLIVE/CUSMST
+   pf_or_lf(0)  data_or_src(0)  arrival_or_keyed(0)  level_check(1)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+   src_file(QDDSSRC   )  src_mbr(CUSMST    )  src_lib(SHOPSRC   )
+    alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(1)  max_wait_time(30)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1260618011600)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(8)  max_rcd_len(94)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [21] *SRCMBR DDS     SHOPSRC/QDDSSRC        (CUSMST)      (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMST)  
+  Text: Customer Master
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMST)  
+  Text: Customer Master
+
+  
+
+ [22] *FILE DSPF      SHOPLIVE/MNTMENU                     (Exists)
+        REQ{0}->[23] *SRCMBR DDS SHOPSRC/QDDSSRC(MNTMENU)           (Exists)
+        REQ{1}->[18] *FILE LF SHOPLIVE/CUSMSTL1      (Exists)
+           REQ{0}->[19] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL1)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/MNTMENU DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MNTMENU)  
+  Text: Customer Master Maintenance
+
+
+ File Data for a DSPF
+  Object, Owner, TS: *FILE SHOPLIVE/MNTMENU DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MNTMENU)  
+  Text: Customer Master Maintenance
+
+  
+
+ [23] *SRCMBR DDS     SHOPSRC/QDDSSRC        (MNTMENU)     (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MNTMENU)  
+  Text: Customer Master Maintenance
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(MNTMENU)  
+  Text: Customer Master Maintenance
+
+  
+
+ [24] *MODULE RPGLE   SHOPLIVE/SCHNAM                      (Exists)
+        REQ{0}->[25] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHNAM)          (Exists)
+        REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+           REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{2}->[28] *FILE DSPF SHOPLIVE/SCHNAMD       (Exists)
+           REQ{0}->[29] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHNAMD)           (Exists)
+           REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+              REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *MODULE SHOPLIVE/SCHNAM RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAM)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *MODULE SHOPLIVE/SCHNAM RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAM)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [25] *SRCMBR RPGLE   SHOPSRC/QRPGLESRC      (SCHNAM)      (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAM)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAM)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [26] *FILE LF        SHOPLIVE/CUSMSTL3                    (Exists)
+        REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+        REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+           REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL3 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL3)  
+  Text: Customer Master L3
+
+
+ File Data for a LF
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL3 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL3)  
+  Text: Customer Master L3
+
+  Printing File Information for LF SHOPLIVE/CUSMSTL3
+   pf_or_lf(1)  data_or_src(0)  arrival_or_keyed(1)  level_check(1)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+   src_file(QDDSSRC   )  src_mbr(CUSMSTL3  )  src_lib(SHOPSRC   )
+  Keyed Access Path:
+   accpth_jrnld(0)  allow_null_in_key(0)  accpth_is_primary_key(0)  accpth_is_unique(0)
+   accpth_is_1TB_max(1)  max_key_len(20)  acc_path_maint(I)  acc_pth_pgsiz(0)
+   accpth_type(KN)  accpth_recovery(N)  generic_key_len(20)  key_field_cnt(1)  Inl_nbr_of_EVI(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(1)  max_wait_time(30)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1260618011600)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(8)  max_rcd_len(94)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [27] *SRCMBR DDS     SHOPSRC/QDDSSRC        (CUSMSTL3)    (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL3)  
+  Text: Customer Master L3
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL3)  
+  Text: Customer Master L3
+
+  
+
+ [28] *FILE DSPF      SHOPLIVE/SCHNAMD                     (Exists)
+        REQ{0}->[29] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHNAMD)           (Exists)
+        REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+           REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/SCHNAMD DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHNAMD)  
+  Text: Customer Search by Name
+
+
+ File Data for a DSPF
+  Object, Owner, TS: *FILE SHOPLIVE/SCHNAMD DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHNAMD)  
+  Text: Customer Search by Name
+
+  
+
+ [29] *SRCMBR DDS     SHOPSRC/QDDSSRC        (SCHNAMD)     (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHNAMD)  
+  Text: Customer Search by Name
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHNAMD)  
+  Text: Customer Search by Name
+
+  
+
+ [30] *MODULE RPGLE   SHOPLIVE/SCHZIP                      (Exists)
+        REQ{0}->[31] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHZIP)          (Exists)
+        REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+           REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{2}->[34] *FILE DSPF SHOPLIVE/SCHZIPD       (Exists)
+           REQ{0}->[35] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHZIPD)           (Exists)
+           REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+              REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *MODULE SHOPLIVE/SCHZIP RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHZIP)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *MODULE SHOPLIVE/SCHZIP RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHZIP)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [31] *SRCMBR RPGLE   SHOPSRC/QRPGLESRC      (SCHZIP)      (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHZIP)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, DOUGW, 2026-06-18 01:16:01
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHZIP)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData(*NOCOL)  teraspaceEnabled(*YES)
+  enablePerfClc(*PEP)  modDomain(*SYSTEM)  modState(*USER)  stgModel(*INHERIT)
+
+ [32] *FILE LF        SHOPLIVE/CUSMSTL2                    (Exists)
+        REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+        REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+           REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL2 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL2)  
+  Text: Customer Master L2
+
+
+ File Data for a LF
+  Object, Owner, TS: *FILE SHOPLIVE/CUSMSTL2 LF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL2)  
+  Text: Customer Master L2
+
+  Printing File Information for LF SHOPLIVE/CUSMSTL2
+   pf_or_lf(1)  data_or_src(0)  arrival_or_keyed(1)  level_check(1)  select_omit_LF(0)
+   single_or_double_byte_data(0)  single_or_double_byte_lits(0)  ext_or_pgm_desc_file(0)
+   src_file(QDDSSRC   )  src_mbr(CUSMSTL2  )  src_lib(SHOPSRC   )
+  Keyed Access Path:
+   accpth_jrnld(0)  allow_null_in_key(0)  accpth_is_primary_key(0)  accpth_is_unique(0)
+   accpth_is_1TB_max(1)  max_key_len(3)  acc_path_maint(I)  acc_pth_pgsiz(0)
+   accpth_type(KN)  accpth_recovery(N)  generic_key_len(3)  key_field_cnt(1)  Inl_nbr_of_EVI(0)
+     alw_read(0)  alw_write(0)  alw_update(0)  alw_delete(0)
+   one_or_multi_ccsids(0)  has_allow_nulls(0)  has_var_len(0)  has_TS(0)
+   has_graphic_data(0)  distributed_file(0)  has_user_defined_types(0)  has_large_objects(0)  has_datalinks(0)
+   has_user_defines_funcs(0)  has_datalinks_with_FLC(0)  LF_on_PF_with_LOBS(0)
+   LF_on_PF_with_datalinks(0)  SQL_voltile_table(0)  has_identy_coloumn(0)
+   has_rowid(0)  has_row_change_TS(0)  keep_in_memory(0)
+   storage_SSD(0)  max_mbrs(1)  max_wait_time(30)  force_write_ratio(0)
+   curr_nbr_of_mbrs(1)  max_rcd_wait(60)  nbr_rcd_fmts(1)  first_supported_VRM(<V7R1M0)
+   org_pub_aut(*CHANGE   )  file_lvl_id(1260618011600)  rel_level(V7R4M0)  lang_id(ENU)  cntry_id(US)  text_ccsid(37)
+   asp(0)  max_nbr_of_fields(3)  max_rcd_len(29)  sort_seq_tbl_ind(2)
+  dfp_rounding( )  dfp_warn( )
+
+
+ [33] *SRCMBR DDS     SHOPSRC/QDDSSRC        (CUSMSTL2)    (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL2)  
+  Text: Customer Master L2
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(CUSMSTL2)  
+  Text: Customer Master L2
+
+  
+
+ [34] *FILE DSPF      SHOPLIVE/SCHZIPD                     (Exists)
+        REQ{0}->[35] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHZIPD)           (Exists)
+        REQ{1}->[32] *FILE LF SHOPLIVE/CUSMSTL2      (Exists)
+           REQ{0}->[33] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL2)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *FILE SHOPLIVE/SCHZIPD DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHZIPD)  
+  Text: Customer Search by Zip
+
+
+ File Data for a DSPF
+  Object, Owner, TS: *FILE SHOPLIVE/SCHZIPD DSPF, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHZIPD)  
+  Text: Customer Search by Zip
+
+  
+
+ [35] *SRCMBR DDS     SHOPSRC/QDDSSRC        (SCHZIPD)     (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHZIPD)  
+  Text: Customer Search by Zip
+
+
+ File Data for a DDS
+  Object, Owner, TS: *SRCMBR SHOPSRC/QDDSSRC DDS, DOUGW, 2026-06-18 01:16:00
+  Source           : *MBR SHOPSRC/QDDSSRC(SCHZIPD)  
+  Text: Customer Search by Zip
+
+  
+
+ [36] *PGM RPGLE      SHOPLIVE/SCHNAMRPG                   (Exists)
+        REQ{0}->[37] *MODULE RPGLE QTEMP/SCHNAMRPG        (Missing)
+           REQ{0}->[38] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHNAMRPG)       (Exists)
+        REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+           REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+           REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+              REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+        REQ{2}->[28] *FILE DSPF SHOPLIVE/SCHNAMD       (Exists)
+           REQ{0}->[29] *SRCMBR DDS SHOPSRC/QDDSSRC(SCHNAMD)           (Exists)
+           REQ{1}->[26] *FILE LF SHOPLIVE/CUSMSTL3      (Exists)
+              REQ{0}->[27] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMSTL3)          (Exists)
+              REQ{1}->[20] *FILE PF SHOPLIVE/CUSMST        (Exists)
+                 REQ{0}->[21] *SRCMBR DDS SHOPSRC/QDDSSRC(CUSMST)            (Exists)
+  Object, Owner, TS: *PGM SHOPLIVE/SCHNAMRPG RPGLE, DOUGW, 2026-06-18 01:16:02
+  Created on release V7R4M0 for release V7R4M0
+
+
+ Pgm Data:
+  Object, Owner, TS: *PGM SHOPLIVE/SCHNAMRPG RPGLE, DOUGW, 2026-06-18 01:16:02
+  Created on release V7R4M0 for release V7R4M0
+
+  isILE(1)  allowReinit()  allowRtvCLsrc(*NO)
+  fixDecData(*NO)  useAdoptedAut(*YES)  logCmds(*NO)
+  pgmDomain(*USER)  pgmState(*USER)
+  stgModel(*SNGLVL)  usrProfileOpt(*USER)
+  ILE Data:
+   PEP(QTEMP/SCHNAMRPG)  actvGroup(*DFTACTGRP)   argumentOpt(*NO)   profilingData(*NOCOL)
+   pgmCCSID(65535)   nbrModules(1)   nbrSrvpgms(4)
+   nbrCopyrights(0)   nbrUnresolvedRefs(0)
+   allowReinit(*NO)   allowUpdate(*NO)   allowLibUpdate(*NO)
+   sharedActvGroup(*NO)
+
+ [37] *MODULE RPGLE   QTEMP/SCHNAMRPG                      (Missing)
+        REQ{0}->[38] *SRCMBR RPGLE SHOPSRC/QRPGLESRC(SCHNAMRPG)       (Exists)
+  Object, Owner, TS: *MODULE QTEMP/SCHNAMRPG RPGLE, , 2026-06-18 01:16:02
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAMRPG)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *MODULE QTEMP/SCHNAMRPG RPGLE, , 2026-06-18 01:16:02
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAMRPG)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData()  teraspaceEnabled(*YES)
+  enablePerfClc()  modDomain()  modState()  stgModel(*SNGLVL)
+
+ [38] *SRCMBR RPGLE   SHOPSRC/QRPGLESRC      (SCHNAMRPG)   (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, , 2026-06-18 01:16:02
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAMRPG)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+
+ Module Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QRPGLESRC RPGLE, , 2026-06-18 01:16:02
+  Source           : *MBR SHOPSRC/QRPGLESRC(SCHNAMRPG)  2024-09-11 01:59:02
+  Created on release V7R4M0 for release V7R4M0
+  LanguageID: *JOBRUN, Sort Seq Table: *HEX
+  objCtlLvl()  LicIntCdeOpt()
+  moduleCCSID(37)  optLevel(10)  nbrSQLstmts(0)
+  allowRtvCLsrc(*NO)  dbgData(*STMT)  profileData()  teraspaceEnabled(*YES)
+  enablePerfClc()  modDomain()  modState()  stgModel(*SNGLVL)
+
+ [39] *CMD            SHOPLIVE/CUSTMAINT                   (Exists)
+        REQ{0}->[40] *SRCMBR CMD SHOPSRC/QCMDSRC(CUSTMAINT)         (Exists)
+  Object, Owner, TS: *CMD SHOPLIVE/CUSTMAINT, , 
+  Source           : *MBR SHOPSRC/QCMDSRC(CUSTMAINT)  
+  Text: Customer Maintenance
+
+
+ Cmd Data:
+  Object, Owner, TS: *CMD SHOPLIVE/CUSTMAINT, , 
+  Source           : *MBR SHOPSRC/QCMDSRC(CUSTMAINT)  
+  Text: Customer Maintenance
+
+  Cmd_Proc(*LIBL/CUSTMAINT)  Val_Proc(*NONE)
+  Mode: *ALL  Allow: *ALL  Allow_Limited(0)
+  Current_Lib(*NOCHG)  Product_Lib(*NOCHG)  CCSID(37)  Max_Parameters(*NOMAX)
+  Prompt(*NONE)  Message(*LIBL/QCPFMSG)
+  Help_Panel(*NONE)  Help_Id(*NONE)
+  Search(*NONE)  Prompt(*NONE)
+  Sys_State(0)  Sys_State_Val_Chk(0)  Sys_State_P_Ovr(0)
+  Enable_GUI(0)  Prompt_Message_File_Text(1)
+  Threadsafe(*COND)  Multithreaded_Job_Action(*NORUN)
+
+ [40] *SRCMBR CMD     SHOPSRC/QCMDSRC        (CUSTMAINT)   (Exists)
+  Object, Owner, TS: *SRCMBR SHOPSRC/QCMDSRC CMD, , 
+  Source           : *MBR SHOPSRC/QCMDSRC(CUSTMAINT)  
+  Text: Customer Maintenance
+
+
+ Cmd Data:
+  Object, Owner, TS: *SRCMBR SHOPSRC/QCMDSRC CMD, , 
+  Source           : *MBR SHOPSRC/QCMDSRC(CUSTMAINT)  
+  Text: Customer Maintenance
+
+  Cmd_Proc(*LIBL/CUSTMAINT)  Val_Proc(*NONE)
+  Mode: *ALL  Allow: *ALL  Allow_Limited(0)
+  Current_Lib(*NOCHG)  Product_Lib(*NOCHG)  CCSID(37)  Max_Parameters(*NOMAX)
+  Prompt(*NONE)  Message(*LIBL/QCPFMSG)
+  Help_Panel(*NONE)  Help_Id(*NONE)
+  Search(*NONE)  Prompt(*NONE)
+  Sys_State(0)  Sys_State_Val_Chk(0)  Sys_State_P_Ovr(0)
+  Enable_GUI(0)  Prompt_Message_File_Text(1)
+  Threadsafe(*COND)  Multithreaded_Job_Action(*NORUN)
+
+End of Object Detail Report

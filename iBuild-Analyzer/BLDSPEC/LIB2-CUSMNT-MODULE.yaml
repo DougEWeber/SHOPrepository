@@ -1,0 +1,42 @@
+---
+targets:
+  LIB2-CUSMNT-MODULE :
+    objlib: LIB2
+    objname: CUSMNT
+    objtype: MODULE
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: CUSMNT
+      -
+        name: CUSMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: MNTMENU
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-CUSMNT
+      - LIB2-CUSMSTL1-FILE
+      - LIB2-MNTMENU-FILE
+    command: CRTRPGMOD
+    parameters:
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(CUSMNT)"
+      - "TGTCCSID(37)"
+      - "PRFDTA(*NOCOL)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+      - "MODULE($(LIB2)/CUSMNT)"
+      - "STGMDL(*INHERIT)"
+  LIBL-QRPGLESRC-SRCMBR-CUSMNT :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: CUSMNT

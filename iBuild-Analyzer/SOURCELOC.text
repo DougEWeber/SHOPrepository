@@ -1,0 +1,23 @@
+Source Location Report
+Summary report:
+SHOPLIVE objects:
+    Objects with source in library SHOPSRC: 14
+
+Detail report:
+SHOPLIVE objects:
+    Objects with source in library SHOPSRC:
+        *MODULE RPGLE   SHOPLIVE/CUSMAIN                    
+        *FILE DSPF      SHOPLIVE/MAINMENU                   
+        *MODULE RPGLE   SHOPLIVE/CUSMNT                     
+        *FILE LF        SHOPLIVE/CUSMSTL1                   
+        *FILE PF        SHOPLIVE/CUSMST                     
+        *FILE DSPF      SHOPLIVE/MNTMENU                    
+        *MODULE RPGLE   SHOPLIVE/SCHNAM                     
+        *FILE LF        SHOPLIVE/CUSMSTL3                   
+        *FILE DSPF      SHOPLIVE/SCHNAMD                    
+        *MODULE RPGLE   SHOPLIVE/SCHZIP                     
+        *FILE LF        SHOPLIVE/CUSMSTL2                   
+        *FILE DSPF      SHOPLIVE/SCHZIPD                    
+        *PGM RPGLE      SHOPLIVE/SCHNAMRPG                  
+        *CMD            SHOPLIVE/CUSTMAINT                  
+End of Source Location Report.

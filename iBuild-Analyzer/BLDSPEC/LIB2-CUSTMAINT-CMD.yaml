@@ -1,0 +1,32 @@
+---
+targets:
+  LIB2-CUSTMAINT-CMD :
+    objlib: LIB2
+    objname: CUSTMAINT
+    objtype: CMD
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QCMDSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: CUSTMAINT
+    requisiteyamlrecords :
+      - LIBL-QCMDSRC-SRCMBR-CUSTMAINT
+    command: CRTCMD
+    parameters:
+      - "CMD($(LIB2)/CUSTMAINT)"
+      - "PGM(CUSTMAINT)"
+      - "SRCFILE(QCMDSRC)"
+      - "SRCMBR(CUSTMAINT)"
+      - "THDSAFE(*NO)"
+      - "MLTTHDACN(*SYSVAL)"
+      - "TEXT('Customer Maintenance')"
+      - "CURLIB(*NOCHG)"
+      - "PRDLIB(*NOCHG)"
+  LIBL-QCMDSRC-SRCMBR-CUSTMAINT :
+    objlib: "*LIBL"
+    objname: QCMDSRC
+    objtype: SRCMBR
+    mbrname: CUSTMAINT

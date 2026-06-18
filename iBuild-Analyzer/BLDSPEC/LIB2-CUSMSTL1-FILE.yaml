@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-CUSMSTL1-FILE :
+    objlib: LIB2
+    objname: CUSMSTL1
+    objtype: FILE
+    objattr: LF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: CUSMSTL1
+      -
+        name: CUSMST
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-CUSMSTL1
+      - LIB2-CUSMST-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/CUSMSTL1)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(LF)"
+      - "CMD(CRTLF)"
+      - "CMDPARMS(' FILE($(LIB2)/CUSMSTL1) SRCFILE(QDDSSRC) SRCMBR(CUSMSTL1) TEXT(''Customer Master L1'')')"
+  LIBL-QDDSSRC-SRCMBR-CUSMSTL1 :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: CUSMSTL1
