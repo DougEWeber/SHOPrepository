@@ -3,4 +3,5 @@ lib SRC TGT {*pgm *lf *pf keepdata *cmd *dspf exclude qrpglesrc/*file
                   exclude qclsrc/*file
                   exclude qtxtsrc/*file
                   exclude qddssrc/*file
+                  exclude qsqlsrc/*file
 }

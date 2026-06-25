@@ -1,0 +1,29 @@
+---
+targets:
+  LIB2-INVMST-FILE :
+    objlib: LIB2
+    objname: INVMST
+    objtype: FILE
+    objattr: PF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: INVMST
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-INVMST
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/INVMST)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(PF)"
+      - "CMD(CRTPF)"
+      - "CMDPARMS(' FILE($(LIB2)/INVMST) SRCFILE(QDDSSRC) SRCMBR(INVMST) TEXT(''Inventory Master'')')"
+  LIBL-QDDSSRC-SRCMBR-INVMST :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: INVMST

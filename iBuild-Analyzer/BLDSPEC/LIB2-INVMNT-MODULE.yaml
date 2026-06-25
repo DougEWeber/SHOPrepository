@@ -1,0 +1,42 @@
+---
+targets:
+  LIB2-INVMNT-MODULE :
+    objlib: LIB2
+    objname: INVMNT
+    objtype: MODULE
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: INVMNT
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVMNT
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-INVMNT
+      - LIB2-INVMSTL1-FILE
+      - LIB2-INVMNT-FILE
+    command: CRTRPGMOD
+    parameters:
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(INVMNT)"
+      - "TGTCCSID(37)"
+      - "PRFDTA(*NOCOL)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+      - "MODULE($(LIB2)/INVMNT)"
+      - "STGMDL(*INHERIT)"
+  LIBL-QRPGLESRC-SRCMBR-INVMNT :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: INVMNT

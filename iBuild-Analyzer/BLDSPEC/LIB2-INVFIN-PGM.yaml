@@ -1,0 +1,32 @@
+---
+targets:
+  LIB2-INVFIN-PGM :
+    objlib: LIB2
+    objname: INVFIN
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: INVFIN
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIB2-INVFIN-MODULE
+      - LIB2-INVMSTL1-FILE
+    command: CRTPGM
+    parameters:
+      - "PGM($(LIB2)/INVFIN)"
+      - "USRPRF(*USER)"
+      - "MODULE(INVFIN)"
+      - "ENTMOD(INVFIN)"
+      - "ACTGRP(QILE)"
+      - "DETAIL(*BASIC)"
+      - "ALWUPD(*YES)"
+      - "ALWLIBUPD(*NO)"
+      - "ALWRINZ(*NO)"

@@ -1,0 +1,42 @@
+---
+targets:
+  LIB2-INVRCV-MODULE :
+    objlib: LIB2
+    objname: INVRCV
+    objtype: MODULE
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: INVRCV
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVRCVD
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-INVRCV
+      - LIB2-INVMSTL1-FILE
+      - LIB2-INVRCVD-FILE
+    command: CRTRPGMOD
+    parameters:
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(INVRCV)"
+      - "TGTCCSID(37)"
+      - "PRFDTA(*NOCOL)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+      - "MODULE($(LIB2)/INVRCV)"
+      - "STGMDL(*INHERIT)"
+  LIBL-QRPGLESRC-SRCMBR-INVRCV :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: INVRCV
