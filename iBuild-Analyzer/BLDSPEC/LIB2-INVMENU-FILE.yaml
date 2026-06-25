@@ -1,0 +1,29 @@
+---
+targets:
+  LIB2-INVMENU-FILE :
+    objlib: LIB2
+    objname: INVMENU
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: INVMENU
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-INVMENU
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/INVMENU)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/INVMENU) SRCFILE(QDDSSRC) SRCMBR(INVMENU) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Inventory Main Menu'')')"
+  LIBL-QDDSSRC-SRCMBR-INVMENU :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: INVMENU

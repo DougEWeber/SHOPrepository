@@ -1,0 +1,37 @@
+---
+targets:
+  LIB2-INVFIN-MODULE :
+    objlib: LIB2
+    objname: INVFIN
+    objtype: MODULE
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: INVFIN
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-INVFIN
+      - LIB2-INVMSTL1-FILE
+    command: CRTRPGMOD
+    parameters:
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(INVFIN)"
+      - "TGTCCSID(37)"
+      - "PRFDTA(*NOCOL)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+      - "MODULE($(LIB2)/INVFIN)"
+      - "STGMDL(*INHERIT)"
+  LIBL-QRPGLESRC-SRCMBR-INVFIN :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: INVFIN

@@ -1,0 +1,16 @@
+     A*****************************************************************
+     A* FILE NAME:  INVMST                                            *
+     A* RELATED PGMS:  INVMNT, INVRCV, INVAVL, INVFIN                *
+     A* RELATED FILES:  INVMSTL1 (LOGICAL FILE)                      *
+     A* DESCRIPTION:  THIS IS THE PHYSICAL FILE INVMST. IT HAS       *
+     A*          ONE RECORD FORMAT CALLED INVREC.                     *
+     A*****************************************************************
+     A          R INVREC
+     A            INVID         10          TEXT('INVENTORY ITEM ID')
+     A            INVDSC        30          TEXT('DESCRIPTION')
+     A            INVUNT         5          TEXT('UNIT OF MEASURE')
+     A            QTYOH          7  0       TEXT('QUANTITY ON HAND')
+     A            QTYIP          7  0       TEXT('QUANTITY IN PROCESS')
+     A            LSTCST        11  2       TEXT('LAST COST')
+     A            QTYOO          7  0       TEXT('QUANTITY ON ORDER')
+     A            INACTV         1          TEXT('INACTIVE FLAG Y/N')

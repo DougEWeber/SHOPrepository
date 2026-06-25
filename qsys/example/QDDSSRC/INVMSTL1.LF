@@ -1,0 +1,19 @@
+     A*****************************************************************
+     A*     FILE NAME:  INVMSTL1                                      *
+     A*  RELATED PGMS:  INVMNT, INVRCV, INVAVL, INVFIN               *
+     A* RELATED FILES:  INVMST  (PHYSICAL FILE)                       *
+     A*   DESCRIPTION:  THIS IS LOGICAL FILE INVMSTL1.                *
+     A*                 IT CONTAINS ONE RECORD FORMAT CALLED IMLREC1. *
+     A*                 LOGICAL VIEW OF INVENTORY MASTER (INVMST)     *
+     A*                 BY INVENTORY ID (INVID)                       *
+     A*****************************************************************
+     A          R IMLREC1                   PFILE(INVMST)
+     A            INVID
+     A            INVDSC
+     A            INVUNT
+     A            QTYOH
+     A            QTYIP
+     A            LSTCST
+     A            QTYOO
+     A            INACTV
+     A          K INVID

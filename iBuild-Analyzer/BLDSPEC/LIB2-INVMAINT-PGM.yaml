@@ -1,0 +1,57 @@
+---
+targets:
+  LIB2-INVMAINT-PGM :
+    objlib: LIB2
+    objname: INVMAINT
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: INVMAIN
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: INVMNT
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: INVRCV
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: INVMENU
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVMNT
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVRCVD
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIB2-INVMAIN-MODULE
+      - LIB2-INVMNT-MODULE
+      - LIB2-INVRCV-MODULE
+      - LIB2-INVMENU-FILE
+      - LIB2-INVMSTL1-FILE
+      - LIB2-INVMNT-FILE
+      - LIB2-INVRCVD-FILE
+    command: CRTPGM
+    parameters:
+      - "PGM($(LIB2)/INVMAINT)"
+      - "USRPRF(*USER)"
+      - "MODULE(INVMAIN INVMNT INVRCV)"
+      - "ENTMOD(INVMAIN)"
+      - "ACTGRP(QILE)"
+      - "DETAIL(*BASIC)"
+      - "ALWUPD(*YES)"
+      - "ALWLIBUPD(*NO)"
+      - "ALWRINZ(*NO)"
