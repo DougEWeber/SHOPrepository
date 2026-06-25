@@ -1,0 +1,58 @@
+     A*****************************************************************
+     A*     FILE NAME:  INVRCVD                                       *
+     A*  RELATED PGMS:  INVRCV (RPGLE)                                *
+     A* RELATED FILES:  INVMSTL1   (LOGICAL FILE)                     *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE INVRCVD. IT HAS 2    *
+     A*                 RECORD FORMATS: HDRSCN, RCVSCN.               *
+     A*                 HDRSCN PROMPTS FOR ITEM ID.                   *
+     A*                 RCVSCN ACCEPTS QUANTITY RECEIVED AND COST.    *
+     A*****************************************************************
+     A                                      REF(INVMSTL1)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A          R HDRSCN
+     A                                      TEXT('PROMPT FOR ITEM ID')
+     A                                      CA03(03 'END RECEIVE')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 24'INVENTORY RECEIVE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A            INVID     R        I 10 25DSPATR(CS)
+     A  52                                  ERRMSG('ITEM NOT ON FILE' 52)
+     A  53                                  ERRMSG('ITEM IS INACTIVE' 53)
+     A                                 10 33'<--Enter Item ID'
+     A                                      DSPATR(HI)
+     A                                 23  4'F3 End Job'
+     A          R RCVSCN
+     A                                      TEXT('RECEIVE INVENTORY')
+     A                                      CA12(12 'PREVIOUS SCREEN')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 24'INVENTORY RECEIVE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Item ID:' DSPATR(HI UL)
+     A            INVID     R        O  4 25DSPATR(HI)
+     A                                  5 14'Description:' DSPATR(HI)
+     A            INVDSC    R        O  5 27
+     A                                  6 18'Unit:' DSPATR(HI)
+     A            INVUNT    R        O  6 27
+     A                                  7 14'Qty On Hand:' DSPATR(HI)
+     A            QTYOH     R        O  7 28EDTCDE(1)
+     A                                  8 14'Qty On Order:' DSPATR(HI)
+     A            QTYOO     R        O  8 28EDTCDE(1)
+     A                                 10 14'Qty Received:' DSPATR(HI)
+     A            QTYRCV         7  0B 10 28EDTCDE(1)
+     A  55                                  ERRMSG('QUANTITY MUST BE +
+     A                                      GREATER THAN ZERO' 55)
+     A                                 11 14'Unit Cost:' DSPATR(HI)
+     A            RCVCST        11  2B 11 28EDTCDE(1)
+     A  56                                  ERRMSG('COST MUST BE GREATER +
+     A                                      THAN ZERO' 56)
+     A                                 23  2'F12 Cancel'

@@ -1,0 +1,101 @@
+     A*****************************************************************
+     A*     FILE NAME:  INVMNT                                        *
+     A*  RELATED PGMS:  INVMNT (RPGLE)                                *
+     A* RELATED FILES:  INVMSTL1   (LOGICAL FILE)                     *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE INVMNT. IT HAS 3     *
+     A*                 RECORD FORMATS: HDRSCN, ITMCRT, ITMINQ.       *
+     A*                 HDRSCN PROMPTS FOR ITEM ID AND MODE.          *
+     A*                 ITMCRT IS USED TO CREATE A NEW ITEM.          *
+     A*                 ITMINQ DISPLAYS/EDITS AN EXISTING ITEM.       *
+     A*****************************************************************
+     A                                      REF(INVMSTL1)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A          R HDRSCN
+     A                                      TEXT('PROMPT FOR ITEM ID')
+     A                                      CA03(03 'END MAINTENANCE')
+     A                                      CF05(05 'ADD MODE')
+     A                                      CF06(06 'UPDATE MODE')
+     A                                      CF07(07 'INACTIVATE MODE')
+     A                                      CF08(08 'REACTIVATE MODE')
+     A                                      CF09(09 'VIEW MODE')
+     A            MODE           8A  O  1  4DSPATR(HI)
+     A                                  1 13'MODE'
+     A                                      DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 26'INVENTORY MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A            INVID     R        I 10 25DSPATR(CS)
+     A  51                                  ERRMSG('ITEM ALREADY ON FILE' 51)
+     A  52                                  ERRMSG('ITEM NOT ON FILE' 52)
+     A  53                                  ERRMSG('ITEM IS ALREADY INACTIVE' +
+     A                                      53)
+     A  54                                  ERRMSG('ITEM IS ALREADY ACTIVE' +
+     A                                      54)
+     A                                 10 33'<--Enter Item ID'
+     A                                      DSPATR(HI)
+     A                                 23  4'F3 End Job'
+     A                                 23 18'F5 Add'
+     A                                 23 27'F6 Update'
+     A                                 23 39'F7 Inactivate'
+     A                                 23 54'F8 Reactivate'
+     A                                 22  4'F9 View'
+     A          R ITMCRT
+     A                                      TEXT('CREATE INVENTORY ITEM')
+     A                                      CA12(12 'PREVIOUS SCREEN')
+     A            MODE           8   O  1  4DSPATR(HI)
+     A                                  1 13'MODE'     DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 26'INVENTORY MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Item ID:' DSPATR(HI UL)
+     A            INVID     R        O  4 25DSPATR(HI)
+     A                                  6 14'Description:' DSPATR(HI)
+     A            INVDSC    R        I  6 27
+     A                                  7 18'Unit:' DSPATR(HI)
+     A            INVUNT    R        I  7 27
+     A                                 23  2'F12 Cancel'
+     A          R ITMINQ
+     A                                      TEXT('DISPLAY/EDIT ITEM')
+     A                                      CA12(12 'PREVIOUS SCREEN')
+     A            MODE           8   O  1  4DSPATR(HI)
+     A                                  1 13'MODE'     DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 26'INVENTORY MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Item ID:' DSPATR(HI UL)
+     A            INVID     R        O  4 25DSPATR(HI)
+     A                                  5 14'Status:' DSPATR(HI)
+     A            INACTV    R        O  5 25DSPATR(HI)
+     A                                  6 14'Description:' DSPATR(HI)
+     A            INVDSC    R        B  6 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  7 18'Unit:' DSPATR(HI)
+     A            INVUNT    R        B  7 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  8 14'Qty On Hand:' DSPATR(HI)
+     A            QTYOH     R        O  8 28EDTCDE(1)
+     A                                  9 14'Qty In Proc:' DSPATR(HI)
+     A            QTYIP     R        O  9 28EDTCDE(1)
+     A                                 10 14'Last Cost:' DSPATR(HI)
+     A            LSTCST    R        O 10 28EDTCDE(1)
+     A                                 11 14'Qty On Order:' DSPATR(HI)
+     A            QTYOO     R        O 11 28EDTCDE(1)
+     A  10                             15 21'Zero QOH on Reactivation?'
+     A  10                                  DSPATR(HI)
+     A  10                             15 47'(Y/N)'
+     A  10        ZEROQH         1   I 15 53
+     A                                 23  2'F12 Cancel'
