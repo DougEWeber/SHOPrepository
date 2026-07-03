@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-VNDMNT-FILE :
+    objlib: LIB2
+    objname: VNDMNT
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: VNDMNT
+      -
+        name: VNDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-VNDMNT
+      - LIB2-VNDMSTL1-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/VNDMNT)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/VNDMNT) SRCFILE(QDDSSRC) SRCMBR(VNDMNT) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Vendor Maintenance Display'')')"
+  LIBL-QDDSSRC-SRCMBR-VNDMNT :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: VNDMNT

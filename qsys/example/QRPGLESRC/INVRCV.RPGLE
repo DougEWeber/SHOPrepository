@@ -8,6 +8,7 @@
       //****************************************************************
 
      Finvmstl1  uf a e           k disk
+     Fvndmstl1  uf   e           k disk
      Finvrcvd   cf   e             workstn indds(indicators)
 
      D indicators      ds
@@ -19,7 +20,10 @@
      D   cstErr                        n   overlay(indicators:56)
 
      C     INVKEY        KLIST
-     C                   KFLD                    INVID 
+     C                   KFLD                    INVID
+
+     C     VNDKY         KLIST
+     C                   KFLD                    VNDID
 
       /free
 
@@ -61,6 +65,13 @@
                       qtyoo = 0;
                    endif;
                    update imlrec1;
+                   if vndid > 0;
+                      chain vndky vmlrec1;
+                      if %found(vndmstl1);
+                         vndowe = vndowe + (qtyrcv * rcvcst);
+                         update vmlrec1;
+                      endif;
+                   endif;
                    leave;
                 endif;
              enddo;

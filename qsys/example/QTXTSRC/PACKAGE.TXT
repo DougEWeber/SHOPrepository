@@ -1,4 +1,4 @@
-lib SRC TGT {*pgm *lf *pf keepdata *cmd *dspf exclude qrpglesrc/*file
+lib SRC TGT {*pgm *lf *pf keepdata *cmd *dspf *prtf exclude qrpglesrc/*file
                   exclude qcmdsrc/*file
                   exclude qclsrc/*file
                   exclude qtxtsrc/*file

@@ -14,3 +14,4 @@
      A            LSTCST        11  2       TEXT('LAST COST')
      A            QTYOO          7  0       TEXT('QUANTITY ON ORDER')
      A            INACTV         1          TEXT('INACTIVE FLAG Y/N')
+     A            VNDID          7  0       TEXT('VENDOR ID')
