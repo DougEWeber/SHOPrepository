@@ -1,0 +1,23 @@
+     A*****************************************************************
+     A*     FILE NAME:  VNDMSTL1                                      *
+     A*  RELATED PGMS:  VNDMNT, INVMNT, INVRCV                        *
+     A* RELATED FILES:  VNDMST  (PHYSICAL FILE)                       *
+     A*   DESCRIPTION:  LOGICAL VIEW OF VENDOR MASTER (VNDMST)        *
+     A*                 BY VENDOR ID (VNDID).                         *
+     A*                 INACTV RENAMED TO VNINACTV TO AVOID FIELD     *
+     A*                 NAME CONFLICTS IN PROGRAMS THAT ALSO OPEN     *
+     A*                 INVMST-BASED FILES.                           *
+     A*****************************************************************
+     A          R VMLREC1                   PFILE(VNDMST)
+     A            VNDID
+     A            VNDNAM
+     A            VNDAD1
+     A            VNDCTY
+     A            VNDST
+     A            VNDZIP
+     A            VND30
+     A            VND60
+     A            VND90
+     A            VNDOWE
+     A            VNINACTV                  RENAME(INACTV)
+     A          K VNDID

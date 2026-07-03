@@ -1,0 +1,126 @@
+     A*****************************************************************
+     A*     FILE NAME:  VNDMNT                                        *
+     A*  RELATED PGMS:  VNDMNT (RPGLE)                                *
+     A* RELATED FILES:  VNDMSTL1   (LOGICAL FILE)                     *
+     A*   DESCRIPTION:  VENDOR MAINTENANCE DISPLAY FILE.              *
+     A*                 HDRSCN - PROMPTS FOR VENDOR ID AND MODE.      *
+     A*                 ITMCRT - CREATE A NEW VENDOR.                 *
+     A*                 ITMINQ - DISPLAY/EDIT AN EXISTING VENDOR.     *
+     A*****************************************************************
+     A                                      REF(VNDMSTL1)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A          R HDRSCN
+     A                                      TEXT('PROMPT FOR VENDOR ID')
+     A                                      CA03(03 'END MAINTENANCE')
+     A                                      CF05(05 'ADD MODE')
+     A                                      CF06(06 'UPDATE MODE')
+     A                                      CF07(07 'INACTIVATE MODE')
+     A                                      CF08(08 'REACTIVATE MODE')
+     A                                      CF09(09 'VIEW MODE')
+     A            MODE           8A  O  1  4DSPATR(HI)
+     A                                  1 13'MODE'
+     A                                      DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 31'VENDOR MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A            VNDID     R        B 10 25EDTCDE(Z)
+     A  52                                  ERRMSG('VENDOR NOT ON FILE' 52)
+     A  53                                  ERRMSG('VENDOR IS ALREADY INACTIVE'+
+     A                                      ' ' 53)
+     A  54                                  ERRMSG('VENDOR IS ALREADY ACTIVE' +
+     A                                      54)
+     A                                 10 33'<--Enter Vendor ID'
+     A                                      DSPATR(HI)
+     A                                 22  4'F9 View'
+     A                                 23  4'F3 End Job'
+     A                                 23 18'F5 Add'
+     A                                 23 27'F6 Update'
+     A                                 23 39'F7 Inactivate'
+     A                                 23 54'F8 Reactivate'
+     A          R ITMCRT
+     A                                      TEXT('CREATE VENDOR')
+     A                                      CA12(12 'PREVIOUS SCREEN')
+     A            MODE           8   O  1  4DSPATR(HI)
+     A                                  1 13'MODE'     DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 31'VENDOR MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Vendor ID:' DSPATR(HI UL)
+     A            VNDID     R        O  4 25EDTCDE(Z)
+     A                                      DSPATR(HI)
+     A                                  6 14'Name:'      DSPATR(HI)
+     A            VNDNAM    R        I  6 27
+     A                                  7 14'Address:'   DSPATR(HI)
+     A            VNDAD1    R        I  7 27
+     A                                  8 14'City:'      DSPATR(HI)
+     A            VNDCTY    R        I  8 27
+     A                                  8 49'St:'        DSPATR(HI)
+     A            VNDST     R        I  8 53
+     A                                  8 57'Zip:'       DSPATR(HI)
+     A            VNDZIP    R        I  8 62
+     A                                 10 14'30-Day Pct:' DSPATR(HI)
+     A            VND30     R        B 10 27EDTCDE(Z)
+     A                                 11 14'60-Day Pct:' DSPATR(HI)
+     A            VND60     R        B 11 27EDTCDE(Z)
+     A                                 12 14'90-Day Pct:' DSPATR(HI)
+     A            VND90     R        B 12 27EDTCDE(Z)
+     A                                 23  2'F12 Cancel'
+     A          R ITMINQ
+     A                                      TEXT('DISPLAY/EDIT VENDOR')
+     A                                      CA12(12 'PREVIOUS SCREEN')
+     A            MODE           8   O  1  4DSPATR(HI)
+     A                                  1 13'MODE'     DSPATR(HI)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 31'VENDOR MAINTENANCE'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Vendor ID:' DSPATR(HI UL)
+     A            VNDID     R        O  4 25EDTCDE(Z)
+     A                                      DSPATR(HI)
+     A                                  5 14'Status:'    DSPATR(HI)
+     A            VNINACTV  R        O  5 25DSPATR(HI)
+     A                                  6 14'Name:'      DSPATR(HI)
+     A            VNDNAM    R        B  6 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  7 14'Address:'   DSPATR(HI)
+     A            VNDAD1    R        B  7 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  8 14'City:'      DSPATR(HI)
+     A            VNDCTY    R        B  8 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  8 49'St:'        DSPATR(HI)
+     A            VNDST     R        B  8 53DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                  8 57'Zip:'       DSPATR(HI)
+     A            VNDZIP    R        B  8 62DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 10 14'30-Day Pct:' DSPATR(HI)
+     A            VND30     R        B 10 27EDTCDE(Z)
+     A                                      DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 11 14'60-Day Pct:' DSPATR(HI)
+     A            VND60     R        B 11 27EDTCDE(Z)
+     A                                      DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 12 14'90-Day Pct:' DSPATR(HI)
+     A            VND90     R        B 12 27EDTCDE(Z)
+     A                                      DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 14 14'Amt Owed:'  DSPATR(HI)
+     A            VNDOWE    R        B 14 27EDTCDE(1)
+     A                                      DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 23  2'F12 Cancel'

@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-VNDMSTL1-FILE :
+    objlib: LIB2
+    objname: VNDMSTL1
+    objtype: FILE
+    objattr: LF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: VNDMSTL1
+      -
+        name: VNDMST
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-VNDMSTL1
+      - LIB2-VNDMST-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/VNDMSTL1)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(LF)"
+      - "CMD(CRTLF)"
+      - "CMDPARMS(' FILE($(LIB2)/VNDMSTL1) SRCFILE(QDDSSRC) SRCMBR(VNDMSTL1) TEXT(''Vendor Master L1'')')"
+  LIBL-QDDSSRC-SRCMBR-VNDMSTL1 :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: VNDMSTL1

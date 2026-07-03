@@ -12,6 +12,7 @@
       //****************************************************************
 
      Finvmstl1  uf a e           k disk
+     Fvndmstl1  if   e           k disk
      Finvmnt    cf   e             workstn indds(indicators)
 
      D indicators      ds
@@ -28,9 +29,13 @@
      D   itemNotFound                  n   overlay(indicators:52)
      D   alrInactv                     n   overlay(indicators:53)
      D   alrActv                       n   overlay(indicators:54)
+     D   invalidVnd                    n   overlay(indicators:57)
 
      C     INVKEY        KLIST
      C                   KFLD                    INVID
+
+     C     VNDKY         KLIST
+     C                   KFLD                    VNDID
 
       /free
 
@@ -59,6 +64,7 @@
           itemNotFound = *off;
           alrInactv    = *off;
           alrActv      = *off;
+          invalidVnd   = *off;
        enddo;
 
        *inlr = *on;
@@ -74,19 +80,35 @@
              leavesr;
           endif;
 
-          invdsc = *blank;
-          invunt = *blank;
+          invdsc     = *blank;
+          invunt     = *blank;
+          vndid      = 0;
+          invalidVnd = *off;
 
-          exfmt itmcrt;
+          dow '1';
+             exfmt itmcrt;
+             if prevKey;
+                leavesr;
+             endif;
 
-          if not prevKey;
-             qtyoh  = 0;
-             qtyip  = 0;
-             lstcst = 0;
-             qtyoo  = 0;
-             inactv = 'N';
-             write imlrec1;
-          endif;
+             invalidVnd = *off;
+             if vndid > 0;
+                chain(n) vndky vmlrec1;
+                if not %found(vndmstl1);
+                   invalidVnd = *on;
+                endif;
+             endif;
+
+             if not invalidVnd;
+                qtyoh  = 0;
+                qtyip  = 0;
+                lstcst = 0;
+                qtyoo  = 0;
+                inactv = 'N';
+                write imlrec1;
+                leavesr;
+             endif;
+          enddo;
        endsr;
 
        //****************************************************************

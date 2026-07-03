@@ -36,6 +36,10 @@ targets:
         name: INVRCVD
         lib: "*LIBL"
         objtype: "FILE"
+      -
+        name: VNDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-INVMAIN-MODULE
       - LIB2-INVMNT-MODULE
@@ -44,6 +48,7 @@ targets:
       - LIB2-INVMSTL1-FILE
       - LIB2-INVMNT-FILE
       - LIB2-INVRCVD-FILE
+      - LIB2-VNDMSTL1-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/INVMAINT)"
