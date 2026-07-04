@@ -1,0 +1,21 @@
+     A*****************************************************************
+     A*     FILE NAME:  RCVTRNL1                                      *
+     A*  RELATED PGMS:  INVRCV                                        *
+     A* RELATED FILES:  RCVTRN  (PHYSICAL FILE)                       *
+     A*   DESCRIPTION:  THIS IS LOGICAL FILE RCVTRNL1.                *
+     A*                 IT CONTAINS ONE RECORD FORMAT CALLED RTLREC1. *
+     A*                 LOGICAL VIEW OF RECEIVING TRANSACTIONS        *
+     A*                 (RCVTRN) BY ITEM ID, DATE, AND TIME RECEIVED  *
+     A*****************************************************************
+     A          R RTLREC1                   PFILE(RCVTRN)
+     A            INVID
+     A            PONBR
+     A            VNDINV
+     A            RCVDT
+     A            RCVTM
+     A            RTQORD
+     A            RTQRCV
+     A            CHKUSR
+     A          K INVID
+     A          K RCVDT
+     A          K RCVTM

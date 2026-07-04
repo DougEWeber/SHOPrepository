@@ -1,14 +1,20 @@
       //****************************************************************
       // PROGRAM NAME:   INVRCV                                        *
       // RELATED FILES:  INVMSTL1 (LF)                                 *
+      //                 PORMSTL1 (LF)                                 *
+      //                 RCVTRNL1 (LF)                                 *
       //                 INVRCVD  (DSPF)                               *
       // DESCRIPTION:    Receive inventory. Prompts for item ID then   *
-      //                 accepts quantity received and unit cost.      *
-      //                 Updates QTYOH, LSTCST, and decrements QTYOO. *
+      //                 accepts quantity received, unit cost, PO      *
+      //                 number, invoice number, and quantity ordered. *
+      //                 Updates QTYOH, LSTCST, and decrements QTYOO,  *
+      //                 and logs a receiving transaction to RCVTRN.   *
       //****************************************************************
 
      Finvmstl1  uf a e           k disk
      Fvndmstl1  uf   e           k disk
+     Fpormstl1  if   e           k disk
+     Frcvtrnl1  o    e             disk
      Finvrcvd   cf   e             workstn indds(indicators)
 
      D indicators      ds
@@ -18,12 +24,19 @@
      D   itemInactv                    n   overlay(indicators:53)
      D   qtyRcvErr                     n   overlay(indicators:55)
      D   cstErr                        n   overlay(indicators:56)
+     D   invalidPO                     n   overlay(indicators:58)
+
+     D pgmSts          SDS
+     D   jobUser              254    263
 
      C     INVKEY        KLIST
      C                   KFLD                    INVID
 
      C     VNDKY         KLIST
      C                   KFLD                    VNDID
+
+     C     PONBRKEY      KLIST
+     C                   KFLD                    PONBR
 
       /free
 
@@ -42,8 +55,13 @@
           else;
              qtyrcv    = 0;
              rcvcst    = 0;
+             ponbr     = 0;
+             vndinv    = *blank;
+             rtqord    = 0;
+             chkusr    = %trim(jobUser);
              qtyRcvErr = *off;
              cstErr    = *off;
+             invalidPO = *off;
 
              dow '1';
                 exfmt rcvscn;
@@ -56,7 +74,15 @@
                 qtyRcvErr = (qtyrcv <= 0);
                 cstErr    = (rcvcst <= 0);
 
-                if not qtyRcvErr and not cstErr;
+                invalidPO = *on;
+                if ponbr > 0;
+                   chain(n) ponbrkey pmlrec1;
+                   if %found(pormstl1) and postat = 'O';
+                      invalidPO = *off;
+                   endif;
+                endif;
+
+                if not qtyRcvErr and not cstErr and not invalidPO;
                    qtyoh  = qtyoh + qtyrcv;
                    lstcst = rcvcst;
                    if qtyoo >= qtyrcv;
@@ -72,6 +98,11 @@
                          update vmlrec1;
                       endif;
                    endif;
+
+                   rcvdt  = %date();
+                   rcvtm  = %time();
+                   rtqrcv = qtyrcv;
+                   write rtlrec1;
                    leave;
                 endif;
              enddo;

@@ -1,0 +1,32 @@
+---
+targets:
+  LIB2-POMAINT-CMD :
+    objlib: LIB2
+    objname: POMAINT
+    objtype: CMD
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QCMDSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: POMAINT
+    requisiteyamlrecords :
+      - LIBL-QCMDSRC-SRCMBR-POMAINT
+    command: CRTCMD
+    parameters:
+      - "CMD($(LIB2)/POMAINT)"
+      - "PGM(POMAINT)"
+      - "SRCFILE(QCMDSRC)"
+      - "SRCMBR(POMAINT)"
+      - "THDSAFE(*NO)"
+      - "MLTTHDACN(*SYSVAL)"
+      - "TEXT('Purchase Order Maintenance')"
+      - "CURLIB(*NOCHG)"
+      - "PRDLIB(*NOCHG)"
+  LIBL-QCMDSRC-SRCMBR-POMAINT :
+    objlib: "*LIBL"
+    objname: QCMDSRC
+    objtype: SRCMBR
+    mbrname: POMAINT

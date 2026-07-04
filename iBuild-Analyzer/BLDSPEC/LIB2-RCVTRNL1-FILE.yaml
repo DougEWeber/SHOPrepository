@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-RCVTRNL1-FILE :
+    objlib: LIB2
+    objname: RCVTRNL1
+    objtype: FILE
+    objattr: LF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: RCVTRNL1
+      -
+        name: RCVTRN
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-RCVTRNL1
+      - LIB2-RCVTRN-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/RCVTRNL1)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(LF)"
+      - "CMD(CRTLF)"
+      - "CMDPARMS(' FILE($(LIB2)/RCVTRNL1) SRCFILE(QDDSSRC) SRCMBR(RCVTRNL1) TEXT(''Inventory Receiving Transaction L1'')')"
+  LIBL-QDDSSRC-SRCMBR-RCVTRNL1 :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: RCVTRNL1

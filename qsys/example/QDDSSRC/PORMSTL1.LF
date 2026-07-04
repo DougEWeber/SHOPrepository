@@ -1,0 +1,14 @@
+     A*****************************************************************
+     A*     FILE NAME:  PORMSTL1                                      *
+     A*  RELATED PGMS:  POMNT, INVRCV                                 *
+     A* RELATED FILES:  PORMST  (PHYSICAL FILE)                       *
+     A*   DESCRIPTION:  THIS IS LOGICAL FILE PORMSTL1.                *
+     A*                 IT CONTAINS ONE RECORD FORMAT CALLED PMLREC1. *
+     A*                 LOGICAL VIEW OF PURCHASE ORDER MASTER         *
+     A*                 (PORMST) BY PO NUMBER (PONBR)                 *
+     A*****************************************************************
+     A          R PMLREC1                   PFILE(PORMST)
+     A            PONBR
+     A            VNDID
+     A            POSTAT
+     A          K PONBR

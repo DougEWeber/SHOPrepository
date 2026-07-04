@@ -1,0 +1,29 @@
+---
+targets:
+  LIB2-POMENU-FILE :
+    objlib: LIB2
+    objname: POMENU
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: POMENU
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-POMENU
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/POMENU)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/POMENU) SRCFILE(QDDSSRC) SRCMBR(POMENU) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Purchase Order Main Menu'')')"
+  LIBL-QDDSSRC-SRCMBR-POMENU :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: POMENU
