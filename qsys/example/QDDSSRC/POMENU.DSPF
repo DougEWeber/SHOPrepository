@@ -1,0 +1,25 @@
+     A*****************************************************************
+     A*     FILE NAME:  POMENU                                       *
+     A*  RELATED PGMS:  POMAIN                                       *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE POMENU. IT HAS 1    *
+     A*                 RECORD FORMAT CALLED HDRSCN.                 *
+     A*****************************************************************
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A          R HDRSCN
+     A                                      CA03(03 'END OF JOB')
+     A                                      CA05(05 'MAINTENANCE MODE')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 24'PURCHASE ORDER MAIN MENU'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  6  5'Press one of the following'
+     A                                  6 32'PF keys.'
+     A                                  8 22'F3 End Job'
+     A                                  9 22'F5 Maintain Purchase Orders'

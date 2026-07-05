@@ -2,10 +2,12 @@
      A*     FILE NAME:  INVRCVD                                       *
      A*  RELATED PGMS:  INVRCV (RPGLE)                                *
      A* RELATED FILES:  INVMSTL1   (LOGICAL FILE)                     *
+     A*                 PORMSTL1   (LOGICAL FILE)                     *
      A*   DESCRIPTION:  THIS IS THE DISPLAY FILE INVRCVD. IT HAS 2    *
      A*                 RECORD FORMATS: HDRSCN, RCVSCN.               *
      A*                 HDRSCN PROMPTS FOR ITEM ID.                   *
-     A*                 RCVSCN ACCEPTS QUANTITY RECEIVED AND COST.    *
+     A*                 RCVSCN ACCEPTS QUANTITY RECEIVED AND COST,    *
+     A*                 PO NUMBER, INVOICE NUMBER, AND QTY ORDERED.   *
      A*****************************************************************
      A                                      REF(INVMSTL1)
      A                                      CHGINPDFT(CS)
@@ -55,4 +57,14 @@
      A            RCVCST        11  2B 11 28EDTCDE(1)
      A  56                                  ERRMSG('COST MUST BE GREATER +
      A                                      THAN ZERO' 56)
+     A                                 12 14'PO Number:' DSPATR(HI)
+     A            PONBR          7  0B 12 28EDTCDE(Z)
+     A  58                                  ERRMSG('PURCHASE ORDER NOT +
+     A                                      FOUND OR CLOSED' 58)
+     A                                 13 14'Invoice Number:' DSPATR(HI)
+     A            VNDINV        15   B 13 30
+     A                                 14 14'Qty Ordered:' DSPATR(HI)
+     A            RTQORD         7  0B 14 28EDTCDE(1)
+     A                                 15 14'Checked By:' DSPATR(HI)
+     A            CHKUSR        10   O 15 28
      A                                 23  2'F12 Cancel'
