@@ -24,6 +24,66 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL2)
       *FILE DSPF      LIB2/SCHZIPD
         *SRCMBR         *LIBL/QDDSSRC          (SCHZIPD)
+  *PGM RPGLE      LIB2/INVAVL
+    *MODULE RPGLE   LIB2/INVAVL
+      *SRCMBR         *LIBL/QRPGLESRC          (INVAVL)
+      *FILE LF        LIB2/INVMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+        *FILE PF        LIB2/INVMST
+          *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *PGM RPGLE      LIB2/INVFIN
+    *MODULE RPGLE   LIB2/INVFIN
+      *SRCMBR         *LIBL/QRPGLESRC          (INVFIN)
+      *FILE LF        LIB2/INVMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+        *FILE PF        LIB2/INVMST
+          *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *PGM RPGLE      LIB2/INVMAINT
+    *MODULE RPGLE   LIB2/INVMAIN
+      *SRCMBR         *LIBL/QRPGLESRC          (INVMAIN)
+      *FILE DSPF      LIB2/INVMENU
+        *SRCMBR         *LIBL/QDDSSRC          (INVMENU)
+    *MODULE RPGLE   LIB2/INVMNT
+      *SRCMBR         *LIBL/QRPGLESRC          (INVMNT)
+      *FILE LF        LIB2/INVMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+        *FILE PF        LIB2/INVMST
+          *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+      *FILE DSPF      LIB2/INVMNT
+        *SRCMBR         *LIBL/QDDSSRC          (INVMNT)
+      *FILE LF        LIB2/VNDMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+        *FILE PF        LIB2/VNDMST
+          *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+    *MODULE RPGLE   LIB2/INVRCV
+      *SRCMBR         *LIBL/QRPGLESRC          (INVRCV)
+      *FILE DSPF      LIB2/INVRCVD
+        *SRCMBR         *LIBL/QDDSSRC          (INVRCVD)
+      *FILE LF        LIB2/PORMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+        *FILE PF        LIB2/PORMST
+          *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+      *FILE LF        LIB2/RCVTRNL1
+        *SRCMBR         *LIBL/QDDSSRC          (RCVTRNL1)
+        *FILE PF        LIB2/RCVTRN
+          *SRCMBR         *LIBL/QDDSSRC          (RCVTRN)
+  *PGM RPGLE      LIB2/POMAINT
+    *MODULE RPGLE   LIB2/POMAIN
+      *SRCMBR         *LIBL/QRPGLESRC          (POMAIN)
+      *FILE DSPF      LIB2/POMENU
+        *SRCMBR         *LIBL/QDDSSRC          (POMENU)
+    *MODULE RPGLE   LIB2/POMNT
+      *SRCMBR         *LIBL/QRPGLESRC          (POMNT)
+      *FILE LF        LIB2/PORMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+        *FILE PF        LIB2/PORMST
+          *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+      *FILE LF        LIB2/VNDMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+        *FILE PF        LIB2/VNDMST
+          *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+      *FILE DSPF      LIB2/POMNT
+        *SRCMBR         *LIBL/QDDSSRC          (POMNT)
   *PGM RPGLE      LIB2/SCHNAMRPG
     *SRCMBR         *LIBL/QRPGLESRC          (SCHNAMRPG)
     *FILE LF        LIB2/CUSMSTL3
@@ -32,6 +92,17 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
     *FILE DSPF      LIB2/SCHNAMD
       *SRCMBR         *LIBL/QDDSSRC          (SCHNAMD)
+  *PGM RPGLE      LIB2/VNDMAINT
+    *MODULE RPGLE   LIB2/VNDMAIN
+      *SRCMBR         *LIBL/QRPGLESRC          (VNDMAIN)
+    *MODULE RPGLE   LIB2/VNDMNT
+      *SRCMBR         *LIBL/QRPGLESRC          (VNDMNT)
+      *FILE LF        LIB2/VNDMSTL1
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+        *FILE PF        LIB2/VNDMST
+          *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+      *FILE DSPF      LIB2/VNDMNT
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMNT)
   *MODULE RPGLE   LIB2/CUSMAIN
     *SRCMBR         *LIBL/QRPGLESRC          (CUSMAIN)
     *FILE DSPF      LIB2/MAINMENU
@@ -44,6 +115,70 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
     *FILE DSPF      LIB2/MNTMENU
       *SRCMBR         *LIBL/QDDSSRC          (MNTMENU)
+  *MODULE RPGLE   LIB2/INVAVL
+    *SRCMBR         *LIBL/QRPGLESRC          (INVAVL)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *MODULE RPGLE   LIB2/INVFIN
+    *SRCMBR         *LIBL/QRPGLESRC          (INVFIN)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *MODULE RPGLE   LIB2/INVMAIN
+    *SRCMBR         *LIBL/QRPGLESRC          (INVMAIN)
+    *FILE DSPF      LIB2/INVMENU
+      *SRCMBR         *LIBL/QDDSSRC          (INVMENU)
+  *MODULE RPGLE   LIB2/INVMNT
+    *SRCMBR         *LIBL/QRPGLESRC          (INVMNT)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+    *FILE DSPF      LIB2/INVMNT
+      *SRCMBR         *LIBL/QDDSSRC          (INVMNT)
+    *FILE LF        LIB2/VNDMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+      *FILE PF        LIB2/VNDMST
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+  *MODULE RPGLE   LIB2/INVRCV
+    *SRCMBR         *LIBL/QRPGLESRC          (INVRCV)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+    *FILE DSPF      LIB2/INVRCVD
+      *SRCMBR         *LIBL/QDDSSRC          (INVRCVD)
+    *FILE LF        LIB2/VNDMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+      *FILE PF        LIB2/VNDMST
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+    *FILE LF        LIB2/PORMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+      *FILE PF        LIB2/PORMST
+        *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+    *FILE LF        LIB2/RCVTRNL1
+      *SRCMBR         *LIBL/QDDSSRC          (RCVTRNL1)
+      *FILE PF        LIB2/RCVTRN
+        *SRCMBR         *LIBL/QDDSSRC          (RCVTRN)
+  *MODULE RPGLE   LIB2/POMAIN
+    *SRCMBR         *LIBL/QRPGLESRC          (POMAIN)
+    *FILE DSPF      LIB2/POMENU
+      *SRCMBR         *LIBL/QDDSSRC          (POMENU)
+  *MODULE RPGLE   LIB2/POMNT
+    *SRCMBR         *LIBL/QRPGLESRC          (POMNT)
+    *FILE LF        LIB2/PORMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+      *FILE PF        LIB2/PORMST
+        *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+    *FILE LF        LIB2/VNDMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+      *FILE PF        LIB2/VNDMST
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+    *FILE DSPF      LIB2/POMNT
+      *SRCMBR         *LIBL/QDDSSRC          (POMNT)
   *MODULE RPGLE   LIB2/SCHNAM
     *SRCMBR         *LIBL/QRPGLESRC          (SCHNAM)
     *FILE LF        LIB2/CUSMSTL3
@@ -60,6 +195,16 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
     *FILE DSPF      LIB2/SCHZIPD
       *SRCMBR         *LIBL/QDDSSRC          (SCHZIPD)
+  *MODULE RPGLE   LIB2/VNDMAIN
+    *SRCMBR         *LIBL/QRPGLESRC          (VNDMAIN)
+  *MODULE RPGLE   LIB2/VNDMNT
+    *SRCMBR         *LIBL/QRPGLESRC          (VNDMNT)
+    *FILE LF        LIB2/VNDMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+      *FILE PF        LIB2/VNDMST
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+    *FILE DSPF      LIB2/VNDMNT
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMNT)
   *FILE PF        LIB2/CUSMST
     *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
   *FILE LF        LIB2/CUSMSTL1
@@ -74,6 +219,26 @@ Dependency Tree Report (*DEPTREE)
     *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL3)
     *FILE PF        LIB2/CUSMST
       *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
+  *FILE DSPF      LIB2/INVMENU
+    *SRCMBR         *LIBL/QDDSSRC          (INVMENU)
+  *FILE DSPF      LIB2/INVMNT
+    *SRCMBR         *LIBL/QDDSSRC          (INVMNT)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *FILE PF        LIB2/INVMST
+    *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *FILE LF        LIB2/INVMSTL1
+    *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+    *FILE PF        LIB2/INVMST
+      *SRCMBR         *LIBL/QDDSSRC          (INVMST)
+  *FILE DSPF      LIB2/INVRCVD
+    *SRCMBR         *LIBL/QDDSSRC          (INVRCVD)
+    *FILE LF        LIB2/INVMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (INVMSTL1)
+      *FILE PF        LIB2/INVMST
+        *SRCMBR         *LIBL/QDDSSRC          (INVMST)
   *FILE DSPF      LIB2/MAINMENU
     *SRCMBR         *LIBL/QDDSSRC          (MAINMENU)
   *FILE DSPF      LIB2/MNTMENU
@@ -82,6 +247,26 @@ Dependency Tree Report (*DEPTREE)
       *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL1)
       *FILE PF        LIB2/CUSMST
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
+  *FILE DSPF      LIB2/POMENU
+    *SRCMBR         *LIBL/QDDSSRC          (POMENU)
+  *FILE DSPF      LIB2/POMNT
+    *SRCMBR         *LIBL/QDDSSRC          (POMNT)
+    *FILE LF        LIB2/PORMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+      *FILE PF        LIB2/PORMST
+        *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+  *FILE PF        LIB2/PORMST
+    *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+  *FILE LF        LIB2/PORMSTL1
+    *SRCMBR         *LIBL/QDDSSRC          (PORMSTL1)
+    *FILE PF        LIB2/PORMST
+      *SRCMBR         *LIBL/QDDSSRC          (PORMST)
+  *FILE PF        LIB2/RCVTRN
+    *SRCMBR         *LIBL/QDDSSRC          (RCVTRN)
+  *FILE LF        LIB2/RCVTRNL1
+    *SRCMBR         *LIBL/QDDSSRC          (RCVTRNL1)
+    *FILE PF        LIB2/RCVTRN
+      *SRCMBR         *LIBL/QDDSSRC          (RCVTRN)
   *FILE DSPF      LIB2/SCHNAMD
     *SRCMBR         *LIBL/QDDSSRC          (SCHNAMD)
     *FILE LF        LIB2/CUSMSTL3
@@ -94,6 +279,24 @@ Dependency Tree Report (*DEPTREE)
       *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL2)
       *FILE PF        LIB2/CUSMST
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
+  *FILE DSPF      LIB2/VNDMNT
+    *SRCMBR         *LIBL/QDDSSRC          (VNDMNT)
+    *FILE LF        LIB2/VNDMSTL1
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+      *FILE PF        LIB2/VNDMST
+        *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+  *FILE PF        LIB2/VNDMST
+    *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
+  *FILE LF        LIB2/VNDMSTL1
+    *SRCMBR         *LIBL/QDDSSRC          (VNDMSTL1)
+    *FILE PF        LIB2/VNDMST
+      *SRCMBR         *LIBL/QDDSSRC          (VNDMST)
   *CMD            LIB2/CUSTMAINT
     *SRCMBR         *LIBL/QCMDSRC          (CUSTMAINT)
+  *CMD            LIB2/INVMAINT
+    *SRCMBR         *LIBL/QCMDSRC          (INVMAINT)
+  *CMD            LIB2/POMAINT
+    *SRCMBR         *LIBL/QCMDSRC          (POMAINT)
+  *CMD            LIB2/VNDMAINT
+    *SRCMBR         *LIBL/QCMDSRC          (VNDMAINT)
 End of Dependency Tree Report

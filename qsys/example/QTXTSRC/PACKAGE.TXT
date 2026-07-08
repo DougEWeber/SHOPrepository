@@ -6,4 +6,6 @@ lib SRC TGT {*pgm *lfdds *pfdds keepdata *cmd *dspf *prtf exclude qrpglesrc/*fil
                   exclude qsqlsrc/*file
                   exclude QSQLTEST/*file
 }
+
+
 sql src tgt {*tableonly *view *index *procedure *function }
