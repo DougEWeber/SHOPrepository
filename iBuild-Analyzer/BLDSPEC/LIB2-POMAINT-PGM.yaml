@@ -1,0 +1,52 @@
+---
+targets:
+  LIB2-POMAINT-PGM :
+    objlib: LIB2
+    objname: POMAINT
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: POMAIN
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: POMNT
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: POMENU
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: PORMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: VNDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: POMNT
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIB2-POMAIN-MODULE
+      - LIB2-POMNT-MODULE
+      - LIB2-POMENU-FILE
+      - LIB2-PORMSTL1-FILE
+      - LIB2-VNDMSTL1-FILE
+      - LIB2-POMNT-FILE
+    command: CRTPGM
+    parameters:
+      - "PGM($(LIB2)/POMAINT)"
+      - "USRPRF(*USER)"
+      - "MODULE(POMAIN POMNT)"
+      - "ENTMOD(POMAIN)"
+      - "ACTGRP(QILE)"
+      - "DETAIL(*BASIC)"
+      - "ALWUPD(*YES)"
+      - "ALWLIBUPD(*NO)"
+      - "ALWRINZ(*NO)"

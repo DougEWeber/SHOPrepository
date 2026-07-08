@@ -1,0 +1,19 @@
+     A*****************************************************************
+     A* FILE NAME:  VNDMST                                            *
+     A* RELATED PGMS:  VNDMNT                                         *
+     A* RELATED FILES:  VNDMSTL1 (LOGICAL FILE)                       *
+     A* DESCRIPTION:  VENDOR MASTER PHYSICAL FILE.                    *
+     A*****************************************************************
+     A          R VNDREC
+     A            VNDID          7  0       TEXT('VENDOR ID')
+     A            VNDNAM        30          TEXT('VENDOR NAME')
+     A            VNDAD1        30          TEXT('STREET ADDRESS')
+     A            VNDCTY        20          TEXT('CITY')
+     A            VNDST          2          TEXT('STATE')
+     A            VNDZIP        10          TEXT('ZIP CODE')
+     A            VND30          3  0       TEXT('30-DAY DISCOUNT PCT')
+     A            VND60          3  0       TEXT('60-DAY DISCOUNT PCT')
+     A            VND90          3  0       TEXT('90-DAY DISCOUNT PCT')
+     A            VNDOWE        11  2       TEXT('CURRENT AMOUNT OWED')
+     A            INACTV         1          TEXT('INACTIVE FLAG Y/N')
+     A          K VNDID

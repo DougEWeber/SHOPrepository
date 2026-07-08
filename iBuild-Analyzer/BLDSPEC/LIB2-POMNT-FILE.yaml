@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-POMNT-FILE :
+    objlib: LIB2
+    objname: POMNT
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: POMNT
+      -
+        name: PORMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-POMNT
+      - LIB2-PORMSTL1-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/POMNT)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/POMNT) SRCFILE(QDDSSRC) SRCMBR(POMNT) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Purchase Order Maintenance Display'')')"
+  LIBL-QDDSSRC-SRCMBR-POMNT :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: POMNT

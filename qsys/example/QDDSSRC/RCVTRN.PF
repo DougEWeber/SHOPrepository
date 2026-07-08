@@ -1,0 +1,18 @@
+     A*****************************************************************
+     A* FILE NAME:  RCVTRN                                            *
+     A* RELATED PGMS:  INVRCV                                         *
+     A* RELATED FILES:  RCVTRNL1 (LOGICAL FILE)                       *
+     A* DESCRIPTION:  THIS IS THE PHYSICAL FILE RCVTRN. IT HAS        *
+     A*          ONE RECORD FORMAT CALLED RCVTREC. IT LOGS ONE ROW    *
+     A*          PER INVENTORY RECEIVING TRANSACTION.                 *
+     A*****************************************************************
+     A          R RCVTREC
+     A            INVID         10          TEXT('INVENTORY ITEM ID')
+     A            PONBR          7  0       TEXT('PURCHASE ORDER NUMBER')
+     A            VNDINV        15          TEXT('VENDOR INVOICE NUMBER')
+     A            RCVDT           L         TEXT('DATE RECEIVED')
+     A                                      DATFMT(*ISO)
+     A            RCVTM           T         TEXT('TIME RECEIVED')
+     A            RTQORD         7  0       TEXT('QUANTITY ORDERED')
+     A            RTQRCV         7  0       TEXT('QUANTITY RECEIVED')
+     A            CHKUSR        10          TEXT('CHECKED IN BY USER PROFILE')

@@ -1,0 +1,32 @@
+---
+targets:
+  LIB2-VNDMAIN-MODULE :
+    objlib: LIB2
+    objname: VNDMAIN
+    objtype: MODULE
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: VNDMAIN
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-VNDMAIN
+    command: CRTRPGMOD
+    parameters:
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(VNDMAIN)"
+      - "TGTCCSID(37)"
+      - "PRFDTA(*NOCOL)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+      - "MODULE($(LIB2)/VNDMAIN)"
+      - "STGMDL(*INHERIT)"
+  LIBL-QRPGLESRC-SRCMBR-VNDMAIN :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: VNDMAIN

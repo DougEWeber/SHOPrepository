@@ -1,8 +1,8 @@
 ---
 targets:
-  LIB2-INVMNT-MODULE :
+  LIB2-VNDMNT-MODULE :
     objlib: LIB2
-    objname: INVMNT
+    objname: VNDMNT
     objtype: MODULE
     objattr: RPGLE
     protected: no
@@ -12,36 +12,31 @@ targets:
         name: QRPGLESRC
         lib: "*LIBL"
         objtype: "FILE"
-        member: INVMNT
-      -
-        name: INVMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: INVMNT
-        lib: "*LIBL"
-        objtype: "FILE"
+        member: VNDMNT
       -
         name: VNDMSTL1
         lib: "*LIBL"
         objtype: "FILE"
+      -
+        name: VNDMNT
+        lib: "*LIBL"
+        objtype: "FILE"
     requisiteyamlrecords :
-      - LIBL-QRPGLESRC-SRCMBR-INVMNT
-      - LIB2-INVMSTL1-FILE
-      - LIB2-INVMNT-FILE
+      - LIBL-QRPGLESRC-SRCMBR-VNDMNT
       - LIB2-VNDMSTL1-FILE
+      - LIB2-VNDMNT-FILE
     command: CRTRPGMOD
     parameters:
       - "SRCFILE(QRPGLESRC)"
-      - "SRCMBR(INVMNT)"
+      - "SRCMBR(VNDMNT)"
       - "TGTCCSID(37)"
       - "PRFDTA(*NOCOL)"
       - "SRTSEQ(*HEX)"
       - "LANGID(*JOBRUN)"
-      - "MODULE($(LIB2)/INVMNT)"
+      - "MODULE($(LIB2)/VNDMNT)"
       - "STGMDL(*INHERIT)"
-  LIBL-QRPGLESRC-SRCMBR-INVMNT :
+  LIBL-QRPGLESRC-SRCMBR-VNDMNT :
     objlib: "*LIBL"
     objname: QRPGLESRC
     objtype: SRCMBR
-    mbrname: INVMNT
+    mbrname: VNDMNT

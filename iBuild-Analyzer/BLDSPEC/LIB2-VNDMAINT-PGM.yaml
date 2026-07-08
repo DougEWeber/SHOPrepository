@@ -1,0 +1,42 @@
+---
+targets:
+  LIB2-VNDMAINT-PGM :
+    objlib: LIB2
+    objname: VNDMAINT
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: VNDMAIN
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: VNDMNT
+        lib: "*LIBL"
+        objtype: "MODULE"
+      -
+        name: VNDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: VNDMNT
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIB2-VNDMAIN-MODULE
+      - LIB2-VNDMNT-MODULE
+      - LIB2-VNDMSTL1-FILE
+      - LIB2-VNDMNT-FILE
+    command: CRTPGM
+    parameters:
+      - "PGM($(LIB2)/VNDMAINT)"
+      - "USRPRF(*USER)"
+      - "MODULE(VNDMAIN VNDMNT)"
+      - "ENTMOD(VNDMAIN)"
+      - "ACTGRP(QILE)"
+      - "DETAIL(*BASIC)"
+      - "ALWUPD(*YES)"
+      - "ALWLIBUPD(*NO)"
+      - "ALWRINZ(*NO)"

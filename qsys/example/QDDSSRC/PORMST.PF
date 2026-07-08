@@ -1,0 +1,12 @@
+     A*****************************************************************
+     A* FILE NAME:  PORMST                                            *
+     A* RELATED PGMS:  POMNT, INVRCV                                  *
+     A* RELATED FILES:  PORMSTL1 (LOGICAL FILE)                       *
+     A* DESCRIPTION:  THIS IS THE PHYSICAL FILE PORMST. IT HAS        *
+     A*          ONE RECORD FORMAT CALLED PORREC.                     *
+     A*****************************************************************
+     A          R PORREC
+     A            PONBR          7  0       TEXT('PURCHASE ORDER NUMBER')
+     A            VNDID          7  0       TEXT('VENDOR ID')
+     A            POSTAT         1          TEXT('PO STATUS O=OPEN C=CLOSED')
+     A          K PONBR

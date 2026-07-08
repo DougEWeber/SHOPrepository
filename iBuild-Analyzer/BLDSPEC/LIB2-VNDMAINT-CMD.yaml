@@ -1,0 +1,32 @@
+---
+targets:
+  LIB2-VNDMAINT-CMD :
+    objlib: LIB2
+    objname: VNDMAINT
+    objtype: CMD
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QCMDSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: VNDMAINT
+    requisiteyamlrecords :
+      - LIBL-QCMDSRC-SRCMBR-VNDMAINT
+    command: CRTCMD
+    parameters:
+      - "CMD($(LIB2)/VNDMAINT)"
+      - "PGM(VNDMAINT)"
+      - "SRCFILE(QCMDSRC)"
+      - "SRCMBR(VNDMAINT)"
+      - "THDSAFE(*NO)"
+      - "MLTTHDACN(*SYSVAL)"
+      - "TEXT('Vendor Maintenance')"
+      - "CURLIB(*NOCHG)"
+      - "PRDLIB(*NOCHG)"
+  LIBL-QCMDSRC-SRCMBR-VNDMAINT :
+    objlib: "*LIBL"
+    objname: QCMDSRC
+    objtype: SRCMBR
+    mbrname: VNDMAINT

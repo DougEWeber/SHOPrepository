@@ -1,8 +1,8 @@
 ---
 targets:
-  LIB2-INVMNT-MODULE :
+  LIB2-POMNT-MODULE :
     objlib: LIB2
-    objname: INVMNT
+    objname: POMNT
     objtype: MODULE
     objattr: RPGLE
     protected: no
@@ -12,36 +12,36 @@ targets:
         name: QRPGLESRC
         lib: "*LIBL"
         objtype: "FILE"
-        member: INVMNT
+        member: POMNT
       -
-        name: INVMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: INVMNT
+        name: PORMSTL1
         lib: "*LIBL"
         objtype: "FILE"
       -
         name: VNDMSTL1
         lib: "*LIBL"
         objtype: "FILE"
+      -
+        name: POMNT
+        lib: "*LIBL"
+        objtype: "FILE"
     requisiteyamlrecords :
-      - LIBL-QRPGLESRC-SRCMBR-INVMNT
-      - LIB2-INVMSTL1-FILE
-      - LIB2-INVMNT-FILE
+      - LIBL-QRPGLESRC-SRCMBR-POMNT
+      - LIB2-PORMSTL1-FILE
       - LIB2-VNDMSTL1-FILE
+      - LIB2-POMNT-FILE
     command: CRTRPGMOD
     parameters:
       - "SRCFILE(QRPGLESRC)"
-      - "SRCMBR(INVMNT)"
+      - "SRCMBR(POMNT)"
       - "TGTCCSID(37)"
       - "PRFDTA(*NOCOL)"
       - "SRTSEQ(*HEX)"
       - "LANGID(*JOBRUN)"
-      - "MODULE($(LIB2)/INVMNT)"
+      - "MODULE($(LIB2)/POMNT)"
       - "STGMDL(*INHERIT)"
-  LIBL-QRPGLESRC-SRCMBR-INVMNT :
+  LIBL-QRPGLESRC-SRCMBR-POMNT :
     objlib: "*LIBL"
     objname: QRPGLESRC
     objtype: SRCMBR
-    mbrname: INVMNT
+    mbrname: POMNT

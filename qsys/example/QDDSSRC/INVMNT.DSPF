@@ -63,6 +63,9 @@
      A            INVDSC    R        I  6 27
      A                                  7 18'Unit:' DSPATR(HI)
      A            INVUNT    R        I  7 27
+     A                                  9 14'Vendor ID:' DSPATR(HI)
+     A            VNDID     R        B  9 27EDTCDE(Z)
+     A  57                                  ERRMSG('VENDOR NOT ON FILE' 57)
      A                                 23  2'F12 Cancel'
      A          R ITMINQ
      A                                      TEXT('DISPLAY/EDIT ITEM')
@@ -94,6 +97,8 @@
      A            LSTCST    R        O 10 28EDTCDE(1)
      A                                 11 14'Qty On Order:' DSPATR(HI)
      A            QTYOO     R        O 11 28EDTCDE(1)
+     A                                 12 14'Vendor ID:' DSPATR(HI)
+     A            VNDID     R        O 12 28EDTCDE(Z)
      A  10                             15 21'Zero QOH on Reactivation?'
      A  10                                  DSPATR(HI)
      A  10                             15 47'(Y/N)'
