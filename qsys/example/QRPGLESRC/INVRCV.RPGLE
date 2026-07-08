@@ -26,8 +26,9 @@
      D   cstErr                        n   overlay(indicators:56)
      D   invalidPO                     n   overlay(indicators:58)
 
-     D pgmSts          SDS
-     D   jobUser              254    263
+       dcl-ds pgmSts psds;
+         jobUser char(10) pos(254);
+       end-ds;
 
      C     INVKEY        KLIST
      C                   KFLD                    INVID
