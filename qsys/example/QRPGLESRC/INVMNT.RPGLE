@@ -8,7 +8,7 @@
       //                 INACTV - marks item inactive                  *
       //                 REACTV - reactivates item, optionally zeros   *
       //                          quantity on hand                     *
-      //                 VIEW   - displays item info, no changes  
+      //                 VIEW   - displays item info, no changes
       //****************************************************************
 
      Finvmstl1  uf a e           k disk
