@@ -1,0 +1,26 @@
+#!/usr/bin/env expect
+#
+# KNOWN ISSUE regression test -- POMAINT -> Add (F5)
+#
+# POMNT.RPGLE's AddSub computes the next PO number via the identical
+# `SETLL *HIVAL pmlrec1; READP(n) pmlrec1` pattern as VNDMNT's AddSub
+# (see vnd_add_id_not_unique.exp) -- it does not see rows committed by
+# other jobs, so every Add computes PO number 1 regardless of existing
+# data. This test documents that directly: it creates two vendors and a
+# PO for each, and asserts both POs get the SAME number. If this is ever
+# fixed, this test will start failing -- that's the signal to revisit it
+# and the po_ensure_open/po_ensure_closed fixtures in lib.exp.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set v1 [create_vendor]
+set p1 [create_po $v1]
+
+set v2 [create_vendor]
+set p2 [create_po $v2]
+
+if {$p1 eq $p2} {
+    test_pass [test_name] "confirmed known issue: POs for vendor $v1 and vendor $v2 both got po number $p1"
+} else {
+    test_fail [test_name] "auto-numbering appears fixed (got distinct po numbers $p1 and $p2) -- update lib.exp fixtures/tests to rely on unique po numbers again"
+}

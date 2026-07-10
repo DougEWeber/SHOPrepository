@@ -1,0 +1,23 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Reopen (F7)
+# Creates a vendor and PO, normalizes it to closed, then reopens it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+po_ensure_closed $ponbr
+
+open_pomnt
+submit $ponbr F7
+expect {
+    "Status:" { sleep 0.3 }
+    "PURCHASE ORDER IS ALREADY OPEN" { test_fail [test_name] "po $ponbr was not actually closed after normalizing" }
+    timeout { test_fail [test_name] "did not reach reopen confirm screen" }
+}
+enter
+expect {
+    "PURCHASE ORDER MAINTENANCE" { test_pass [test_name] "reopened po $ponbr" }
+    timeout { test_fail [test_name] "did not confirm reopen" }
+}

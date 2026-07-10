@@ -1,0 +1,27 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Add (F5)
+# Adds a new inventory item and confirms it's accepted with no error.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invmnt
+submit $item F5
+expect {
+    "ITEM ALREADY ON FILE" { test_fail [test_name] "item id $item already exists (should have been unique)" }
+    "Item ID:"             { sleep 0.3 }
+    timeout                { test_fail [test_name] "did not reach item-create screen" }
+}
+
+type_field "TEST WIDGET"
+send -- "\t"
+type_field "EA"
+send -- "\t"
+enter
+expect {
+    "ITEM ALREADY ON FILE" { test_fail [test_name] "unexpected duplicate-item error on add" }
+    "INVENTORY MAINTENANCE" { test_pass [test_name] "added item $item" }
+    timeout                 { test_fail [test_name] "timed out confirming add" }
+}

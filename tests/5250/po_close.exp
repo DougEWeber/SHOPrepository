@@ -1,0 +1,26 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Close (F6)
+# Creates a vendor and PO, normalizes the PO to open (PO numbers are
+# reused across runs the same way vendor ids are -- see
+# vnd_add_id_not_unique.exp -- so a fresh-looking number may already be
+# closed from an earlier test), then closes it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+po_ensure_open $ponbr
+
+open_pomnt
+submit $ponbr F6
+expect {
+    "Status:" { sleep 0.3 }
+    "PURCHASE ORDER NOT ON FILE" { test_fail [test_name] "po $ponbr was not found on close" }
+    timeout { test_fail [test_name] "did not reach close confirm screen" }
+}
+enter
+expect {
+    "PURCHASE ORDER MAINTENANCE" { test_pass [test_name] "closed po $ponbr" }
+    timeout { test_fail [test_name] "did not confirm close" }
+}

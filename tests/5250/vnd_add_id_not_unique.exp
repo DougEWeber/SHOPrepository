@@ -1,0 +1,59 @@
+#!/usr/bin/env expect
+#
+# KNOWN ISSUE regression test -- VNDMAINT -> Add (F5)
+#
+# VNDMNT.RPGLE's AddSub computes the next vendor id via
+# `SETLL *HIVAL vmlrec1; READP(n) vmlrec1` against VNDMSTL1. This was
+# found, while building this suite, to not see rows committed by other
+# jobs: every Add computes id=1 regardless of what's already on file,
+# with no duplicate-key check before the WRITE. Practically, this means
+# vendor ids are not a reliable unique handle across sessions, and a
+# CHAIN by id can return an unrelated older row rather than the one a
+# given session just added.
+#
+# This test documents that behavior directly: it adds two vendors with
+# distinct names in the same run and asserts they get the SAME id. If
+# the underlying auto-numbering is ever fixed to look across jobs, this
+# test will start failing -- that's the intended signal to revisit it
+# (and the fixture helpers in lib.exp, which route around this today).
+
+source [file join [file dirname [info script]] lib.exp]
+
+open_vndmnt
+press F5
+expect {
+    "Name:" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach vendor create screen" }
+}
+set matches1 [regexp -all -inline {Vendor ID:[^0-9]*(\d+)} [strip_ansi $expect_out(buffer)]]
+if {[llength $matches1] == 0} { test_fail [test_name] "could not capture first vendor id" }
+set v1 [lindex $matches1 end]
+type_field "AAAFIRSTNAME"
+enter
+expect {
+    "VENDOR MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not confirm first add" }
+}
+close_session
+
+open_vndmnt
+press F5
+expect {
+    "Name:" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach vendor create screen" }
+}
+set matches2 [regexp -all -inline {Vendor ID:[^0-9]*(\d+)} [strip_ansi $expect_out(buffer)]]
+if {[llength $matches2] == 0} { test_fail [test_name] "could not capture second vendor id" }
+set v2 [lindex $matches2 end]
+type_field "BBBSECONDNAME"
+enter
+expect {
+    "VENDOR MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not confirm second add" }
+}
+
+if {$v1 eq $v2} {
+    test_pass [test_name] "confirmed known issue: two adds both got vendor id $v1 (auto-numbering does not see prior jobs' data)"
+} else {
+    test_fail [test_name] "auto-numbering appears fixed (got distinct ids $v1 and $v2) -- update lib.exp fixtures/tests to rely on unique ids again"
+}

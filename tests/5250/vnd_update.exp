@@ -1,0 +1,22 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Update (F6)
+# Creates a vendor, then reconnects and updates its name.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+
+open_vndmnt
+submit $vndid F6
+expect {
+    "Address:" { sleep 0.3 }
+    "VENDOR NOT ON FILE" { test_fail [test_name] "fixture vendor $vndid was not found on update" }
+    timeout { test_fail [test_name] "did not reach vendor update screen" }
+}
+type_field "UPDATED VENDOR NAME          "
+enter
+expect {
+    "VENDOR MAINTENANCE" { test_pass [test_name] "updated vendor $vndid" }
+    timeout { test_fail [test_name] "did not confirm update" }
+}

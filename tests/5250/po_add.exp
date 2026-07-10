@@ -1,0 +1,22 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Maintain Purchase Orders -> Add (F5)
+# Creates a vendor, then adds a purchase order against it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+
+open_pomnt
+press F5
+expect {
+    "Vendor ID:" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach po create screen" }
+}
+type_field $vndid
+enter
+expect {
+    "PURCHASE ORDER MAINTENANCE" { test_pass [test_name] "added a po for vendor $vndid" }
+    "VENDOR NOT ON FILE" { test_fail [test_name] "fixture vendor $vndid was rejected" }
+    timeout { test_fail [test_name] "did not confirm add" }
+}

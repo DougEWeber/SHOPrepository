@@ -1,0 +1,14 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Update (F6) on a vendor id that doesn't exist
+# Confirms VENDOR NOT ON FILE is reported.
+
+source [file join [file dirname [info script]] lib.exp]
+
+open_vndmnt
+submit "9999999" F6
+expect {
+    "VENDOR NOT ON FILE" { test_pass [test_name] "correctly reported unknown vendor 9999999 as not found" }
+    "Address:"           { test_fail [test_name] "unexpectedly found vendor 9999999 (should not exist)" }
+    timeout               { test_fail [test_name] "did not see not-on-file error" }
+}
