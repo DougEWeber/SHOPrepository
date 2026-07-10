@@ -1,0 +1,18 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Reactivate (F8) on an already-active vendor
+# Confirms VENDOR IS ALREADY ACTIVE is reported. Normalizes to active
+# first (see vnd_add_id_not_unique.exp for why this can't be assumed).
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+vnd_ensure_active $vndid
+
+open_vndmnt
+submit $vndid F8
+expect {
+    "VENDOR IS ALREADY ACTIVE" { test_pass [test_name] "correctly rejected reactivating already-active vendor $vndid" }
+    "Status:"                  { test_fail [test_name] "vendor $vndid was not actually active after normalizing" }
+    timeout                    { test_fail [test_name] "did not see already-active error" }
+}

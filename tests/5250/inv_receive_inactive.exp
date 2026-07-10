@@ -1,0 +1,34 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Receive Inventory, on an inactive item
+# Confirms ITEM IS INACTIVE is reported.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+# --- setup: add + inactivate ---
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect "INVENTORY MAINTENANCE"
+submit $item F7
+expect "Status:"
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: did not confirm inactivate" }
+}
+close_session
+
+# --- verify: reconnect, attempt to receive against the inactive item ---
+open_invrcv
+type_field $item
+enter
+expect {
+    "ITEM IS INACTIVE" { test_pass [test_name] "correctly rejected receive against inactive item $item" }
+    "Qty Received:"    { test_fail [test_name] "item was not actually inactive from setup" }
+    timeout             { test_fail [test_name] "did not see item-is-inactive error" }
+}

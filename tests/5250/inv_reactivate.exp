@@ -1,0 +1,42 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Reactivate (F8)
+# Adds an item, inactivates it, then reconnects and reactivates it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+# --- setup: add + inactivate (2 actions, 1 connection) ---
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect "INVENTORY MAINTENANCE"
+submit $item F7
+expect {
+    "Status:" { sleep 0.3 }
+    timeout   { test_fail [test_name] "setup: did not reach inactivate confirm screen" }
+}
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: did not confirm inactivate" }
+}
+close_session
+
+# --- verify: reconnect fresh, reactivate the item -----------------------
+open_invmnt
+submit $item F8
+expect {
+    "Zero QOH" { sleep 0.3 }
+    "ITEM IS ALREADY ACTIVE" { test_fail [test_name] "item was not actually inactive from setup" }
+    timeout { test_fail [test_name] "did not reach reactivate confirm screen" }
+}
+send -- "N"
+enter
+expect {
+    "INVENTORY MAINTENANCE" { test_pass [test_name] "reactivated item $item" }
+    timeout { test_fail [test_name] "did not confirm reactivate" }
+}

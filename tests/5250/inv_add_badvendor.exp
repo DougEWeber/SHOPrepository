@@ -1,0 +1,20 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Add (F5) with a vendor ID that doesn't exist
+# Confirms the create screen is rejected with VENDOR NOT ON FILE.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+type_field "9999999"
+enter
+expect {
+    "VENDOR NOT ON FILE" { test_pass [test_name] "correctly rejected nonexistent vendor 9999999" }
+    "INVENTORY MAINTENANCE" { test_fail [test_name] "add succeeded despite invalid vendor id" }
+    timeout { test_fail [test_name] "did not see vendor-not-on-file error" }
+}

@@ -1,0 +1,25 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Add (F5), attempted twice with same ID
+# Confirms the second add is rejected with ITEM ALREADY ON FILE.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup add did not complete" }
+}
+
+submit $item F5
+expect {
+    "ITEM ALREADY ON FILE" { test_pass [test_name] "correctly rejected duplicate item $item" }
+    "Item ID:"             { test_fail [test_name] "duplicate item was accepted instead of rejected" }
+    timeout                { test_fail [test_name] "did not see already-on-file error" }
+}

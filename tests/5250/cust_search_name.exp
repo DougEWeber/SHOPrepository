@@ -1,0 +1,62 @@
+#!/usr/bin/env expect
+#
+# CUSTMAINT -> Search Customer by Name (F7 from main menu)
+# Adds a customer with a distinctive name, then reconnects, searches for
+# it, selects it from the results subfile with "X", and confirms the
+# detail screen shows its data.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set cust [test_cust_num]
+set name "ZZNAMESEARCH$cust"
+
+# --- setup: add a customer with a known, sort-late name ---
+open_custmnt_menu
+press F5
+expect "CUSTOMER FILE MAINTENANCE"
+submit $cust F5
+expect "Name"
+type_field $name; send -- "\t"
+type_field "123 MAIN ST"; send -- "\t"
+send -- "\t"
+type_field "ANYTOWN"; send -- "\t"
+# STATE is exactly 2 chars wide; typing "TX" fills it completely and the
+# field auto-advances to ZIP, so no explicit Tab is sent here.
+type_field "TX"
+type_field [test_zip]
+enter
+expect {
+    "CUSTOMER FILE MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: could not add customer $cust" }
+}
+close_session
+
+# --- verify: reconnect, search by name ---
+open_custmnt_menu
+press F7
+expect {
+    "Enter Search Name" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach search-by-name screen" }
+}
+type_field $name
+enter
+expect {
+    -re {[Nn]ame} { sleep 0.3 }
+    timeout { test_fail [test_name] "did not see search results" }
+}
+# Note: $name must be substituted into the pattern here, so this uses the
+# space-separated `expect -re $pattern { action }` form rather than a
+# single brace-quoted block -- brace-quoting suppresses substitution, so
+# `-re {$name}` inside a { } block would match the literal text "$name".
+expect -re $name {
+    sleep 0.3
+} timeout {
+    test_fail [test_name] "customer $name did not appear in search results"
+}
+send -- "X"
+enter
+expect -re $name {
+    test_pass [test_name] "search by name found and displayed customer $cust ($name)"
+} timeout {
+    test_fail [test_name] "did not reach customer detail screen after selecting"
+}

@@ -1,0 +1,19 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Close (F6) on an already-closed PO
+# Confirms PURCHASE ORDER IS ALREADY CLOSED is reported. Normalizes to
+# closed first (see vnd_add_id_not_unique.exp for why this can't be assumed).
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+po_ensure_closed $ponbr
+
+open_pomnt
+submit $ponbr F6
+expect {
+    "PURCHASE ORDER IS ALREADY CLOSED" { test_pass [test_name] "correctly rejected re-closing po $ponbr" }
+    "Status:"                          { test_fail [test_name] "po $ponbr was not actually closed after normalizing" }
+    timeout                            { test_fail [test_name] "did not see already-closed error" }
+}

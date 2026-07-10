@@ -1,0 +1,17 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> View (F8)
+# Creates a vendor and PO, then views the PO and confirms its status is shown.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+
+open_pomnt
+submit $ponbr F8
+expect {
+    "Status:" { test_pass [test_name] "view screen correctly showed po $ponbr" }
+    "PURCHASE ORDER NOT ON FILE" { test_fail [test_name] "po $ponbr was not found on view" }
+    timeout { test_fail [test_name] "did not see po status on view screen" }
+}
