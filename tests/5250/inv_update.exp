@@ -1,0 +1,28 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Update (F6)
+# Adds an item, then updates its description and unit.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "ORIGINAL DESC"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect "INVENTORY MAINTENANCE"
+
+submit $item F6
+expect {
+    "Description:" { sleep 0.3 }
+    "ITEM NOT ON FILE" { test_fail [test_name] "setup add did not persist -- item not found on update" }
+    timeout { test_fail [test_name] "did not reach update screen" }
+}
+type_field "UPDATED DESC                 "
+enter
+expect {
+    "INVENTORY MAINTENANCE" { test_pass [test_name] "updated item $item" }
+    timeout { test_fail [test_name] "did not confirm update" }
+}

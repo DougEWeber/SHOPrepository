@@ -1,0 +1,54 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Receive Inventory (F6 from main menu)
+# Receiving requires a valid, OPEN purchase order (invalidPO defaults to
+# *on and is only cleared when ponbr>0 matches an open PO), so this test
+# creates a throwaway vendor and PO as fixtures before adding the item and
+# receiving against it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+
+# --- setup: add the item ---
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "RECEIVABLE WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: could not add item $item" }
+}
+close_session
+
+# --- verify: reconnect, receive stock against the item ---
+open_invrcv
+type_field $item
+enter
+expect {
+    "Qty Received:" { sleep 0.3 }
+    "ITEM NOT ON FILE" { test_fail [test_name] "setup add did not persist -- item not found on receive" }
+    timeout { test_fail [test_name] "did not reach receive-quantity screen" }
+}
+# Numeric fields here use edit code 1 (literal zero shown, not suppressed),
+# so leftover default digits linger past whatever we type unless we fill
+# the field's full precision width ourselves (qty=0000010 -> 10, cost is
+# 11,2 so 00000000500 -> 5.00, qty ordered=0000010 -> 10). PONBR uses edit
+# code Z (blank when zero) so no padding is needed there.
+type_field "0000010"; send -- "\t"
+type_field "00000000500"; send -- "\t"
+type_field $ponbr; send -- "\t"
+type_field "TESTINV1"; send -- "\t"
+type_field "0000010"
+enter
+expect {
+    "INVENTORY RECEIVE" { test_pass [test_name] "received 10 units against item $item on PO $ponbr" }
+    "QUANTITY MUST BE GREATER THAN ZERO" { test_fail [test_name] "unexpected quantity validation error" }
+    "COST MUST BE GREATER THAN ZERO"     { test_fail [test_name] "unexpected cost validation error" }
+    "PURCHASE ORDER NOT FOUND OR CLOSED" { test_fail [test_name] "fixture PO $ponbr was rejected as invalid/closed" }
+    timeout { test_fail [test_name] "did not confirm receive" }
+}

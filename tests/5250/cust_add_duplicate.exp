@@ -1,0 +1,37 @@
+#!/usr/bin/env expect
+#
+# CUSTMAINT -> Maintain Customer File -> Add (F5), attempted twice
+# Confirms the second add is rejected with CUSTOMER ALREADY ON FILE.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set cust [test_cust_num]
+
+open_custmnt_menu
+press F5
+expect "CUSTOMER FILE MAINTENANCE"
+submit $cust F5
+expect {
+    "Name" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach customer-create screen" }
+}
+type_field "TEST CUSTOMER"; send -- "\t"
+type_field "123 MAIN ST"; send -- "\t"
+send -- "\t"
+type_field "ANYTOWN"; send -- "\t"
+# STATE is exactly 2 chars wide; typing "TX" fills it completely and the
+# field auto-advances to ZIP, so no explicit Tab is sent here.
+type_field "TX"
+type_field [test_zip]
+enter
+expect {
+    "CUSTOMER FILE MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup add did not complete" }
+}
+
+submit $cust F5
+expect {
+    "CUSTOMER ALREADY ON FILE" { test_pass [test_name] "correctly rejected duplicate customer $cust" }
+    "Name"                     { test_fail [test_name] "duplicate customer was accepted instead of rejected" }
+    timeout                    { test_fail [test_name] "did not see already-on-file error" }
+}

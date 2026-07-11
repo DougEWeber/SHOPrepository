@@ -1,0 +1,41 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Receive Inventory with a zero quantity
+# Confirms QUANTITY MUST BE GREATER THAN ZERO is reported.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+# --- setup: add the item ---
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: could not add item $item" }
+}
+close_session
+
+# --- verify: reconnect, attempt to receive with qty=0 ---
+open_invrcv
+type_field $item
+enter
+expect {
+    "Qty Received:" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach receive-quantity screen" }
+}
+# See inv_receive.exp for why these are zero-padded to full field precision.
+type_field "0000000"; send -- "\t"
+type_field "00000000500"; send -- "\t"
+type_field "0"; send -- "\t"
+type_field "TESTINV2"; send -- "\t"
+type_field "0000010"
+enter
+expect {
+    "QUANTITY MUST BE GREATER THAN ZERO" { test_pass [test_name] "correctly rejected zero quantity" }
+    "INVENTORY RECEIVE"                  { test_fail [test_name] "zero quantity was accepted instead of rejected" }
+    timeout { test_fail [test_name] "did not see quantity validation error" }
+}

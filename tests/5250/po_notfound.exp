@@ -1,0 +1,14 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Close (F6) on a PO number that doesn't exist
+# Confirms PURCHASE ORDER NOT ON FILE is reported.
+
+source [file join [file dirname [info script]] lib.exp]
+
+open_pomnt
+submit "9999999" F6
+expect {
+    "PURCHASE ORDER NOT ON FILE" { test_pass [test_name] "correctly reported unknown po 9999999 as not found" }
+    "Status:"                    { test_fail [test_name] "unexpectedly found po 9999999 (should not exist)" }
+    timeout                       { test_fail [test_name] "did not see not-on-file error" }
+}

@@ -1,0 +1,361 @@
+#!/usr/bin/env expect
+#
+# Shared helpers for the SHOPrepository 5250 test suite.
+#
+# Connection facts this library depends on (verified interactively against
+# the gittest sandbox before writing any tests):
+#   - The telnet port speaks 5250-over-ANSI (VT100 escape codes), not raw
+#     binary 5250 -- it can be driven with `telnet` + `expect` directly.
+#   - PF/AID key encoding: F3 = ESC O R (VT100 SS3), F5-F12 = ESC [ <n> ~
+#     using the standard vt220 table (15,17,18,19,20,21,23,24). Confirmed
+#     live for F3, F5, F6, F7, F8, F9. F10-F12 follow the same documented
+#     table but were not separately exercised live.
+#   - gittest signs on directly to a Command Entry (QCMD) screen -- there
+#     is no menu to navigate. Commands are typed at the "===>" prompt.
+#   - The library holding compiled test objects (SHOPDEWOBJ) is not on
+#     gittest's default library list, so every session runs ADDLIBLE first.
+#   - Reliability note: chaining more than ~2 data-entry round trips
+#     against the *same* record format in a single telnet session was
+#     observed to occasionally drop the input field's value on this
+#     gateway. To stay reliable, helpers here reconnect fresh whenever a
+#     test needs to put a record into a prior state (e.g. inactivate it)
+#     before exercising the function actually under test.
+
+source [file join [file dirname [info script]] config.exp]
+
+set ::timeout 15
+
+array set ::PFKEY {
+    F3  "\x1bOR"
+    F5  "\x1b\[15~"
+    F6  "\x1b\[17~"
+    F7  "\x1b\[18~"
+    F8  "\x1b\[19~"
+    F9  "\x1b\[20~"
+    F10 "\x1b\[21~"
+    F11 "\x1b\[23~"
+    F12 "\x1b\[24~"
+}
+
+# --- low level key/field helpers -------------------------------------------
+
+proc press {name} {
+    global spawn_id
+    send -- $::PFKEY($name)
+    sleep 0.3
+}
+
+proc type_field {text} {
+    global spawn_id
+    send -- $text
+    sleep 0.15
+}
+
+proc submit {text key} {
+    # Type a field's value and immediately press the AID key that submits it.
+    global spawn_id
+    send -- "$text$::PFKEY($key)"
+    sleep 0.3
+}
+
+proc enter {} {
+    global spawn_id
+    send -- "\r"
+    sleep 0.3
+}
+
+# --- connection lifecycle ---------------------------------------------------
+
+proc connect_and_signon {} {
+    global spawn_id timeout
+    spawn telnet $::HOST $::PORT
+    expect {
+        "Sign On" { }
+        timeout   { test_fail [test_name] "timed out waiting for Sign On screen" }
+        eof       { test_fail [test_name] "connection closed before Sign On screen appeared" }
+    }
+    send -- "$::USER\t$::PASS\r"
+
+    # Zero or more "Press Enter to continue" message screens can appear
+    # before the command line (e.g. leftover message queue notices).
+    for {set i 0} {$i < 5} {incr i} {
+        expect {
+            "Press Enter to continue" { sleep 0.3; send -- "\r"; sleep 0.3 }
+            "===>"                    { return }
+            "not correct"              { test_fail [test_name] "sign-on rejected -- check SHOPUSER/SHOPPASS" }
+            timeout                    { test_fail [test_name] "timed out signing on" }
+        }
+    }
+    test_fail [test_name] "too many interstitial message screens at sign-on"
+}
+
+proc add_library {} {
+    global spawn_id timeout
+    send -- "ADDLIBLE $::LIB\r"
+    expect {
+        "not found"  { test_fail [test_name] "library $::LIB not found on gittest's library list search" }
+        "===>"       { sleep 0.3 }
+        timeout      { test_fail [test_name] "timed out running ADDLIBLE $::LIB" }
+    }
+}
+
+# Connects, signs on, adds the test library, and launches the given CL
+# command, waiting for $pattern to confirm the app's first screen appeared.
+proc open_app {cmd pattern} {
+    global spawn_id timeout
+    connect_and_signon
+    add_library
+    send -- "$cmd\r"
+    expect {
+        -re $pattern { sleep 0.3 }
+        "not found"   { test_fail [test_name] "command $cmd not found in library $::LIB" }
+        timeout       { test_fail [test_name] "timed out launching $cmd, expected to see: $pattern" }
+    }
+}
+
+# --- per-app navigation helpers ---------------------------------------
+
+proc open_invmnt {} {
+    global spawn_id timeout
+    open_app "INVMAINT" "INVENTORY MAIN MENU"
+    press F5
+    expect {
+        "INVENTORY MAINTENANCE" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach inventory maintenance HDRSCN" }
+    }
+}
+
+proc open_invrcv {} {
+    global spawn_id timeout
+    open_app "INVMAINT" "INVENTORY MAIN MENU"
+    press F6
+    expect {
+        "INVENTORY RECEIVE" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach inventory receive HDRSCN" }
+    }
+}
+
+proc open_vndmnt {} {
+    global spawn_id timeout
+    open_app "VNDMAINT" "VENDOR MAINTENANCE"
+}
+
+proc open_pomnt {} {
+    global spawn_id timeout
+    open_app "POMAINT" "PURCHASE ORDER MAIN MENU"
+    press F5
+    expect {
+        "PURCHASE ORDER MAINTENANCE" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach purchase order maintenance HDRSCN" }
+    }
+}
+
+proc open_custmnt_menu {} {
+    global spawn_id timeout
+    open_app "CUSTMAINT" "CUSTOMER MAIN INQUIRY"
+}
+
+# Strips ANSI/VT100 escape sequences from a captured screen buffer. Needed
+# before scraping a value with regexp -- the escape codes themselves
+# contain digit characters (e.g. "\x1b[0m"), which corrupts naive
+# "non-digit" lookaround patterns into matching digits from inside a
+# control sequence instead of the real field value.
+proc strip_ansi {text} {
+    regsub -all {\x1b\[[0-9;]*[a-zA-Z]} $text {} clean
+    return $clean
+}
+
+# --- cross-entity fixtures ----------------------------------------------
+# POMAINT's add function requires a valid, existing vendor, and receiving
+# stock requires a valid, open purchase order -- these helpers create
+# throwaway fixture records (each in their own fresh connection) and
+# return the auto-assigned ID so a test can use it.
+
+proc create_vendor {} {
+    global spawn_id timeout
+    open_vndmnt
+    press F5
+    expect {
+        "Name:" { sleep 0.3 }
+        timeout { test_fail [test_name] "fixture: did not reach vendor create screen" }
+    }
+    # The HDRSCN screen (before F5) also contains a blank "Vendor ID:"
+    # prompt that can linger unconsumed in the buffer, so take the LAST
+    # match (the real assigned id on the ITMCRT screen), not the first.
+    set matches [regexp -all -inline {Vendor ID:[^0-9]*(\d+)} [strip_ansi $expect_out(buffer)]]
+    if {[llength $matches] == 0} {
+        test_fail [test_name] "fixture: could not capture new vendor id"
+    }
+    set vndid [lindex $matches end]
+    type_field "TEST VENDOR"
+    enter
+    expect {
+        "VENDOR MAINTENANCE" { sleep 0.3 }
+        timeout { test_fail [test_name] "fixture: could not add vendor" }
+    }
+    close_session
+    return $vndid
+}
+
+proc create_po {vndid} {
+    global spawn_id timeout
+    open_pomnt
+    press F5
+    expect {
+        "Vendor ID:" { sleep 0.3 }
+        timeout { test_fail [test_name] "fixture: did not reach po create screen" }
+    }
+    # Same reasoning as create_vendor -- take the last match, not the first.
+    set matches [regexp -all -inline {PO Number:[^0-9]*(\d+)} [strip_ansi $expect_out(buffer)]]
+    if {[llength $matches] == 0} {
+        test_fail [test_name] "fixture: could not capture new po number"
+    }
+    set ponbr [lindex $matches end]
+    type_field $vndid
+    enter
+    expect {
+        "PURCHASE ORDER MAINTENANCE" { sleep 0.3 }
+        "VENDOR NOT ON FILE" { test_fail [test_name] "fixture: vendor $vndid rejected when creating po" }
+        timeout { test_fail [test_name] "fixture: could not add po" }
+    }
+    close_session
+    return $ponbr
+}
+
+# --- state normalizers ---------------------------------------------------
+# VNDMNT's Add (and POMNT's Add) compute the next auto-assigned id via
+# SETLL *HIVAL / READP against the keyed logical file, which was found not
+# to see previously-committed rows from other jobs -- every Add computes
+# id=1 regardless of existing data, so create_vendor/create_po do not
+# hand back an isolated fresh record. A vendor/PO id may carry over
+# active/inactive or open/closed state from an unrelated earlier test run.
+# These helpers force a known starting state before a test exercises the
+# specific transition it's meant to verify, tolerating an "already in that
+# state" response rather than treating it as a failure.
+
+proc vnd_ensure_active {vndid} {
+    global spawn_id timeout
+    open_vndmnt
+    submit $vndid F8
+    expect {
+        "Status:" {
+            enter
+            expect {
+                "VENDOR MAINTENANCE" { sleep 0.3 }
+                timeout { test_fail [test_name] "could not normalize vendor $vndid to active" }
+            }
+        }
+        "VENDOR IS ALREADY ACTIVE" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach reactivate screen while normalizing vendor $vndid" }
+    }
+    close_session
+}
+
+proc vnd_ensure_inactive {vndid} {
+    global spawn_id timeout
+    open_vndmnt
+    submit $vndid F7
+    expect {
+        "Status:" {
+            enter
+            expect {
+                "VENDOR MAINTENANCE" { sleep 0.3 }
+                timeout { test_fail [test_name] "could not normalize vendor $vndid to inactive" }
+            }
+        }
+        "VENDOR IS ALREADY INACTIVE" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach inactivate screen while normalizing vendor $vndid" }
+    }
+    close_session
+}
+
+proc po_ensure_open {ponbr} {
+    global spawn_id timeout
+    open_pomnt
+    submit $ponbr F7
+    expect {
+        "Status:" {
+            enter
+            expect {
+                "PURCHASE ORDER MAINTENANCE" { sleep 0.3 }
+                timeout { test_fail [test_name] "could not normalize po $ponbr to open" }
+            }
+        }
+        "PURCHASE ORDER IS ALREADY OPEN" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach reopen screen while normalizing po $ponbr" }
+    }
+    close_session
+}
+
+proc po_ensure_closed {ponbr} {
+    global spawn_id timeout
+    open_pomnt
+    submit $ponbr F6
+    expect {
+        "Status:" {
+            enter
+            expect {
+                "PURCHASE ORDER MAINTENANCE" { sleep 0.3 }
+                timeout { test_fail [test_name] "could not normalize po $ponbr to closed" }
+            }
+        }
+        "PURCHASE ORDER IS ALREADY CLOSED" { sleep 0.3 }
+        timeout { test_fail [test_name] "did not reach close screen while normalizing po $ponbr" }
+    }
+    close_session
+}
+
+proc close_session {} {
+    global spawn_id
+    catch {
+        press F3
+        press F3
+        press F3
+    }
+    catch { close }
+    catch { wait }
+}
+
+# --- pass/fail reporting ----------------------------------------------------
+
+set ::TEST_NAME [file rootname [file tail $argv0]]
+proc test_name {} { return $::TEST_NAME }
+
+proc test_pass {name {detail ""}} {
+    if {$detail ne ""} {
+        puts "PASS: $name -- $detail"
+    } else {
+        puts "PASS: $name"
+    }
+    close_session
+    exit 0
+}
+
+proc test_fail {name reason} {
+    global expect_out
+    puts "FAIL: $name -- $reason"
+    puts "----- last screen buffer -----"
+    catch { puts $expect_out(buffer) }
+    puts "------------------------------"
+    catch { close_session }
+    exit 1
+}
+
+# --- unique test-data key helpers --------------------------------------
+# Every ADD-style test needs a key that won't collide with data left behind
+# by earlier runs (most of this app's entities have no hard delete, so
+# inactivated/closed test records accumulate rather than disappear).
+# Using the process id keeps keys unique per run without needing real
+# randomness.
+
+proc test_item_id {} {
+    return "ZT[pid]"
+}
+
+proc test_cust_num {} {
+    return [expr {90000 + ([pid] % 9000)}]
+}
+
+proc test_zip {} {
+    return [format "9%04d" [expr {[pid] % 10000}]]
+}

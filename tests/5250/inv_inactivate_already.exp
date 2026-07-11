@@ -1,0 +1,36 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> Inactivate (F7) run twice
+# Confirms the second inactivate attempt reports ITEM IS ALREADY INACTIVE.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+# --- setup: add the item, then inactivate it once (2 actions, 1 connection) ---
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "TEST WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect "INVENTORY MAINTENANCE"
+submit $item F7
+expect {
+    "Status:" { sleep 0.3 }
+    timeout   { test_fail [test_name] "setup: did not reach inactivate confirm screen" }
+}
+enter
+expect {
+    "INVENTORY MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: did not confirm first inactivate" }
+}
+close_session
+
+# --- verify: reconnect fresh, inactivate the same item again -----------------
+open_invmnt
+submit $item F7
+expect {
+    "ITEM IS ALREADY INACTIVE" { test_pass [test_name] "correctly rejected re-inactivating $item" }
+    "Status:"                  { test_fail [test_name] "item was not actually inactive from setup step" }
+    timeout                    { test_fail [test_name] "did not see already-inactive error" }
+}

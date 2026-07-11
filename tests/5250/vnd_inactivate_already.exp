@@ -1,0 +1,19 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Inactivate (F7) run on an already-inactive vendor
+# Confirms VENDOR IS ALREADY INACTIVE is reported. Normalizes to inactive
+# first since vendor ids are reused across runs (see
+# vnd_add_id_not_unique.exp) and may already be in either state.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+vnd_ensure_inactive $vndid
+
+open_vndmnt
+submit $vndid F7
+expect {
+    "VENDOR IS ALREADY INACTIVE" { test_pass [test_name] "correctly rejected re-inactivating vendor $vndid" }
+    "Status:"                    { test_fail [test_name] "vendor $vndid was not actually inactive after normalizing" }
+    timeout                      { test_fail [test_name] "did not see already-inactive error" }
+}

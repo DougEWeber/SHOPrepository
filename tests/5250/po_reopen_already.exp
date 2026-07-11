@@ -1,0 +1,19 @@
+#!/usr/bin/env expect
+#
+# POMAINT -> Reopen (F7) on an already-open PO
+# Confirms PURCHASE ORDER IS ALREADY OPEN is reported. Normalizes to open
+# first (see vnd_add_id_not_unique.exp for why this can't be assumed).
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+set ponbr [create_po $vndid]
+po_ensure_open $ponbr
+
+open_pomnt
+submit $ponbr F7
+expect {
+    "PURCHASE ORDER IS ALREADY OPEN" { test_pass [test_name] "correctly rejected reopening already-open po $ponbr" }
+    "Status:"                        { test_fail [test_name] "po $ponbr was not actually open after normalizing" }
+    timeout                          { test_fail [test_name] "did not see already-open error" }
+}
