@@ -1,7 +1,11 @@
-lib SRC TGT {*pgm *lf *pf keepdata *cmd *dspf *prtf exclude qrpglesrc/*file
+lib SRC TGT {*pgm *lfdds *pfdds keepdata *cmd *dspf *prtf exclude qrpglesrc/*file
                   exclude qcmdsrc/*file
                   exclude qclsrc/*file
                   exclude qtxtsrc/*file
                   exclude qddssrc/*file
                   exclude qsqlsrc/*file
+                  exclude QSQLTEST/*file
 }
+
+
+sql src tgt {*tableonly *view *index *procedure *function }

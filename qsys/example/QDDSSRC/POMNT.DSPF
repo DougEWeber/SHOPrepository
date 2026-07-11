@@ -58,7 +58,7 @@
      A            PONBR     R        O  4 26EDTCDE(Z)
      A                                      DSPATR(HI)
      A                                  6 14'Vendor ID:' DSPATR(HI)
-     A            VNDID     R        I  6 26EDTCDE(Z)
+     A            VNDID     R        B  6 26EDTCDE(Z)
      A  57                                  ERRMSG('VENDOR NOT ON FILE' 57)
      A                                 23  2'F12 Cancel'
      A          R POINQ
