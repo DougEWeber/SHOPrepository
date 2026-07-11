@@ -1,0 +1,20 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Add (F5)
+# Adds a new vendor (vendor IDs are auto-assigned) and confirms it's
+# accepted with no error.
+
+source [file join [file dirname [info script]] lib.exp]
+
+open_vndmnt
+press F5
+expect {
+    "Name:" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach vendor create screen" }
+}
+type_field "TEST VENDOR"
+enter
+expect {
+    "VENDOR MAINTENANCE" { test_pass [test_name] "added a new vendor" }
+    timeout { test_fail [test_name] "did not confirm add" }
+}

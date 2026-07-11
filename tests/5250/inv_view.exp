@@ -1,0 +1,22 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Maintain Inventory -> View (F9)
+# Adds an item, then views it and confirms the description is echoed back.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invmnt
+submit $item F5
+expect "Item ID:"
+type_field "VIEWABLE WIDGET"; send -- "\t"; type_field "EA"; send -- "\t"
+enter
+expect "INVENTORY MAINTENANCE"
+
+submit $item F9
+expect {
+    -re {VIEWABLE WIDGET} { test_pass [test_name] "view screen correctly showed item $item" }
+    "ITEM NOT ON FILE"    { test_fail [test_name] "setup add did not persist -- item not found on view" }
+    timeout               { test_fail [test_name] "did not see item description on view screen" }
+}

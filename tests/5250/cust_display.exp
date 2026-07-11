@@ -1,0 +1,35 @@
+#!/usr/bin/env expect
+#
+# CUSTMAINT -> Maintain Customer File -> Display (F8)
+# Adds a customer, then displays it and confirms the name is echoed back.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set cust [test_cust_num]
+
+open_custmnt_menu
+press F5
+expect "CUSTOMER FILE MAINTENANCE"
+submit $cust F5
+expect "Name"
+type_field "DISPLAY CUSTOMER"; send -- "\t"
+type_field "123 MAIN ST"; send -- "\t"
+send -- "\t"
+type_field "ANYTOWN"; send -- "\t"
+# STATE is exactly 2 chars wide; typing "TX" fills it completely and the
+# field auto-advances to ZIP, so no explicit Tab is sent here (an extra
+# Tab would skip past ZIP and wrap back around to NAME).
+type_field "TX"
+type_field [test_zip]
+enter
+expect {
+    "CUSTOMER FILE MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup add did not complete" }
+}
+
+submit $cust F8
+expect {
+    -re {DISPLAY CUSTOMER} { test_pass [test_name] "display screen correctly showed customer $cust" }
+    "CUSTOMER NOT ON FILE"     { test_fail [test_name] "setup add did not persist -- customer not found on display" }
+    timeout                     { test_fail [test_name] "did not see customer name on display screen" }
+}

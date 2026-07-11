@@ -1,0 +1,17 @@
+#!/usr/bin/env expect
+#
+# INVMAINT -> Receive Inventory, on an item that doesn't exist
+# Confirms ITEM NOT ON FILE is reported.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set item [test_item_id]
+
+open_invrcv
+type_field $item
+enter
+expect {
+    "ITEM NOT ON FILE" { test_pass [test_name] "correctly reported unknown item $item as not found" }
+    "Qty Received:"    { test_fail [test_name] "unexpectedly found item $item (should not exist)" }
+    timeout             { test_fail [test_name] "did not see not-on-file error" }
+}

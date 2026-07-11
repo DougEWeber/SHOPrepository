@@ -1,0 +1,34 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> View (F9)
+# Creates a vendor, updates its name to a known value (vendor ids are
+# reused across runs -- see vnd_add_id_not_unique.exp -- so the name from
+# Add alone can't be trusted to still be current), then views it and
+# confirms that name is echoed back.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+
+open_vndmnt
+submit $vndid F6
+expect {
+    "Address:" { sleep 0.3 }
+    "VENDOR NOT ON FILE" { test_fail [test_name] "vendor $vndid was not found for setup update" }
+    timeout { test_fail [test_name] "setup: did not reach vendor update screen" }
+}
+type_field "VIEWTEST VENDOR NAME          "
+enter
+expect {
+    "VENDOR MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: did not confirm name update" }
+}
+close_session
+
+open_vndmnt
+submit $vndid F9
+expect {
+    -re {VIEWTEST VENDOR NAME} { test_pass [test_name] "view screen correctly showed vendor $vndid" }
+    "VENDOR NOT ON FILE" { test_fail [test_name] "vendor $vndid was not found on view" }
+    timeout { test_fail [test_name] "did not see expected vendor name on view screen" }
+}

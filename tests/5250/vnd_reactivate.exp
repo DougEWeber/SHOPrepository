@@ -1,0 +1,23 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> Reactivate (F8)
+# Creates a vendor, normalizes it to inactive (see vnd_add_id_not_unique.exp
+# for why this can't be assumed), then reactivates it.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+vnd_ensure_inactive $vndid
+
+open_vndmnt
+submit $vndid F8
+expect {
+    "Status:" { sleep 0.3 }
+    "VENDOR IS ALREADY ACTIVE" { test_fail [test_name] "vendor $vndid was not actually inactive after normalizing" }
+    timeout { test_fail [test_name] "did not reach reactivate confirm screen" }
+}
+enter
+expect {
+    "VENDOR MAINTENANCE" { test_pass [test_name] "reactivated vendor $vndid" }
+    timeout { test_fail [test_name] "did not confirm reactivate" }
+}

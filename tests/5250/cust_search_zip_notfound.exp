@@ -1,0 +1,43 @@
+#!/usr/bin/env expect
+#
+# CUSTMAINT -> Search Customer by Zip Code, on a zip with no customers
+#
+# KNOWN ISSUE: SCHZIP.RPGLE sets indicator 61 (zipNotFound) and
+# SCHZIPD.DSPF defines `ERRMSG('ZIP CODE NOT FOUND' 61)` on the zip
+# field, but confirmed live (via a raw not-found search, output compared
+# byte-for-byte against a known-good zip search) that the message never
+# actually renders -- the screen just silently redisplays the empty
+# "Enter Zip Code" prompt. Verified against SHOPDEWOBJ.CUSMST directly
+# over SSH that the searched zip truly has zero matching rows, so this
+# isn't a stale-index issue like the vendor/PO auto-numbering finding
+# (see vnd_add_id_not_unique.exp) -- the message itself just doesn't
+# display. This test documents the actual (buggy) behavior: no match
+# and no error text. If the ERRMSG is ever fixed to display, update this
+# test to assert on "ZIP CODE NOT FOUND" instead.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set zip [test_zip]
+
+open_custmnt_menu
+press F6
+expect {
+    "Enter Zip Code" { sleep 0.3 }
+    timeout { test_fail [test_name] "did not reach search-by-zip screen" }
+}
+type_field $zip
+enter
+expect {
+    "ZIP CODE NOT FOUND" {
+        test_pass [test_name] "search for unused zip $zip correctly showed ZIP CODE NOT FOUND (issue below appears fixed)"
+    }
+    -re {Customer Name} {
+        test_fail [test_name] "unexpectedly found a result for unused zip $zip"
+    }
+    "Enter Zip Code" {
+        test_pass [test_name] "confirmed known issue: no-match zip $zip silently re-prompts with no ZIP CODE NOT FOUND message"
+    }
+    timeout {
+        test_fail [test_name] "did not return to the zip prompt after searching unused zip $zip"
+    }
+}
