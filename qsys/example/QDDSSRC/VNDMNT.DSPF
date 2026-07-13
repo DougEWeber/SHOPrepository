@@ -6,6 +6,8 @@
      A*                 HDRSCN - PROMPTS FOR VENDOR ID AND MODE.      *
      A*                 ITMCRT - CREATE A NEW VENDOR.                 *
      A*                 ITMINQ - DISPLAY/EDIT AN EXISTING VENDOR.     *
+     A*                 LSTSFL/LSTCTL LIST ALL VENDORS IN A SCROLLABLE*
+     A*                 SUBFILE, LOADED A PAGE AT A TIME.              *
      A*****************************************************************
      A                                      REF(VNDMSTL1)
      A                                      CHGINPDFT(CS)
@@ -19,6 +21,7 @@
      A                                      CF07(07 'INACTIVATE MODE')
      A                                      CF08(08 'REACTIVATE MODE')
      A                                      CF09(09 'VIEW MODE')
+     A                                      CF10(11 'LIST MODE')
      A            MODE           8A  O  1  4DSPATR(HI)
      A                                  1 13'MODE'
      A                                      DSPATR(HI)
@@ -35,9 +38,11 @@
      A                                      ' ' 53)
      A  54                                  ERRMSG('VENDOR IS ALREADY ACTIVE' +
      A                                      54)
+     A  58                                  ERRMSG('NO VENDORS ON FILE' 58)
      A                                 10 33'<--Enter Vendor ID'
      A                                      DSPATR(HI)
      A                                 22  4'F9 View'
+     A                                 22 20'F10 List'
      A                                 23  4'F3 End Job'
      A                                 23 18'F5 Add'
      A                                 23 27'F6 Update'
@@ -124,3 +129,46 @@
      A                                      DSPATR(CS)
      A  04                                  DSPATR(PR)
      A                                 23  2'F12 Cancel'
+     A*****************************************************************
+     A*  LSTSFL/LSTCTL - scrollable list of all vendors.               *
+     A*  The subfile is loaded one page at a time (SFLPAG) and grows   *
+     A*  (SFLSIZ) as the user rolls up past what's currently loaded,   *
+     A*  rather than reading the whole file up front.                 *
+     A*****************************************************************
+     A          R LSTSFL                    SFL
+     A            VNDID     R           9  3EDTCDE(Z)
+     A            VNDNAM    R           9 12
+     A            VNDST     R           9 44
+     A            VNINACTV  R           9 48
+     A            VNDOWE    R           9 52EDTCDE(1)
+     A          R LSTCTL                    SFLCTL(LSTSFL)
+     A                                      TEXT('SCROLLABLE VENDOR LIST')
+     A  20                                  SFLCLR
+     A N20                                  SFLDSPCTL
+     A N20                                  SFLDSP
+     A                                      SFLSIZ(9999)
+     A                                      SFLPAG(0013)
+     A                                      ROLLUP(95 'ROLL UP')
+     A  96                                  SFLEND(*MORE)
+     A                                      CA12(12 'RETURN')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 30'VENDOR LIST'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4  2'F12 Return'
+     A                                      DSPATR(HI)
+     A                                  4 30'Roll Up For More'
+     A                                      DSPATR(HI)
+     A                                  7  3'Vendor ID'
+     A                                      DSPATR(HI UL)
+     A                                  7 12'Name'
+     A                                      DSPATR(HI UL)
+     A                                  7 44'St'
+     A                                      DSPATR(HI UL)
+     A                                  7 48'Status'
+     A                                      DSPATR(HI UL)
+     A                                  7 52'Amt Owed'
+     A                                      DSPATR(HI UL)

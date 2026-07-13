@@ -41,6 +41,7 @@
      A                                      53)
      A  54                                  ERRMSG('ITEM IS ALREADY ACTIVE' +
      A                                      54)
+     A  58                                  ERRMSG('NO ITEMS ON FILE' 58)
      A                                 10 33'<--Enter Item ID'
      A                                      DSPATR(HI)
      A                                 23  4'F3 End Job'
@@ -116,11 +117,11 @@
      A*  rather than reading the whole file up front.                 *
      A*****************************************************************
      A          R LSTSFL                    SFL
-     A            INVID     R        O  9  3
-     A            INVDSC    R        O  9 14
-     A            INVUNT    R        O  9 45
-     A            INACTV    R        O  9 52
-     A            QTYOH     R        O  9 60EDTCDE(1)
+     A            INVID     R           9  3
+     A            INVDSC    R           9 14
+     A            INVUNT    R           9 45
+     A            INACTV    R           9 52
+     A            QTYOH     R           9 60EDTCDE(1)
      A          R LSTCTL                    SFLCTL(LSTSFL)
      A                                      TEXT('SCROLLABLE ITEM LIST')
      A  20                                  SFLCLR

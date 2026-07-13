@@ -15,7 +15,8 @@
 
      Finvmstl1  uf a e           k disk
      Fvndmstl1  if   e           k disk
-     Finvmnt    cf   e             workstn indds(indicators)
+     Finvmnt    cf   e             workstn sfile(lstsfl:rrn)
+     F                                     indds(indicators)
 
      D indicators      ds
      D   exitKey                       n   overlay(indicators:3)
@@ -33,12 +34,14 @@
      D   alrInactv                     n   overlay(indicators:53)
      D   alrActv                       n   overlay(indicators:54)
      D   invalidVnd                    n   overlay(indicators:57)
+     D   listEmpty                     n   overlay(indicators:58)
      D   sflClear                      n   overlay(indicators:20)
      D   rollupKey                     n   overlay(indicators:95)
      D   moreInd                       n   overlay(indicators:96)
 
      D pageSize        s              5p 0 inz(13)
      D fillCount       s              5p 0
+     D rrn             s              5p 0
 
      C     INVKEY        KLIST
      C                   KFLD                    INVID
@@ -78,6 +81,7 @@
           alrInactv    = *off;
           alrActv      = *off;
           invalidVnd   = *off;
+          listEmpty    = *off;
        enddo;
 
        *inlr = *on;
@@ -245,6 +249,7 @@
        //                 loaded a page at a time (see FillListPage)     *
        //****************************************************************
        begsr ListSub;
+          rrn = 0;
           sflClear = *on;
           write lstctl;
           sflClear = *off;
@@ -252,6 +257,14 @@
           moreInd = *on;
           setll *loval invmstl1;
           exsr FillListPage;
+
+          if rrn = 0;
+             // No records were ever written, so the subfile was never
+             // activated -- exfmt-ing it here would fail with "subfile
+             // not active". Show a message on HDRSCN instead.
+             listEmpty = *on;
+             leavesr;
+          endif;
 
           dow '1';
              exfmt lstctl;
@@ -281,6 +294,7 @@
                 leave;
              endif;
 
+             rrn = rrn + 1;
              write lstsfl;
              fillCount = fillCount + 1;
           enddo;

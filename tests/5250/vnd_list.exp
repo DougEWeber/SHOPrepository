@@ -1,0 +1,36 @@
+#!/usr/bin/env expect
+#
+# VNDMAINT -> List (F10)
+# Creates a vendor, then confirms it appears in the scrollable list, that
+# Roll Up doesn't crash, and that F12 returns to the maintenance screen.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set vndid [create_vendor]
+
+open_vndmnt
+press F10
+expect {
+    "VENDOR LIST" { sleep 0.3 }
+    "NO VENDORS ON FILE" { test_fail [test_name] "list came back empty despite creating vendor $vndid" }
+    timeout { test_fail [test_name] "did not reach vendor list screen" }
+}
+
+expect {
+    -re {TEST VENDOR} { sleep 0.3 }
+    timeout { test_fail [test_name] "vendor $vndid did not appear in the list" }
+}
+
+press ROLLUP
+expect {
+    "Session or device error" { test_fail [test_name] "rolling up crashed the list" }
+    "More..." { sleep 0.3 }
+    "Bottom"  { sleep 0.3 }
+    timeout   { sleep 0.3 }
+}
+
+press F12
+expect {
+    "VENDOR MAINTENANCE" { test_pass [test_name] "vendor $vndid appeared in the list, roll up and return both worked" }
+    timeout { test_fail [test_name] "F12 did not return to the maintenance screen" }
+}
