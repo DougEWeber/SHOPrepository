@@ -2,11 +2,14 @@
      A*     FILE NAME:  INVMNT                                        *
      A*  RELATED PGMS:  INVMNT (RPGLE)                                *
      A* RELATED FILES:  INVMSTL1   (LOGICAL FILE)                     *
-     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE INVMNT. IT HAS 3     *
-     A*                 RECORD FORMATS: HDRSCN, ITMCRT, ITMINQ.       *
+     A*   DESCRIPTION:  THIS IS THE DISPLAY FILE INVMNT. IT HAS 5     *
+     A*                 RECORD FORMATS: HDRSCN, ITMCRT, ITMINQ,       *
+     A*                 LSTSFL, LSTCTL.                                *
      A*                 HDRSCN PROMPTS FOR ITEM ID AND MODE.          *
      A*                 ITMCRT IS USED TO CREATE A NEW ITEM.          *
      A*                 ITMINQ DISPLAYS/EDITS AN EXISTING ITEM.       *
+     A*                 LSTSFL/LSTCTL LIST ALL ITEMS IN A SCROLLABLE  *
+     A*                 SUBFILE, LOADED A PAGE AT A TIME.              *
      A*****************************************************************
      A                                      REF(INVMSTL1)
      A                                      CHGINPDFT(CS)
@@ -20,6 +23,7 @@
      A                                      CF07(07 'INACTIVATE MODE')
      A                                      CF08(08 'REACTIVATE MODE')
      A                                      CF09(09 'VIEW MODE')
+     A                                      CF10(11 'LIST MODE')
      A            MODE           8A  O  1  4DSPATR(HI)
      A                                  1 13'MODE'
      A                                      DSPATR(HI)
@@ -45,6 +49,7 @@
      A                                 23 39'F7 Inactivate'
      A                                 23 54'F8 Reactivate'
      A                                 22  4'F9 View'
+     A                                 22 20'F10 List'
      A          R ITMCRT
      A                                      TEXT('CREATE INVENTORY ITEM')
      A                                      CA12(12 'PREVIOUS SCREEN')
@@ -104,3 +109,46 @@
      A  10                             15 47'(Y/N)'
      A  10        ZEROQH         1   I 15 53
      A                                 23  2'F12 Cancel'
+     A*****************************************************************
+     A*  LSTSFL/LSTCTL - scrollable list of all inventory items.      *
+     A*  The subfile is loaded one page at a time (SFLPAG) and grows  *
+     A*  (SFLSIZ) as the user rolls up past what's currently loaded,  *
+     A*  rather than reading the whole file up front.                 *
+     A*****************************************************************
+     A          R LSTSFL                    SFL
+     A            INVID     R        O  9  3
+     A            INVDSC    R        O  9 14
+     A            INVUNT    R        O  9 45
+     A            INACTV    R        O  9 52
+     A            QTYOH     R        O  9 60EDTCDE(1)
+     A          R LSTCTL                    SFLCTL(LSTSFL)
+     A                                      TEXT('SCROLLABLE ITEM LIST')
+     A  20                                  SFLCLR
+     A N20                                  SFLDSPCTL
+     A N20                                  SFLDSP
+     A                                      SFLSIZ(9999)
+     A                                      SFLPAG(0013)
+     A                                      ROLLUP(95 'ROLL UP')
+     A  96                                  SFLEND(*MORE)
+     A                                      CA12(12 'RETURN')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 27'INVENTORY LIST'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4  2'F12 Return'
+     A                                      DSPATR(HI)
+     A                                  4 30'Roll Up For More'
+     A                                      DSPATR(HI)
+     A                                  7  3'Item ID'
+     A                                      DSPATR(HI UL)
+     A                                  7 14'Description'
+     A                                      DSPATR(HI UL)
+     A                                  7 45'Unit'
+     A                                      DSPATR(HI UL)
+     A                                  7 52'Status'
+     A                                      DSPATR(HI UL)
+     A                                  7 60'Qty On Hand'
+     A                                      DSPATR(HI UL)
