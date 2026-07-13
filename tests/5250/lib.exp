@@ -8,8 +8,9 @@
 #     binary 5250 -- it can be driven with `telnet` + `expect` directly.
 #   - PF/AID key encoding: F3 = ESC O R (VT100 SS3), F5-F12 = ESC [ <n> ~
 #     using the standard vt220 table (15,17,18,19,20,21,23,24). Confirmed
-#     live for F3, F5, F6, F7, F8, F9. F10-F12 follow the same documented
-#     table but were not separately exercised live.
+#     live for F3, F5-F10, F12. Roll Up (Page Down) is ESC [ 6 ~, distinct
+#     from the F-key table -- confirmed live driving the List function's
+#     scrollable subfiles.
 #   - gittest signs on directly to a Command Entry (QCMD) screen -- there
 #     is no menu to navigate. Commands are typed at the "===>" prompt.
 #   - The library holding compiled test objects (SHOPDEWOBJ) is not on
@@ -35,6 +36,7 @@ array set ::PFKEY {
     F10 "\x1b\[21~"
     F11 "\x1b\[23~"
     F12 "\x1b\[24~"
+    ROLLUP "\x1b\[6~"
 }
 
 # --- low level key/field helpers -------------------------------------------

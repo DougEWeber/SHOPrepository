@@ -1,0 +1,54 @@
+#!/usr/bin/env expect
+#
+# CUSTMAINT -> Maintain Customer File -> List (F10)
+# Adds a customer, then confirms the list loads with real data, that Roll
+# Up doesn't crash, and that F12 returns to the maintenance screen. Customer
+# numbers are pid-derived (see test_cust_num) and the list sorts by number,
+# so after many test runs a freshly-added customer isn't guaranteed to land
+# on the first page -- this checks the list mechanics, not a specific row.
+
+source [file join [file dirname [info script]] lib.exp]
+
+set cust [test_cust_num]
+set name "ZZLISTTEST$cust"
+
+open_custmnt_menu
+press F5
+expect "CUSTOMER FILE MAINTENANCE"
+submit $cust F5
+expect "Name"
+type_field $name; send -- "\t"
+type_field "123 MAIN ST"; send -- "\t"
+send -- "\t"
+type_field "ANYTOWN"; send -- "\t"
+# STATE is exactly 2 chars wide; typing "TX" fills it completely and the
+# field auto-advances to ZIP, so no explicit Tab is sent here (see
+# cust_add.exp for why).
+type_field "TX"
+type_field [test_zip]
+enter
+expect {
+    "CUSTOMER FILE MAINTENANCE" { sleep 0.3 }
+    timeout { test_fail [test_name] "setup: could not add customer $cust" }
+}
+
+press F10
+expect {
+    "CUSTOMER LIST" { sleep 0.3 }
+    "NO CUSTOMERS ON FILE" { test_fail [test_name] "list came back empty despite adding customer $cust" }
+    timeout { test_fail [test_name] "did not reach customer list screen" }
+}
+
+press ROLLUP
+expect {
+    "Session or device error" { test_fail [test_name] "rolling up crashed the list" }
+    "More..." { sleep 0.3 }
+    "Bottom"  { sleep 0.3 }
+    timeout   { sleep 0.3 }
+}
+
+press F12
+expect {
+    "CUSTOMER FILE MAINTENANCE" { test_pass [test_name] "customer list reached for $name, roll up and return both worked" }
+    timeout { test_fail [test_name] "F12 did not return to the maintenance screen" }
+}

@@ -10,7 +10,8 @@
       //****************************************************************
 
      Fcusmstl1  uf a e           k disk
-     Fmntmenu   cf   e             workstn indds(indicators)
+     Fmntmenu   cf   e             workstn sfile(lstsfl:rrn)
+     F                                     indds(indicators)
 
       // Field definitions:
 
@@ -21,9 +22,18 @@
      D   updateKey                     n   overlay(indicators:6)
      D   deleteKey                     n   overlay(indicators:7)
      D   displayKey                    n   overlay(indicators:8)
+     D   listKey                       n   overlay(indicators:11)
      D   prevKey                       n   overlay(indicators:12)
      D   custExists                    n   overlay(indicators:51)
      D   custNotFound                  n   overlay(indicators:52)
+     D   listEmpty                     n   overlay(indicators:58)
+     D   sflClear                      n   overlay(indicators:20)
+     D   rollupKey                     n   overlay(indicators:95)
+     D   moreInd                       n   overlay(indicators:96)
+
+     D pageSize        s              5p 0 inz(13)
+     D fillCount       s              5p 0
+     D rrn             s              5p 0
 
       // Key list definitions:
 
@@ -40,23 +50,28 @@
 
        // Loop until exit key is pressed
        dow not exitKey;
-          exsr SetMaintenanceMode;
+          if listKey;
+             exsr ListSub;
+          else;
+             exsr SetMaintenanceMode;
 
-          if cust <> 0;
-             if mode = 'ADD';
-                exsr AddSub;
-             elseif mode = 'UPDATE';
-                exsr UpdateSub;
-             elseif mode = 'DELETE';
-                exsr DeleteSub;
-             elseif mode = 'DISPLAY';
-                exsr InquirySub;
+             if cust <> 0;
+                if mode = 'ADD';
+                   exsr AddSub;
+                elseif mode = 'UPDATE';
+                   exsr UpdateSub;
+                elseif mode = 'DELETE';
+                   exsr DeleteSub;
+                elseif mode = 'DISPLAY';
+                   exsr InquirySub;
+                endif;
              endif;
           endif;
 
           exfmt hdrscn;
           custExists   = *off;   // turn off error messages
           CustNotFound = *off;
+          listEmpty    = *off;
        enddo;
 
        *inlr = *on;
@@ -168,6 +183,63 @@
           disableInput = *on;
           exfmt cstinq;
        endsr;  // end of subroutine InquirySub;
+
+       //****************************************************************
+       //    SUBROUTINE - ListSub                                       *
+       //    PURPOSE    - Scrollable list of all customers, loaded a    *
+       //                 page at a time (see FillListPage)             *
+       //****************************************************************
+       begsr ListSub;
+          rrn = 0;
+          sflClear = *on;
+          write lstctl;
+          sflClear = *off;
+
+          moreInd = *on;
+          setll *loval cusmstl1;
+          exsr FillListPage;
+
+          if rrn = 0;
+             // No records were ever written, so the subfile was never
+             // activated -- exfmt-ing it here would fail with "subfile
+             // not active". Show a message on HDRSCN instead.
+             listEmpty = *on;
+             leavesr;
+          endif;
+
+          dow '1';
+             exfmt lstctl;
+             if prevKey;
+                leave;
+             endif;
+
+             if rollupKey and moreInd;
+                exsr FillListPage;
+             endif;
+          enddo;
+       endsr;  // end of subroutine ListSub
+
+       //****************************************************************
+       //    SUBROUTINE - FillListPage                                  *
+       //    PURPOSE    - Read up to one page's worth of customers in   *
+       //                 key order and append them to the subfile,     *
+       //                 without re-reading what's already loaded.     *
+       //****************************************************************
+       begsr FillListPage;
+          fillCount = 0;
+          dow fillCount < pageSize and moreInd;
+             read cusmstl1;
+             if %eof(cusmstl1);
+                moreInd = *off;
+                leave;
+             endif;
+
+             rrn = rrn + 1;
+             write lstsfl;
+             fillCount = fillCount + 1;
+          enddo;
+       endsr;  // end of subroutine FillListPage
+
        //****************************************************************
        //    SUBROUTINE - SetMaintenanceMode                            *
        //    PURPOSE    - Set maintenance mode                          *

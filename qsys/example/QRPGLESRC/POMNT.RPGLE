@@ -3,18 +3,21 @@
       // RELATED FILES:  PORMSTL1 (LF)                                 *
       //                 VNDMSTL1 (LF)                                 *
       //                 POMNT    (DSPF)                                *
-      // DESCRIPTION:    Purchase order maintenance. Supports four      *
+      // DESCRIPTION:    Purchase order maintenance. Supports five      *
       //                 modes:                                         *
       //                 ADD    - creates a new PO (auto-assigns PO     *
       //                          number), validates vendor             *
       //                 CLOSE  - marks PO closed                       *
       //                 REOPEN - reopens a closed PO                   *
       //                 VIEW   - displays PO info, no changes          *
+      //                 LIST   - scrollable list of all POs, loaded    *
+      //                          a page at a time                      *
       //****************************************************************
 
      Fpormstl1  uf a e           k disk
      Fvndmstl1  if   e           k disk
-     Fpomnt     cf   e             workstn indds(indicators)
+     Fpomnt     cf   e             workstn sfile(lstsfl:rrn)
+     F                                     indds(indicators)
 
      D indicators      ds
      D   exitKey                       n   overlay(indicators:3)
@@ -22,13 +25,21 @@
      D   closeKey                      n   overlay(indicators:6)
      D   reopenKey                     n   overlay(indicators:7)
      D   viewKey                       n   overlay(indicators:8)
+     D   listKey                       n   overlay(indicators:11)
      D   prevKey                       n   overlay(indicators:12)
      D   poNotFound                    n   overlay(indicators:52)
      D   alrClosed                     n   overlay(indicators:53)
      D   alrOpen                       n   overlay(indicators:54)
      D   invalidVnd                    n   overlay(indicators:57)
+     D   listEmpty                     n   overlay(indicators:58)
+     D   sflClear                      n   overlay(indicators:20)
+     D   rollupKey                     n   overlay(indicators:95)
+     D   moreInd                       n   overlay(indicators:96)
 
      D nextNbr         s              7  0
+     D pageSize        s              5p 0 inz(13)
+     D fillCount       s              5p 0
+     D rrn             s              5p 0
 
      C     PONBRKEY      KLIST
      C                   KFLD                    PONBR
@@ -42,17 +53,21 @@
        exfmt hdrscn;
 
        dow not exitKey;
-          exsr SetMode;
+          if listKey;
+             exsr ListSub;
+          else;
+             exsr SetMode;
 
-          if mode = 'ADD';
-             exsr AddSub;
-          elseif ponbr > 0;
-             if mode = 'CLOSE';
-                exsr CloseSub;
-             elseif mode = 'REOPEN';
-                exsr ReopenSub;
-             elseif mode = 'VIEW';
-                exsr ViewSub;
+             if mode = 'ADD';
+                exsr AddSub;
+             elseif ponbr > 0;
+                if mode = 'CLOSE';
+                   exsr CloseSub;
+                elseif mode = 'REOPEN';
+                   exsr ReopenSub;
+                elseif mode = 'VIEW';
+                   exsr ViewSub;
+                endif;
              endif;
           endif;
 
@@ -60,6 +75,7 @@
           poNotFound = *off;
           alrClosed  = *off;
           alrOpen    = *off;
+          listEmpty  = *off;
        enddo;
 
        *inlr = *on;
@@ -165,6 +181,63 @@
           endif;
 
           exfmt poinq;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - ListSub                                       *
+       //    PURPOSE    - Scrollable list of all purchase orders,       *
+       //                 loaded a page at a time (see FillListPage)     *
+       //****************************************************************
+       begsr ListSub;
+          rrn = 0;
+          sflClear = *on;
+          write lstctl;
+          sflClear = *off;
+
+          moreInd = *on;
+          setll *loval pormstl1;
+          exsr FillListPage;
+
+          if rrn = 0;
+             // No records were ever written, so the subfile was never
+             // activated -- exfmt-ing it here would fail with "subfile
+             // not active". Show a message on HDRSCN instead.
+             listEmpty = *on;
+             leavesr;
+          endif;
+
+          dow '1';
+             exfmt lstctl;
+             if prevKey;
+                leave;
+             endif;
+
+             if rollupKey and moreInd;
+                exsr FillListPage;
+             endif;
+          enddo;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - FillListPage                                  *
+       //    PURPOSE    - Read up to one page's worth of purchase       *
+       //                 orders in key order and append them to the    *
+       //                 subfile, without re-reading what's already    *
+       //                 loaded.                                       *
+       //****************************************************************
+       begsr FillListPage;
+          fillCount = 0;
+          dow fillCount < pageSize and moreInd;
+             read pormstl1;
+             if %eof(pormstl1);
+                moreInd = *off;
+                leave;
+             endif;
+
+             rrn = rrn + 1;
+             write lstsfl;
+             fillCount = fillCount + 1;
+          enddo;
        endsr;
 
        //****************************************************************

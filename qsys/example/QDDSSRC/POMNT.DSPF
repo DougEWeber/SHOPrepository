@@ -6,6 +6,8 @@
      A*                 HDRSCN - PROMPTS FOR PO NUMBER AND MODE.      *
      A*                 POCRT  - CREATE A NEW PURCHASE ORDER.         *
      A*                 POINQ  - DISPLAY/CLOSE/REOPEN AN EXISTING PO. *
+     A*                 LSTSFL/LSTCTL LIST ALL POS IN A SCROLLABLE    *
+     A*                 SUBFILE, LOADED A PAGE AT A TIME.              *
      A*****************************************************************
      A                                      REF(PORMSTL1)
      A                                      CHGINPDFT(CS)
@@ -18,6 +20,7 @@
      A                                      CF06(06 'CLOSE MODE')
      A                                      CF07(07 'REOPEN MODE')
      A                                      CF08(08 'VIEW MODE')
+     A                                      CF10(11 'LIST MODE')
      A            MODE           8A  O  1  4DSPATR(HI)
      A                                  1 13'MODE'
      A                                      DSPATR(HI)
@@ -35,9 +38,12 @@
      A                                      ALREADY CLOSED' 53)
      A  54                                  ERRMSG('PURCHASE ORDER IS +
      A                                      ALREADY OPEN' 54)
+     A  58                                  ERRMSG('NO PURCHASE ORDERS ON +
+     A                                      FILE' 58)
      A                                 10 33'<--Enter PO Number'
      A                                      DSPATR(HI)
      A                                 22  4'F8 View'
+     A                                 22 20'F10 List'
      A                                 23  4'F3 End Job'
      A                                 23 18'F5 Add'
      A                                 23 27'F6 Close'
@@ -81,3 +87,40 @@
      A                                  8 14'Status:'    DSPATR(HI)
      A            POSTAT    R        O  8 26DSPATR(HI)
      A                                 23  2'F12 Cancel'
+     A*****************************************************************
+     A*  LSTSFL/LSTCTL - scrollable list of all purchase orders.       *
+     A*  The subfile is loaded one page at a time (SFLPAG) and grows   *
+     A*  (SFLSIZ) as the user rolls up past what's currently loaded,   *
+     A*  rather than reading the whole file up front.                 *
+     A*****************************************************************
+     A          R LSTSFL                    SFL
+     A            PONBR     R           9  3EDTCDE(Z)
+     A            VNDID     R           9 20EDTCDE(Z)
+     A            POSTAT    R           9 35
+     A          R LSTCTL                    SFLCTL(LSTSFL)
+     A                                      TEXT('SCROLLABLE PO LIST')
+     A  20                                  SFLCLR
+     A N20                                  SFLDSPCTL
+     A N20                                  SFLDSP
+     A                                      SFLSIZ(9999)
+     A                                      SFLPAG(0013)
+     A                                      ROLLUP(95 'ROLL UP')
+     A  96                                  SFLEND(*MORE)
+     A                                      CA12(12 'RETURN')
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 27'PURCHASE ORDER LIST'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4  2'F12 Return'
+     A                                      DSPATR(HI)
+     A                                  4 30'Roll Up For More'
+     A                                      DSPATR(HI)
+     A                                  7  3'PO Number'
+     A                                      DSPATR(HI UL)
+     A                                  7 20'Vendor ID'
+     A                                      DSPATR(HI UL)
+     A                                  7 35'Status'
+     A                                      DSPATR(HI UL)

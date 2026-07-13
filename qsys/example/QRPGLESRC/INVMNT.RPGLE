@@ -2,18 +2,21 @@
       // PROGRAM NAME:   INVMNT                                        *
       // RELATED FILES:  INVMSTL1 (LF)                                 *
       //                 INVMNT   (DSPF)                               *
-      // DESCRIPTION:    Inventory maintenance. Supports five modes:   *
+      // DESCRIPTION:    Inventory maintenance. Supports six modes:    *
       //                 ADD    - creates a new item (name/unit only)  *
       //                 UPDATE - changes name and/or unit             *
       //                 INACTV - marks item inactive                  *
       //                 REACTV - reactivates item, optionally zeros   *
       //                          quantity on hand                     *
-      //                 VIEW   - displays item info, no changes
+      //                 VIEW   - displays item info, no changes       *
+      //                 LIST   - scrollable list of all items,        *
+      //                          loaded a page at a time              *
       //****************************************************************
 
      Finvmstl1  uf a e           k disk
      Fvndmstl1  if   e           k disk
-     Finvmnt    cf   e             workstn indds(indicators)
+     Finvmnt    cf   e             workstn sfile(lstsfl:rrn)
+     F                                     indds(indicators)
 
      D indicators      ds
      D   exitKey                       n   overlay(indicators:3)
@@ -24,12 +27,21 @@
      D   reacKey                       n   overlay(indicators:8)
      D   viewKey                       n   overlay(indicators:9)
      D   showZeroQH                    n   overlay(indicators:10)
+     D   listKey                       n   overlay(indicators:11)
      D   prevKey                       n   overlay(indicators:12)
      D   itemExists                    n   overlay(indicators:51)
      D   itemNotFound                  n   overlay(indicators:52)
      D   alrInactv                     n   overlay(indicators:53)
      D   alrActv                       n   overlay(indicators:54)
      D   invalidVnd                    n   overlay(indicators:57)
+     D   listEmpty                     n   overlay(indicators:58)
+     D   sflClear                      n   overlay(indicators:20)
+     D   rollupKey                     n   overlay(indicators:95)
+     D   moreInd                       n   overlay(indicators:96)
+
+     D pageSize        s              5p 0 inz(13)
+     D fillCount       s              5p 0
+     D rrn             s              5p 0
 
      C     INVKEY        KLIST
      C                   KFLD                    INVID
@@ -43,19 +55,23 @@
        exfmt hdrscn;
 
        dow not exitKey;
-          exsr SetMode;
+          if listKey;
+             exsr ListSub;
+          else;
+             exsr SetMode;
 
-          if invid <> *blank;
-             if mode = 'ADD';
-                exsr AddSub;
-             elseif mode = 'UPDATE';
-                exsr UpdateSub;
-             elseif mode = 'INACTV';
-                exsr InactvSub;
-             elseif mode = 'REACTV';
-                exsr ReacSub;
-             elseif mode = 'VIEW';
-                exsr ViewSub;
+             if invid <> *blank;
+                if mode = 'ADD';
+                   exsr AddSub;
+                elseif mode = 'UPDATE';
+                   exsr UpdateSub;
+                elseif mode = 'INACTV';
+                   exsr InactvSub;
+                elseif mode = 'REACTV';
+                   exsr ReacSub;
+                elseif mode = 'VIEW';
+                   exsr ViewSub;
+                endif;
              endif;
           endif;
 
@@ -65,6 +81,7 @@
           alrInactv    = *off;
           alrActv      = *off;
           invalidVnd   = *off;
+          listEmpty    = *off;
        enddo;
 
        *inlr = *on;
@@ -224,6 +241,63 @@
           disableInput = *on;
           showZeroQH   = *off;
           exfmt itminq;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - ListSub                                       *
+       //    PURPOSE    - Scrollable list of all inventory items,       *
+       //                 loaded a page at a time (see FillListPage)     *
+       //****************************************************************
+       begsr ListSub;
+          rrn = 0;
+          sflClear = *on;
+          write lstctl;
+          sflClear = *off;
+
+          moreInd = *on;
+          setll *loval invmstl1;
+          exsr FillListPage;
+
+          if rrn = 0;
+             // No records were ever written, so the subfile was never
+             // activated -- exfmt-ing it here would fail with "subfile
+             // not active". Show a message on HDRSCN instead.
+             listEmpty = *on;
+             leavesr;
+          endif;
+
+          dow '1';
+             exfmt lstctl;
+             if prevKey;
+                leave;
+             endif;
+
+             if rollupKey and moreInd;
+                exsr FillListPage;
+             endif;
+          enddo;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - FillListPage                                  *
+       //    PURPOSE    - Read up to one page's worth of inventory      *
+       //                 items in key order and append them to the     *
+       //                 subfile, without re-reading what's already    *
+       //                 loaded.                                       *
+       //****************************************************************
+       begsr FillListPage;
+          fillCount = 0;
+          dow fillCount < pageSize and moreInd;
+             read invmstl1;
+             if %eof(invmstl1);
+                moreInd = *off;
+                leave;
+             endif;
+
+             rrn = rrn + 1;
+             write lstsfl;
+             fillCount = fillCount + 1;
+          enddo;
        endsr;
 
       /end-free
