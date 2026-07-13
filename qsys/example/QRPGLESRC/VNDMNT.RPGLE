@@ -2,16 +2,19 @@
       // PROGRAM NAME:   VNDMNT                                        *
       // RELATED FILES:  VNDMSTL1 (LF)                                 *
       //                 VNDMNT   (DSPF)                               *
-      // DESCRIPTION:    Vendor maintenance. Supports four modes:      *
+      // DESCRIPTION:    Vendor maintenance. Supports five modes:       *
       //                 ADD    - creates a new vendor (auto-assigns   *
       //                          vendor ID)                           *
       //                 UPDATE - changes vendor info and/or amt owed  *
       //                 INACTV - marks vendor inactive                *
       //                 REACTV - reactivates vendor                   *
+      //                 LIST   - scrollable list of all vendors,      *
+      //                          loaded a page at a time              *
       //****************************************************************
 
      Fvndmstl1  uf a e           k disk
-     Fvndmnt    cf   e             workstn indds(indicators)
+     Fvndmnt    cf   e             workstn sfile(lstsfl:rrn)
+     F                                     indds(indicators)
 
      D indicators      ds
      D   exitKey                       n   overlay(indicators:3)
@@ -21,12 +24,20 @@
      D   inactvKey                     n   overlay(indicators:7)
      D   reacKey                       n   overlay(indicators:8)
      D   viewKey                       n   overlay(indicators:9)
+     D   listKey                       n   overlay(indicators:11)
      D   prevKey                       n   overlay(indicators:12)
      D   vndNotFound                   n   overlay(indicators:52)
      D   alrInactv                     n   overlay(indicators:53)
      D   alrActv                       n   overlay(indicators:54)
+     D   listEmpty                     n   overlay(indicators:58)
+     D   sflClear                      n   overlay(indicators:20)
+     D   rollupKey                     n   overlay(indicators:95)
+     D   moreInd                       n   overlay(indicators:96)
 
      D nextId          s              7  0
+     D pageSize        s              5p 0 inz(13)
+     D fillCount       s              5p 0
+     D rrn             s              5p 0
 
      C     VNDKEY        KLIST
      C                   KFLD                    VNDID
@@ -37,19 +48,23 @@
        exfmt hdrscn;
 
        dow not exitKey;
-          exsr SetMode;
+          if listKey;
+             exsr ListSub;
+          else;
+             exsr SetMode;
 
-          if mode = 'ADD';
-             exsr AddSub;
-          elseif vndid > 0;
-             if mode = 'UPDATE';
-                exsr UpdateSub;
-             elseif mode = 'INACTV';
-                exsr InactvSub;
-             elseif mode = 'REACTV';
-                exsr ReacSub;
-             elseif mode = 'VIEW';
-                exsr ViewSub;
+             if mode = 'ADD';
+                exsr AddSub;
+             elseif vndid > 0;
+                if mode = 'UPDATE';
+                   exsr UpdateSub;
+                elseif mode = 'INACTV';
+                   exsr InactvSub;
+                elseif mode = 'REACTV';
+                   exsr ReacSub;
+                elseif mode = 'VIEW';
+                   exsr ViewSub;
+                endif;
              endif;
           endif;
 
@@ -57,6 +72,7 @@
           vndNotFound = *off;
           alrInactv   = *off;
           alrActv     = *off;
+          listEmpty   = *off;
        enddo;
 
        *inlr = *on;
@@ -180,6 +196,62 @@
 
           disableInput = *on;
           exfmt itminq;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - ListSub                                       *
+       //    PURPOSE    - Scrollable list of all vendors, loaded a      *
+       //                 page at a time (see FillListPage)             *
+       //****************************************************************
+       begsr ListSub;
+          rrn = 0;
+          sflClear = *on;
+          write lstctl;
+          sflClear = *off;
+
+          moreInd = *on;
+          setll *loval vndmstl1;
+          exsr FillListPage;
+
+          if rrn = 0;
+             // No records were ever written, so the subfile was never
+             // activated -- exfmt-ing it here would fail with "subfile
+             // not active". Show a message on HDRSCN instead.
+             listEmpty = *on;
+             leavesr;
+          endif;
+
+          dow '1';
+             exfmt lstctl;
+             if prevKey;
+                leave;
+             endif;
+
+             if rollupKey and moreInd;
+                exsr FillListPage;
+             endif;
+          enddo;
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINE - FillListPage                                  *
+       //    PURPOSE    - Read up to one page's worth of vendors in     *
+       //                 key order and append them to the subfile,     *
+       //                 without re-reading what's already loaded.     *
+       //****************************************************************
+       begsr FillListPage;
+          fillCount = 0;
+          dow fillCount < pageSize and moreInd;
+             read vndmstl1;
+             if %eof(vndmstl1);
+                moreInd = *off;
+                leave;
+             endif;
+
+             rrn = rrn + 1;
+             write lstsfl;
+             fillCount = fillCount + 1;
+          enddo;
        endsr;
 
        //****************************************************************
