@@ -16,4 +16,5 @@
      A            VND90          3  0       TEXT('90-DAY DISCOUNT PCT')
      A            VNDOWE        11  2       TEXT('CURRENT AMOUNT OWED')
      A            INACTV         1          TEXT('INACTIVE FLAG Y/N')
+     A            VNDEML        50          TEXT('EMAIL CONTACT')
      A          K VNDID
