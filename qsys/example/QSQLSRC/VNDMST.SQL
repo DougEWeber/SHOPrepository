@@ -10,5 +10,6 @@ vnd30 dec(3,0),
 vnd60 dec(3,0),
 vnd90 dec(3,0),
 vndowe dec(11,2),
-inactv char(1)
+inactv char(1),
+vndeml char(50)
 );

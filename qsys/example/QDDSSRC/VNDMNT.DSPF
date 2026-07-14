@@ -79,6 +79,8 @@
      A            VND60     R        B 11 27EDTCDE(Z)
      A                                 12 14'90-Day Pct:' DSPATR(HI)
      A            VND90     R        B 12 27EDTCDE(Z)
+     A                                 14 14'Email:'      DSPATR(HI)
+     A            VNDEML    R        I 14 27
      A                                 23  2'F12 Cancel'
      A          R ITMINQ
      A                                      TEXT('DISPLAY/EDIT VENDOR')
@@ -127,6 +129,9 @@
      A                                 14 14'Amt Owed:'  DSPATR(HI)
      A            VNDOWE    R        B 14 27EDTCDE(1)
      A                                      DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 15 14'Email:'     DSPATR(HI)
+     A            VNDEML    R        B 15 27DSPATR(CS)
      A  04                                  DSPATR(PR)
      A                                 23  2'F12 Cancel'
      A*****************************************************************
