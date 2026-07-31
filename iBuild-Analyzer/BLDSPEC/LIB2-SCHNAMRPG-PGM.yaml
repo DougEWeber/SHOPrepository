@@ -13,18 +13,8 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
         member: SCHNAMRPG
-      -
-        name: CUSMSTL3
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: SCHNAMD
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QRPGLESRC-SRCMBR-SCHNAMRPG
-      - LIB2-CUSMSTL3-FILE
-      - LIB2-SCHNAMD-FILE
     command: CRTBNDRPG
     parameters:
       - "PGM($(LIB2)/SCHNAMRPG)"

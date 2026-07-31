@@ -1,9 +1,5 @@
 Dependency Tree Report (*DEPTREE)
   *PGM RPGLE      LIB2/CUSTMAINT
-    *MODULE RPGLE   LIB2/CUSMAIN
-      *SRCMBR         *LIBL/QRPGLESRC          (CUSMAIN)
-      *FILE DSPF      LIB2/MAINMENU
-        *SRCMBR         *LIBL/QDDSSRC          (MAINMENU)
     *MODULE RPGLE   LIB2/CUSMNT
       *SRCMBR         *LIBL/QRPGLESRC          (CUSMNT)
       *FILE LF        LIB2/CUSMSTL1
@@ -18,12 +14,6 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL3)
       *FILE DSPF      LIB2/SCHNAMD
         *SRCMBR         *LIBL/QDDSSRC          (SCHNAMD)
-    *MODULE RPGLE   LIB2/SCHZIP
-      *SRCMBR         *LIBL/QRPGLESRC          (SCHZIP)
-      *FILE LF        LIB2/CUSMSTL2
-        *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL2)
-      *FILE DSPF      LIB2/SCHZIPD
-        *SRCMBR         *LIBL/QDDSSRC          (SCHZIPD)
   *PGM RPGLE      LIB2/INVAVL
     *MODULE RPGLE   LIB2/INVAVL
       *SRCMBR         *LIBL/QRPGLESRC          (INVAVL)
@@ -86,12 +76,6 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (POMNT)
   *PGM RPGLE      LIB2/SCHNAMRPG
     *SRCMBR         *LIBL/QRPGLESRC          (SCHNAMRPG)
-    *FILE LF        LIB2/CUSMSTL3
-      *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL3)
-      *FILE PF        LIB2/CUSMST
-        *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
-    *FILE DSPF      LIB2/SCHNAMD
-      *SRCMBR         *LIBL/QDDSSRC          (SCHNAMD)
   *PGM RPGLE      LIB2/VNDMAINT
     *MODULE RPGLE   LIB2/VNDMAIN
       *SRCMBR         *LIBL/QRPGLESRC          (VNDMAIN)
@@ -247,6 +231,12 @@ Dependency Tree Report (*DEPTREE)
       *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL1)
       *FILE PF        LIB2/CUSMST
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
+  *FILE PF        LIB2/ORDMST
+    *SRCMBR         *LIBL/QDDSSRC          (ORDMST)
+  *FILE LF        LIB2/ORDMSTL1
+    *SRCMBR         *LIBL/QDDSSRC          (ORDMSTL1)
+    *FILE PF        LIB2/ORDMST
+      *SRCMBR         *LIBL/QDDSSRC          (ORDMST)
   *FILE DSPF      LIB2/POMENU
     *SRCMBR         *LIBL/QDDSSRC          (POMENU)
   *FILE DSPF      LIB2/POMNT

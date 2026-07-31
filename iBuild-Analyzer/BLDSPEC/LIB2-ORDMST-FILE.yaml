@@ -1,0 +1,29 @@
+---
+targets:
+  LIB2-ORDMST-FILE :
+    objlib: LIB2
+    objname: ORDMST
+    objtype: FILE
+    objattr: PF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: ORDMST
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-ORDMST
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/ORDMST)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(PF)"
+      - "CMD(CRTPF)"
+      - "CMDPARMS(' FILE($(LIB2)/ORDMST) SRCFILE(QDDSSRC) SRCMBR(ORDMST) TEXT(''Order Master'')')"
+  LIBL-QDDSSRC-SRCMBR-ORDMST :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: ORDMST
