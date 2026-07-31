@@ -1,0 +1,37 @@
+#!/usr/bin/env expect
+#
+# Template for the 5250 test suite's connection settings.
+#
+# Every instance of this repo targets a different iSeries system and
+# object library, so the filled-in version is NOT tracked. Set it up
+# once per clone:
+#
+#   cp .claude/config.exp.template .claude/config.exp
+#   # then edit the CHANGE_ME values below
+#
+# tests/5250/lib.exp sources .claude/config.exp relative to its own
+# location, so tests run from any working directory. Without that file
+# every test fails immediately with:
+#   couldn't read file ".claude/config.exp"
+#
+# Prefer environment variables for the password rather than editing it
+# in here -- every value can be overridden by an env var of the same
+# name, e.g.:
+#   SHOPPASS=secret ./tests/5250/run.sh
+
+# Telnet host and port for the IBM i. This is the 5250-over-telnet port,
+# which is NOT the same as the system's ssh port.
+if {[info exists ::env(HOST)]} { set ::HOST $::env(HOST) } else { set ::HOST "CHANGE_ME.example.com" }
+if {[info exists ::env(PORT)]} { set ::PORT $::env(PORT) } else { set ::PORT "23" }
+
+# Sign-on credentials. The suite expects this user to land directly on a
+# Command Entry (QCMD) screen -- see lib.exp's header notes.
+if {[info exists ::env(SHOPUSER)]} { set ::USER $::env(SHOPUSER) } else { set ::USER "CHANGE_ME" }
+if {[info exists ::env(SHOPPASS)]} { set ::PASS $::env(SHOPPASS) } else { set ::PASS "CHANGE_ME" }
+
+# The library holding the COMPILED objects the tests drive (e.g. an
+# object library like SHOPTSTOBJ), added to the library list with
+# ADDLIBLE at the start of every session. This is the build/object
+# library -- not the source library that gitsyncwrk populates. Keep it
+# consistent with BUILD_LIB in .claude/ibmi-config.sh.
+if {[info exists ::env(SHOPLIB)]} { set ::LIB $::env(SHOPLIB) } else { set ::LIB "CHANGE_ME" }

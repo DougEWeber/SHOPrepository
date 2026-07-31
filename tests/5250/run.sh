@@ -12,7 +12,8 @@
 #   ./run.sh --list           list all available tests
 #   ./run.sh --verbose ...    show full raw session output for each test
 #
-# Environment overrides (see config.exp): HOST, PORT, SHOPUSER, SHOPPASS, SHOPLIB
+# Environment overrides (see .claude/config.exp at the repo root):
+#   HOST, PORT, SHOPUSER, SHOPPASS, SHOPLIB
 
 set -o pipefail
 cd "$(dirname "$0")"
