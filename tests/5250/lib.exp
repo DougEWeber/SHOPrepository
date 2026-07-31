@@ -13,8 +13,9 @@
 #     scrollable subfiles.
 #   - gittest signs on directly to a Command Entry (QCMD) screen -- there
 #     is no menu to navigate. Commands are typed at the "===>" prompt.
-#   - The library holding compiled test objects (SHOPDEWOBJ) is not on
-#     gittest's default library list, so every session runs ADDLIBLE first.
+#   - The library holding compiled test objects (set as LIB in config.exp)
+#     is not on gittest's default library list, so every session runs
+#     ADDLIBLE first.
 #   - Reliability note: chaining more than ~2 data-entry round trips
 #     against the *same* record format in a single telnet session was
 #     observed to occasionally drop the input field's value on this
@@ -22,7 +23,9 @@
 #     test needs to put a record into a prior state (e.g. inactivate it)
 #     before exercising the function actually under test.
 
-source [file join [file dirname [info script]] config.exp]
+# Connection settings live in the repo's .claude/ directory (gitignored --
+# each clone/instance of this repo needs its own).
+source [file join [file dirname [info script]] .. .. .claude config.exp]
 
 set ::timeout 15
 
