@@ -1,4 +1,4 @@
-liv SRC TGT {*pgm *lfdds *pfdds keepdata *cmd *dspf *prtf exclude qrpglesrc/*file
+live SRC TGT {*pgm *lfdds *pfdds keepdata *cmd *dspf *prtf exclude qrpglesrc/*file
                   exclude qcmdsrc/*file
                   exclude qclsrc/*file
                   exclude qtxtsrc/*file
