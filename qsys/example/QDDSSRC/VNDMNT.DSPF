@@ -83,6 +83,8 @@
      A            VNDEML    R        I 14 27
      A                                 15 14'Phone:'      DSPATR(HI)
      A            VNDPHN    R        I 15 27
+     A                                 16 14'Contact:'    DSPATR(HI)
+     A            VNDCON    R        I 16 27
      A                                 23  2'F12 Cancel'
      A          R ITMINQ
      A                                      TEXT('DISPLAY/EDIT VENDOR')
@@ -137,6 +139,9 @@
      A  04                                  DSPATR(PR)
      A                                 16 14'Phone:'     DSPATR(HI)
      A            VNDPHN    R        B 16 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 17 14'Contact:'   DSPATR(HI)
+     A            VNDCON    R        B 17 27DSPATR(CS)
      A  04                                  DSPATR(PR)
      A                                 23  2'F12 Cancel'
      A*****************************************************************

@@ -8,5 +8,6 @@ city char(20),
 state char(2),
 zip dec(5,0),
 arbal dec(10,2),
-phone char(14)
+phone char(14),
+contact char(30)
 );
