@@ -18,18 +18,18 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
       -
-        name: INVMNT
+        name: VNDMSTL1
         lib: "*LIBL"
         objtype: "FILE"
       -
-        name: VNDMSTL1
+        name: INVMNT
         lib: "*LIBL"
         objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QRPGLESRC-SRCMBR-INVMNT
       - LIB2-INVMSTL1-FILE
-      - LIB2-INVMNT-FILE
       - LIB2-VNDMSTL1-FILE
+      - LIB2-INVMNT-FILE
     command: CRTRPGMOD
     parameters:
       - "SRCFILE(QRPGLESRC)"

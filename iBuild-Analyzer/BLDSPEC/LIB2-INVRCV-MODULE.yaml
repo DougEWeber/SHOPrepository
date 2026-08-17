@@ -18,10 +18,6 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
       -
-        name: INVRCVD
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
         name: VNDMSTL1
         lib: "*LIBL"
         objtype: "FILE"
@@ -33,13 +29,17 @@ targets:
         name: RCVTRNL1
         lib: "*LIBL"
         objtype: "FILE"
+      -
+        name: INVRCVD
+        lib: "*LIBL"
+        objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QRPGLESRC-SRCMBR-INVRCV
       - LIB2-INVMSTL1-FILE
-      - LIB2-INVRCVD-FILE
       - LIB2-VNDMSTL1-FILE
       - LIB2-PORMSTL1-FILE
       - LIB2-RCVTRNL1-FILE
+      - LIB2-INVRCVD-FILE
     command: CRTRPGMOD
     parameters:
       - "SRCFILE(QRPGLESRC)"

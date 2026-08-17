@@ -24,46 +24,11 @@ targets:
         name: SCHZIP
         lib: "*LIBL"
         objtype: "MODULE"
-      -
-        name: MAINMENU
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: CUSMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: MNTMENU
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: CUSMSTL3
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: SCHNAMD
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: CUSMSTL2
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: SCHZIPD
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-CUSMAIN-MODULE
       - LIB2-CUSMNT-MODULE
       - LIB2-SCHNAM-MODULE
       - LIB2-SCHZIP-MODULE
-      - LIB2-MAINMENU-FILE
-      - LIB2-CUSMSTL1-FILE
-      - LIB2-MNTMENU-FILE
-      - LIB2-CUSMSTL3-FILE
-      - LIB2-SCHNAMD-FILE
-      - LIB2-CUSMSTL2-FILE
-      - LIB2-SCHZIPD-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/CUSTMAINT)"

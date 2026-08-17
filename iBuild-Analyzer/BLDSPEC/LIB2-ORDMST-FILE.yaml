@@ -1,8 +1,8 @@
 ---
 targets:
-  LIB2-VNDMST-FILE :
+  LIB2-ORDMST-FILE :
     objlib: LIB2
-    objname: VNDMST
+    objname: ORDMST
     objtype: FILE
     objattr: PF
     protected: no
@@ -12,18 +12,18 @@ targets:
         name: QDDSSRC
         lib: "*LIBL"
         objtype: "FILE"
-        member: VNDMST
+        member: ORDMST
     requisiteyamlrecords :
-      - LIBL-QDDSSRC-SRCMBR-VNDMST
+      - LIBL-QDDSSRC-SRCMBR-ORDMST
     command: EDOCRTOBJ
     parameters:
-      - "BLDTGT($(LIB2)/VNDMST)"
+      - "BLDTGT($(LIB2)/ORDMST)"
       - "OBJTYPE(*FILE)"
       - "OBJATTR(PF)"
       - "CMD(CRTPF)"
-      - "CMDPARMS(' FILE($(LIB2)/VNDMST) SRCFILE(QDDSSRC) SRCMBR(VNDMST) TEXT(''Vendor Master'')')"
-  LIBL-QDDSSRC-SRCMBR-VNDMST :
+      - "CMDPARMS(' FILE($(LIB2)/ORDMST) SRCFILE(QDDSSRC) SRCMBR(ORDMST) TEXT(''Order Master'')')"
+  LIBL-QDDSSRC-SRCMBR-ORDMST :
     objlib: "*LIBL"
     objname: QDDSSRC
     objtype: SRCMBR
-    mbrname: VNDMST
+    mbrname: ORDMST

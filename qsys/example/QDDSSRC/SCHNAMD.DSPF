@@ -71,8 +71,8 @@
      A                                  8 25'Name'
      A            NAME          20A  O  8 35DSPATR(HI)
      A                                 10 25'Address'
-     A            ADDR1         20A  O 10 35DSPATR(HI)
-     A            ADDR2         20A  O 11 35DSPATR(HI)
+     A            ADDR1         30A  O 10 35DSPATR(HI)
+     A            ADDR2         30A  O 11 35DSPATR(HI)
      A                                 13 25'City'
      A            CITY          20A  O 13 35DSPATR(HI)
      A                                 15 25'State'

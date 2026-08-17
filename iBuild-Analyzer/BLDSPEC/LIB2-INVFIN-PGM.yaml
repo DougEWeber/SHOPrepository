@@ -12,13 +12,8 @@ targets:
         name: INVFIN
         lib: "*LIBL"
         objtype: "MODULE"
-      -
-        name: INVMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-INVFIN-MODULE
-      - LIB2-INVMSTL1-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/INVFIN)"

@@ -16,19 +16,9 @@ targets:
         name: VNDMNT
         lib: "*LIBL"
         objtype: "MODULE"
-      -
-        name: VNDMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: VNDMNT
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-VNDMAIN-MODULE
       - LIB2-VNDMNT-MODULE
-      - LIB2-VNDMSTL1-FILE
-      - LIB2-VNDMNT-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/VNDMAINT)"
