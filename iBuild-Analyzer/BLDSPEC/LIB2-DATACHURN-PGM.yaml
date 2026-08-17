@@ -1,8 +1,8 @@
 ---
 targets:
-  LIB2-SCHNAMRPG-PGM :
+  LIB2-DATACHURN-PGM :
     objlib: LIB2
-    objname: SCHNAMRPG
+    objname: DATACHURN
     objtype: PGM
     objattr: RPGLE
     protected: no
@@ -12,21 +12,21 @@ targets:
         name: QRPGLESRC
         lib: "*LIBL"
         objtype: "FILE"
-        member: SCHNAMRPG
+        member: DATACHURN
     requisiteyamlrecords :
-      - LIBL-QRPGLESRC-SRCMBR-SCHNAMRPG
+      - LIBL-QRPGLESRC-SRCMBR-DATACHURN
     command: CRTBNDRPG
     parameters:
-      - "PGM($(LIB2)/SCHNAMRPG)"
+      - "PGM($(LIB2)/DATACHURN)"
       - "USRPRF(*USER)"
       - "DFTACTGRP(*YES)"
       - "SRCFILE(QRPGLESRC)"
-      - "SRCMBR(SCHNAMRPG)"
+      - "SRCMBR(DATACHURN)"
       - "TGTCCSID(37)"
       - "SRTSEQ(*HEX)"
       - "LANGID(*JOBRUN)"
-  LIBL-QRPGLESRC-SRCMBR-SCHNAMRPG :
+  LIBL-QRPGLESRC-SRCMBR-DATACHURN :
     objlib: "*LIBL"
     objname: QRPGLESRC
     objtype: SRCMBR
-    mbrname: SCHNAMRPG
+    mbrname: DATACHURN

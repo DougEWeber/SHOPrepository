@@ -16,29 +16,9 @@ targets:
         name: POMNT
         lib: "*LIBL"
         objtype: "MODULE"
-      -
-        name: POMENU
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: PORMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: VNDMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: POMNT
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-POMAIN-MODULE
       - LIB2-POMNT-MODULE
-      - LIB2-POMENU-FILE
-      - LIB2-PORMSTL1-FILE
-      - LIB2-VNDMSTL1-FILE
-      - LIB2-POMNT-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/POMAINT)"

@@ -9,8 +9,8 @@
      A          R CUSREC
      A            CUST           5  0       TEXT('CUSTOMER NUMBER')
      A            NAME          20          TEXT('CUSTOMER NAME')
-     A            ADDR1         20          TEXT('CUSTOMER ADDRESS')
-     A            ADDR2         20          TEXT('CUSTOMER ADDRESS')
+     A            ADDR1         30          TEXT('CUSTOMER ADDRESS')
+     A            ADDR2         30          TEXT('CUSTOMER ADDRESS')
      A            CITY          20          TEXT('CUSTOMER CITY')
      A            STATE          2          TEXT('CUSTOMER STATE')
      A            ZIP            5  0       TEXT('CUSTOMER ZIP CODE')

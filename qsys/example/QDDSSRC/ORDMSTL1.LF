@@ -1,0 +1,15 @@
+     A*****************************************************************
+     A*     FILE NAME:  ORDMSTL1                                      *
+     A*  RELATED PGMS:  (none yet)                                    *
+     A* RELATED FILES:  ORDMST  (PHYSICAL FILE)                       *
+     A*   DESCRIPTION:  THIS IS LOGICAL FILE ORDMSTL1.                *
+     A*                 IT CONTAINS ONE RECORD FORMAT CALLED OMLREC1. *
+     A*                 LOGICAL VIEW OF ORDER MASTER (ORDMST)         *
+     A*                 BY ORDER ID (ORDID)                           *
+     A*****************************************************************
+     A          R OMLREC1                   PFILE(ORDMST)
+     A            ORDID
+     A            CUST
+     A            CUSPO
+     A            ORDDT
+     A          K ORDID

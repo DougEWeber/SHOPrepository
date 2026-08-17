@@ -12,13 +12,8 @@ targets:
         name: INVAVL
         lib: "*LIBL"
         objtype: "MODULE"
-      -
-        name: INVMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIB2-INVAVL-MODULE
-      - LIB2-INVMSTL1-FILE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/INVAVL)"
