@@ -25,13 +25,15 @@ targets:
         lib: "*LIBL"
         objtype: "MODULE"
     requisiteyamlrecords :
+      - LIB2-CUSMAIN-MODULE
       - LIB2-CUSMNT-MODULE
       - LIB2-SCHNAM-MODULE
+      - LIB2-SCHZIP-MODULE
     command: CRTPGM
     parameters:
       - "PGM($(LIB2)/CUSTMAINT)"
       - "USRPRF(*USER)"
-      - "MODULE(*LIBL/CUSMAIN CUSMNT SCHNAM *LIBL/SCHZIP)"
+      - "MODULE(CUSMAIN CUSMNT SCHNAM SCHZIP)"
       - "ENTMOD(CUSMAIN)"
       - "ACTGRP(QILE)"
       - "DETAIL(*BASIC)"

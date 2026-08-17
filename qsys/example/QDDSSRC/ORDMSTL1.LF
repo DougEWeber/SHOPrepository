@@ -10,5 +10,6 @@
      A          R OMLREC1                   PFILE(ORDMST)
      A            ORDID
      A            CUST
+     A            CUSPO
      A            ORDDT
      A          K ORDID

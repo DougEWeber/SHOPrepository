@@ -1,8 +1,8 @@
 ---
 targets:
-  LIB2-INVMSTL1-FILE :
+  LIB2-ORDMSTL2-FILE :
     objlib: LIB2
-    objname: INVMSTL1
+    objname: ORDMSTL2
     objtype: FILE
     objattr: LF
     protected: no
@@ -12,23 +12,23 @@ targets:
         name: QDDSSRC
         lib: "*LIBL"
         objtype: "FILE"
-        member: INVMSTL1
+        member: ORDMSTL2
       -
-        name: INVMST
+        name: ORDMST
         lib: "*LIBL"
         objtype: "FILE"
     requisiteyamlrecords :
-      - LIBL-QDDSSRC-SRCMBR-INVMSTL1
-      - LIB2-INVMST-FILE
+      - LIBL-QDDSSRC-SRCMBR-ORDMSTL2
+      - LIB2-ORDMST-FILE
     command: EDOCRTOBJ
     parameters:
-      - "BLDTGT($(LIB2)/INVMSTL1)"
+      - "BLDTGT($(LIB2)/ORDMSTL2)"
       - "OBJTYPE(*FILE)"
       - "OBJATTR(LF)"
       - "CMD(CRTLF)"
-      - "CMDPARMS(' FILE($(LIB2)/INVMSTL1) SRCFILE(QDDSSRC) SRCMBR(INVMSTL1) TEXT(''Inventory Master L1'')')"
-  LIBL-QDDSSRC-SRCMBR-INVMSTL1 :
+      - "CMDPARMS(' FILE($(LIB2)/ORDMSTL2) SRCFILE(QDDSSRC) SRCMBR(ORDMSTL2) TEXT(''Order Master L2'')')"
+  LIBL-QDDSSRC-SRCMBR-ORDMSTL2 :
     objlib: "*LIBL"
     objname: QDDSSRC
     objtype: SRCMBR
-    mbrname: INVMSTL1
+    mbrname: ORDMSTL2
