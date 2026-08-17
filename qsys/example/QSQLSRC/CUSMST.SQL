@@ -7,5 +7,6 @@ addr2 char(20),
 city char(20),
 state char(2),
 zip dec(5,0),
-arbal dec(10,2)
+arbal dec(10,2),
+phone char(14)
 );
