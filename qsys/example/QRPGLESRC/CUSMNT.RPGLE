@@ -99,6 +99,7 @@
           state = *blank;
           zip = 0;
           phone = *blank;
+          contact = *blank;
 
           // Prompt for updated data for this customer record
           exfmt cstbld;

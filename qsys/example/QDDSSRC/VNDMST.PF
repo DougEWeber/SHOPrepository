@@ -18,4 +18,5 @@
      A            INACTV         1          TEXT('INACTIVE FLAG Y/N')
      A            VNDEML        50          TEXT('EMAIL CONTACT')
      A            VNDPHN        14          TEXT('PHONE NUMBER')
+     A            VNDCON        30          TEXT('CONTACT NAME')
      A          K VNDID
