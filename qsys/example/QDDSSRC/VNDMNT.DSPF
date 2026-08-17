@@ -81,6 +81,8 @@
      A            VND90     R        B 12 27EDTCDE(Z)
      A                                 14 14'Email:'      DSPATR(HI)
      A            VNDEML    R        I 14 27
+     A                                 15 14'Phone:'      DSPATR(HI)
+     A            VNDPHN    R        I 15 27
      A                                 23  2'F12 Cancel'
      A          R ITMINQ
      A                                      TEXT('DISPLAY/EDIT VENDOR')
@@ -132,6 +134,9 @@
      A  04                                  DSPATR(PR)
      A                                 15 14'Email:'     DSPATR(HI)
      A            VNDEML    R        B 15 27DSPATR(CS)
+     A  04                                  DSPATR(PR)
+     A                                 16 14'Phone:'     DSPATR(HI)
+     A            VNDPHN    R        B 16 27DSPATR(CS)
      A  04                                  DSPATR(PR)
      A                                 23  2'F12 Cancel'
      A*****************************************************************

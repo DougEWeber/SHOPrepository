@@ -29,17 +29,36 @@
       //                      not truly infinite).                       *
       //                   2 (10i 0): seconds to delay between ticks.    *
       //                      omitted/0 defaults to 2.                   *
+      //                                                                 *
+      //                 Each file is USROPN -- opened immediately       *
+      //                 before, and closed immediately after, the one   *
+      //                 action a tick performs against it, rather than  *
+      //                 held open for the whole run. This program is    *
+      //                 meant to keep generating traffic while a live   *
+      //                 deploy replaces these objects underneath it;    *
+      //                 an object-replace needs everyone's opens gone,  *
+      //                 even briefly, to get its lock, so holding an    *
+      //                 open for the whole run would starve it forever. *
+      //                 An OPEN can fail if it lands exactly when a     *
+      //                 deploy holds that lock -- retried a bounded     *
+      //                 number of times before giving up on that tick.  *
       //****************************************************************
 
-     Fcusmstl1  uf a e           k disk
-     Fvndmstl1  uf a e           k disk
-     Finvmstl1  uf a e           k disk
-     Fpormstl1  uf a e           k disk
-     Fordmstl1  uf a e           k disk
+     Fcusmstl1  uf a e           k disk    usropn
+     Fvndmstl1  uf a e           k disk    usropn
+     Finvmstl1  uf a e           k disk    usropn
+     Fpormstl1  uf a e           k disk    usropn
+     Fordmstl1  uf a e           k disk    usropn
 
+      // packed(15:5), not int(10) -- an unquoted numeric literal in a
+      // plain CL CALL command's PARM() is passed as packed(15,5), so
+      // the parameter definition has to match that or the bytes get
+      // misread (bit this program once already: a 5-tick test call
+      // ran for minutes because the mismatched type read runTicks as
+      // effectively unbounded instead of 5).
        dcl-pi *n;
-         pTicks     int(10) const options(*nopass);
-         pDelaySec  int(10) const options(*nopass);
+         pTicks     packed(15:5) const options(*nopass);
+         pDelaySec  packed(15:5) const options(*nopass);
        end-pi;
 
        dcl-pr QCmdExc extpgm('QCMDEXC');
@@ -57,6 +76,12 @@
 
        dcl-c MAXTRACK 200;
        dcl-c INFINITE_TICKS 999999999;
+
+      // How hard to retry a per-action OPEN that loses a race against a
+      // deploy holding the object's lock, and how long to wait between
+      // attempts (seconds).
+       dcl-c MAX_OPEN_RETRIES 5;
+       dcl-c OPEN_RETRY_DLY 1;
 
       // In-memory ID tracking (per file) so modify/delete only ever
       // touch records this run created itself.
@@ -94,6 +119,11 @@
        dcl-s action int(10);
        dcl-s idx int(10);
        dcl-s dlyCmd char(50);
+
+      // Reused by every OpenXxx subroutine (only one is ever in
+      // progress at a time -- this program is single-threaded).
+       dcl-s openOk ind;
+       dcl-s openRetries int(10);
 
        dcl-s custKey packed(5:0);
        dcl-s vndKey packed(7:0);
@@ -204,11 +234,117 @@
        endsr;
 
        //****************************************************************
+       //    SUBROUTINE - OpenRetryDelay                                *
+       //    PURPOSE    - Short pause between OPEN retries (via DLYJOB,  *
+       //                 same QCMDEXC route as DelayTick -- there's no  *
+       //                 native RPG sleep).                             *
+       //****************************************************************
+       begsr OpenRetryDelay;
+          dlyCmd = 'DLYJOB DLY(' + %trim(%char(OPEN_RETRY_DLY)) + ')';
+          QCmdExc(dlyCmd : %len(%trimr(dlyCmd)));
+       endsr;
+
+       //****************************************************************
+       //    SUBROUTINES - OpenCust/OpenVnd/OpenInv/OpenPo/OpenOrd       *
+       //    PURPOSE    - Open one file (USROPN -- not auto-opened),     *
+       //                 retrying up to MAX_OPEN_RETRIES times if the   *
+       //                 open fails (e.g. a deploy holds the object's   *
+       //                 lock at that instant). Sets openOk to indicate *
+       //                 whether the file ended up open; caller must    *
+       //                 check it before doing any I/O and must skip    *
+       //                 the tick (leavesr) rather than proceed if not. *
+       //****************************************************************
+       begsr OpenCust;
+          openOk = *off;
+          openRetries = 0;
+          dow not openOk and openRetries < MAX_OPEN_RETRIES;
+             open(e) cusmstl1;
+             if %error;
+                openRetries += 1;
+                if openRetries < MAX_OPEN_RETRIES;
+                   exsr OpenRetryDelay;
+                endif;
+             else;
+                openOk = *on;
+             endif;
+          enddo;
+       endsr;
+
+       begsr OpenVnd;
+          openOk = *off;
+          openRetries = 0;
+          dow not openOk and openRetries < MAX_OPEN_RETRIES;
+             open(e) vndmstl1;
+             if %error;
+                openRetries += 1;
+                if openRetries < MAX_OPEN_RETRIES;
+                   exsr OpenRetryDelay;
+                endif;
+             else;
+                openOk = *on;
+             endif;
+          enddo;
+       endsr;
+
+       begsr OpenInv;
+          openOk = *off;
+          openRetries = 0;
+          dow not openOk and openRetries < MAX_OPEN_RETRIES;
+             open(e) invmstl1;
+             if %error;
+                openRetries += 1;
+                if openRetries < MAX_OPEN_RETRIES;
+                   exsr OpenRetryDelay;
+                endif;
+             else;
+                openOk = *on;
+             endif;
+          enddo;
+       endsr;
+
+       begsr OpenPo;
+          openOk = *off;
+          openRetries = 0;
+          dow not openOk and openRetries < MAX_OPEN_RETRIES;
+             open(e) pormstl1;
+             if %error;
+                openRetries += 1;
+                if openRetries < MAX_OPEN_RETRIES;
+                   exsr OpenRetryDelay;
+                endif;
+             else;
+                openOk = *on;
+             endif;
+          enddo;
+       endsr;
+
+       begsr OpenOrd;
+          openOk = *off;
+          openRetries = 0;
+          dow not openOk and openRetries < MAX_OPEN_RETRIES;
+             open(e) ordmstl1;
+             if %error;
+                openRetries += 1;
+                if openRetries < MAX_OPEN_RETRIES;
+                   exsr OpenRetryDelay;
+                endif;
+             else;
+                openOk = *on;
+             endif;
+          enddo;
+       endsr;
+
+       //****************************************************************
        //    SUBROUTINE - ChurnCustomer                                 *
        //    PURPOSE    - Randomly create, modify, or delete a churn-   *
        //                 owned customer record.                        *
        //****************************************************************
        begsr ChurnCustomer;
+          exsr OpenCust;
+          if not openOk;
+             leavesr;
+          endif;
+
           if custCount = 0;
              action = 0;
           else;
@@ -253,6 +389,8 @@
                 custCount -= 1;
              endif;
           endif;
+
+          close(e) cusmstl1;
        endsr;
 
        //****************************************************************
@@ -261,6 +399,11 @@
        //                 owned vendor record.                          *
        //****************************************************************
        begsr ChurnVendor;
+          exsr OpenVnd;
+          if not openOk;
+             leavesr;
+          endif;
+
           if vndCount = 0;
              action = 0;
           else;
@@ -309,6 +452,8 @@
                 vndCount -= 1;
              endif;
           endif;
+
+          close(e) vndmstl1;
        endsr;
 
        //****************************************************************
@@ -320,6 +465,11 @@
        //                 if none exist yet.                            *
        //****************************************************************
        begsr ChurnInventory;
+          exsr OpenInv;
+          if not openOk;
+             leavesr;
+          endif;
+
           if invCount = 0;
              action = 0;
           else;
@@ -330,6 +480,7 @@
 
           if action = 0;
              if vndCount = 0;
+                close(e) invmstl1;
                 leavesr;
              endif;
              randMax = vndCount;
@@ -374,6 +525,8 @@
                 invCount -= 1;
              endif;
           endif;
+
+          close(e) invmstl1;
        endsr;
 
        //****************************************************************
@@ -384,6 +537,11 @@
        //                 skips create if none exist yet.               *
        //****************************************************************
        begsr ChurnPO;
+          exsr OpenPo;
+          if not openOk;
+             leavesr;
+          endif;
+
           if poCount = 0;
              action = 0;
           else;
@@ -394,6 +552,7 @@
 
           if action = 0;
              if vndCount = 0;
+                close(e) pormstl1;
                 leavesr;
              endif;
              randMax = vndCount;
@@ -431,6 +590,8 @@
                 poCount -= 1;
              endif;
           endif;
+
+          close(e) pormstl1;
        endsr;
 
        //****************************************************************
@@ -441,6 +602,11 @@
        //                 exist yet. Fires every tick (most frequent).  *
        //****************************************************************
        begsr ChurnOrder;
+          exsr OpenOrd;
+          if not openOk;
+             leavesr;
+          endif;
+
           if ordCount = 0;
              action = 0;
           else;
@@ -451,6 +617,7 @@
 
           if action = 0;
              if custCount = 0;
+                close(e) ordmstl1;
                 leavesr;
              endif;
              randMax = custCount;
@@ -487,6 +654,8 @@
                 ordCount -= 1;
              endif;
           endif;
+
+          close(e) ordmstl1;
        endsr;
 
        //****************************************************************

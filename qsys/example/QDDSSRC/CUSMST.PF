@@ -15,3 +15,4 @@
      A            STATE          2          TEXT('CUSTOMER STATE')
      A            ZIP            5  0       TEXT('CUSTOMER ZIP CODE')
      A            ARBAL         10  2       TEXT('ACCOUNTS RECEIVABLE BALANCE')
+     A            PHONE         14          TEXT('PHONE NUMBER')
