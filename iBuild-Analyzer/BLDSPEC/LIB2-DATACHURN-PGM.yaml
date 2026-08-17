@@ -13,33 +13,8 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
         member: DATACHURN
-      -
-        name: CUSMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: VNDMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: INVMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: PORMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: ORDMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QRPGLESRC-SRCMBR-DATACHURN
-      - LIB2-CUSMSTL1-FILE
-      - LIB2-VNDMSTL1-FILE
-      - LIB2-INVMSTL1-FILE
-      - LIB2-PORMSTL1-FILE
-      - LIB2-ORDMSTL1-FILE
     command: CRTBNDRPG
     parameters:
       - "PGM($(LIB2)/DATACHURN)"

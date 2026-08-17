@@ -24,6 +24,8 @@ Dependency Tree Report (*DEPTREE)
         *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL2)
       *FILE DSPF      LIB2/SCHZIPD
         *SRCMBR         *LIBL/QDDSSRC          (SCHZIPD)
+  *PGM RPGLE      LIB2/DATACHURN
+    *SRCMBR         *LIBL/QRPGLESRC          (DATACHURN)
   *PGM RPGLE      LIB2/INVAVL
     *MODULE RPGLE   LIB2/INVAVL
       *SRCMBR         *LIBL/QRPGLESRC          (INVAVL)
