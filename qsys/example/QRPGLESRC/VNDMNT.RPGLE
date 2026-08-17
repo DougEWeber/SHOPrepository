@@ -101,6 +101,7 @@
           vnd90  = 0;
           vndowe = 0;
           vndeml = *blank;
+          vndphn = *blank;
 
           exfmt itmcrt;
 
