@@ -18,7 +18,9 @@
      A                                      CF06(06 'UPDATE MODE')
      A                                      CF07(07 'DELETE MODE')
      A                                      CF08(08 'DISPLAY MODE')
+     A                                      CF09(09 'MARK COLLECTIONS')
      A                                      CF10(11 'LIST MODE')
+     A                                      CF11(13 'CLEAR COLLECTIONS')
      A            MODE           8A  O  1  4DSPATR(HI)
      A                                  1 13'MODE'
      A                                      DSPATR(HI)
@@ -37,9 +39,15 @@
      A                                      52)
      A  58                                  ERRMSG('NO CUSTOMERS ON FILE' +
      A                                      58)
+     A  55                                  ERRMSG('CUSTOMER ALREADY IN +
+     A                                      COLLECTIONS' 55)
+     A  56                                  ERRMSG('CUSTOMER NOT IN +
+     A                                      COLLECTIONS' 56)
      A                                 10 33'<--Enter Customer Number'
      A                                      DSPATR(HI)
      A                                 22  4'F10 List'
+     A                                 22 20'F9 Mark Collections'
+     A                                 22 44'F11 Clear Collections'
      A                                 23  4'F3 End Job'
      A                                 23 21'F5 Add'
      A                                 23 34'F6 Update'
@@ -63,6 +71,9 @@
      A                                      DSPATR(HI)
      A                                      DSPATR(UL)
      A            CUST      R        O  4 25DSPATR(HI)
+     A                                  5 14'Collections:'
+     A                                      DSPATR(HI)
+     A            INCOLL    R        O  5 28DSPATR(HI)
      A            NAME      R        B  6 25DSPATR(CS)
      A  04                                  DSPATR(PR)
      A            ADDR1     R        B  7 25DSPATR(CS)
