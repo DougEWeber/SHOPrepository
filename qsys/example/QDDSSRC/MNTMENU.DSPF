@@ -31,7 +31,7 @@
      A                                  2 70DATE
      A                                      EDTCDE(Y)
      A                                      DSPATR(HI)
-     A            CUST      R     Y  I 10 25DSPATR(CS)
+     A            CUST      R        I 10 25DSPATR(CS)
      A                                      CHECK(RZ)
      A  51                                  ERRMSG('CUSTOMER ALREADY ON +
      A                                      FILE' 51)
