@@ -17,3 +17,4 @@
      A            ARBAL         10  2       TEXT('ACCOUNTS RECEIVABLE BALANCE')
      A            PHONE         14          TEXT('PHONE NUMBER')
      A            CONTACT       30          TEXT('CONTACT NAME')
+     A            INCOLL         1          TEXT('IN COLLECTIONS FLAG Y/N')
