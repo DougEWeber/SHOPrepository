@@ -22,10 +22,14 @@
      D   updateKey                     n   overlay(indicators:6)
      D   deleteKey                     n   overlay(indicators:7)
      D   displayKey                    n   overlay(indicators:8)
+     D   collKey                       n   overlay(indicators:9)
      D   listKey                       n   overlay(indicators:11)
      D   prevKey                       n   overlay(indicators:12)
+     D   clearCollKey                  n   overlay(indicators:13)
      D   custExists                    n   overlay(indicators:51)
      D   custNotFound                  n   overlay(indicators:52)
+     D   alrInColl                     n   overlay(indicators:55)
+     D   alrNotInColl                  n   overlay(indicators:56)
      D   listEmpty                     n   overlay(indicators:58)
      D   sflClear                      n   overlay(indicators:20)
      D   rollupKey                     n   overlay(indicators:95)
@@ -64,6 +68,10 @@
                    exsr DeleteSub;
                 elseif mode = 'DISPLAY';
                    exsr InquirySub;
+                elseif mode = 'MARKCOLL';
+                   exsr MarkCollSub;
+                elseif mode = 'CLRCOLL';
+                   exsr ClearCollSub;
                 endif;
              endif;
           endif;
@@ -72,6 +80,8 @@
           custExists   = *off;   // turn off error messages
           CustNotFound = *off;
           listEmpty    = *off;
+          alrInColl    = *off;
+          alrNotInColl = *off;
        enddo;
 
        *inlr = *on;
@@ -100,6 +110,7 @@
           zip = 0;
           phone = *blank;
           contact = *blank;
+          incoll = 'N';
 
           // Prompt for updated data for this customer record
           exfmt cstbld;
@@ -165,7 +176,74 @@
           endif;
        endsr;  // end of subroutine DeleteSub
 
+       //****************************************************************
+       //    SUBROUTINE - MarkCollSub                                   *
+       //    PURPOSE    - Mark a customer as in collections (orders     *
+       //                 are not allowed while a customer is in this   *
+       //                 state -- enforced by whatever order-entry     *
+       //                 program checks INCOLL, not by this program).  *
+       //****************************************************************
+       begsr MarkCollSub;
 
+          // Lookup customer number
+          chain cstkey cmlrec1;
+          if not %found(cusmstl1);
+             // Customer is not found in file
+             custNotFound = *on;
+             leavesr;
+          endif;
+
+          if incoll = 'Y';
+             alrInColl = *on;
+             unlock cusmstl1;
+             leavesr;
+          endif;
+
+          // Display information for this customer
+          disableInput = *on;
+          exfmt cstinq;
+          if not prevKey;
+             incoll = 'Y';
+             update cmlrec1;
+          else;
+             // If we don't want to mark it, at least unlock
+             // the record.
+             unlock cusmstl1;
+          endif;
+       endsr;  // end of subroutine MarkCollSub
+
+       //****************************************************************
+       //    SUBROUTINE - ClearCollSub                                  *
+       //    PURPOSE    - Clear a customer's in-collections flag        *
+       //****************************************************************
+       begsr ClearCollSub;
+
+          // Lookup customer number
+          chain cstkey cmlrec1;
+          if not %found(cusmstl1);
+             // Customer is not found in file
+             custNotFound = *on;
+             leavesr;
+          endif;
+
+          if incoll = 'N';
+             alrNotInColl = *on;
+             unlock cusmstl1;
+             leavesr;
+          endif;
+
+          // Display information for this customer
+          disableInput = *on;
+          exfmt cstinq;
+          if not prevKey;
+             incoll = 'N';
+             update cmlrec1;
+          else;
+             // If we don't want to clear it, at least unlock
+             // the record.
+             unlock cusmstl1;
+          endif;
+       endsr;  // end of subroutine ClearCollSub
 
        //****************************************************************
        //    SUBROUTINE - InquirySub                                    *
@@ -255,6 +333,10 @@
              mode = 'DELETE';
           elseif displayKey;
              mode = 'DISPLAY';
+          elseif collKey;
+             mode = 'MARKCOLL';
+          elseif clearCollKey;
+             mode = 'CLRCOLL';
           endif;
        endsr;  // end of subroutine SetMaintenanceMode
 
