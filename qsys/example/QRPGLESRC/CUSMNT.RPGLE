@@ -270,6 +270,21 @@
        //                 page at a time (see FillListPage)             *
        //****************************************************************
        begsr ListSub;
+          // Check for at least one record BEFORE writing anything to
+          // LSTCTL, so the empty-file case never switches record
+          // formats away from HDRSCN -- unlike the CUST-field ERRMSGs
+          // (51/52), which stay on HDRSCN the whole time, NO CUSTOMERS
+          // ON FILE used to write LSTCTL first (to clear the subfile)
+          // and only then fall back to HDRSCN, which some real 5250
+          // terminals were apparently not handling the same way an
+          // ANSI-emulated telnet session does.
+          setll *loval cusmstl1;
+          read cusmstl1;
+          if %eof(cusmstl1);
+             listEmpty = *on;
+             leavesr;
+          endif;
+
           rrn = 0;
           sflClear = *on;
           write lstctl;
@@ -278,14 +293,6 @@
           moreInd = *on;
           setll *loval cusmstl1;
           exsr FillListPage;
-
-          if rrn = 0;
-             // No records were ever written, so the subfile was never
-             // activated -- exfmt-ing it here would fail with "subfile
-             // not active". Show a message on HDRSCN instead.
-             listEmpty = *on;
-             leavesr;
-          endif;
 
           dow '1';
              exfmt lstctl;
