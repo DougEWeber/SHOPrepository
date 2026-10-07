@@ -13,13 +13,8 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
         member: ORDENT
-      -
-        name: CUSMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QDDSSRC-SRCMBR-ORDENT
-      - LIB2-CUSMSTL1-FILE
     command: EDOCRTOBJ
     parameters:
       - "BLDTGT($(LIB2)/ORDENT)"

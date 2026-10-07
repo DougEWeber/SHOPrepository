@@ -69,6 +69,10 @@ Dependency Tree Report (*DEPTREE)
           *SRCMBR         *LIBL/QDDSSRC          (RCVTRN)
       *FILE DSPF      LIB2/INVRCVD
         *SRCMBR         *LIBL/QDDSSRC          (INVRCVD)
+  *PGM RPGLE      LIB2/ORDCHG
+    *SRCMBR         *LIBL/QRPGLESRC          (ORDCHG)
+  *PGM RPGLE      LIB2/ORDENT
+    *SRCMBR         *LIBL/QRPGLESRC          (ORDENT)
   *PGM RPGLE      LIB2/POMAINT
     *MODULE RPGLE   LIB2/POMAIN
       *SRCMBR         *LIBL/QRPGLESRC          (POMAIN)
@@ -243,6 +247,14 @@ Dependency Tree Report (*DEPTREE)
       *SRCMBR         *LIBL/QDDSSRC          (CUSMSTL1)
       *FILE PF        LIB2/CUSMST
         *SRCMBR         *LIBL/QDDSSRC          (CUSMST)
+  *FILE DSPF      LIB2/ORDCHG
+    *SRCMBR         *LIBL/QDDSSRC          (ORDCHG)
+  *FILE PF        LIB2/ORDCTL
+    *SRCMBR         *LIBL/QDDSSRC          (ORDCTL)
+  *FILE PF        LIB2/ORDDTL
+    *SRCMBR         *LIBL/QDDSSRC          (ORDDTL)
+  *FILE DSPF      LIB2/ORDENT
+    *SRCMBR         *LIBL/QDDSSRC          (ORDENT)
   *FILE PF        LIB2/ORDMST
     *SRCMBR         *LIBL/QDDSSRC          (ORDMST)
   *FILE LF        LIB2/ORDMSTL1

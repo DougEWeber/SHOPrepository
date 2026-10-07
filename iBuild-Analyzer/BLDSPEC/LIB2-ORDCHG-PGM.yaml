@@ -13,32 +13,13 @@ targets:
         lib: "*LIBL"
         objtype: "FILE"
         member: ORDCHG
-      -
-        name: CUSMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: ORDMSTL1
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: ORDDTL
-        lib: "*LIBL"
-        objtype: "FILE"
-      -
-        name: ORDCHG
-        lib: "*LIBL"
-        objtype: "FILE"
     requisiteyamlrecords :
       - LIBL-QRPGLESRC-SRCMBR-ORDCHG
-      - LIB2-CUSMSTL1-FILE
-      - LIB2-ORDMSTL1-FILE
-      - LIB2-ORDDTL-FILE
-      - LIB2-ORDCHG-FILE
     command: CRTBNDRPG
     parameters:
       - "PGM($(LIB2)/ORDCHG)"
       - "USRPRF(*USER)"
+      - "TEXT('Order Change')"
       - "DFTACTGRP(*YES)"
       - "SRCFILE(QRPGLESRC)"
       - "SRCMBR(ORDCHG)"
