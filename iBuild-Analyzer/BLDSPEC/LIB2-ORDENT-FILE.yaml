@@ -1,0 +1,34 @@
+---
+targets:
+  LIB2-ORDENT-FILE :
+    objlib: LIB2
+    objname: ORDENT
+    objtype: FILE
+    objattr: DSPF
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QDDSSRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: ORDENT
+      -
+        name: CUSMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QDDSSRC-SRCMBR-ORDENT
+      - LIB2-CUSMSTL1-FILE
+    command: EDOCRTOBJ
+    parameters:
+      - "BLDTGT($(LIB2)/ORDENT)"
+      - "OBJTYPE(*FILE)"
+      - "OBJATTR(DSPF)"
+      - "CMD(CRTDSPF)"
+      - "CMDPARMS(' FILE($(LIB2)/ORDENT) SRCFILE(QDDSSRC) SRCMBR(ORDENT) DFRWRT(*YES) RSTDSP(*NO) TEXT(''Order Entry'')')"
+  LIBL-QDDSSRC-SRCMBR-ORDENT :
+    objlib: "*LIBL"
+    objname: QDDSSRC
+    objtype: SRCMBR
+    mbrname: ORDENT

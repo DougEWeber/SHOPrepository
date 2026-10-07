@@ -1,0 +1,52 @@
+---
+targets:
+  LIB2-ORDCHG-PGM :
+    objlib: LIB2
+    objname: ORDCHG
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: ORDCHG
+      -
+        name: CUSMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDDTL
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDCHG
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-ORDCHG
+      - LIB2-CUSMSTL1-FILE
+      - LIB2-ORDMSTL1-FILE
+      - LIB2-ORDDTL-FILE
+      - LIB2-ORDCHG-FILE
+    command: CRTBNDRPG
+    parameters:
+      - "PGM($(LIB2)/ORDCHG)"
+      - "USRPRF(*USER)"
+      - "DFTACTGRP(*YES)"
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(ORDCHG)"
+      - "TGTCCSID(37)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+  LIBL-QRPGLESRC-SRCMBR-ORDCHG :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: ORDCHG

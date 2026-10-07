@@ -5,11 +5,12 @@
 --
 -- Step 1: clear tables in dependency order, referencing (child) tables
 -- before the tables they reference (parent) -- rcvtrn references invmst
--- and pormst; ordmst references cusmst; pormst and invmst reference
+-- and pormst; orddtl references ordmst; ordmst references cusmst; pormst and invmst reference
 -- vndmst -- so: rcvtrn, ordmst, pormst, invmst, vndmst, cusmst.
 -- Step 2: reseed vndmst, cusmst, invmst, pormst.
 
 delete from rcvtrn;
+delete from orddtl;
 delete from ordmst;
 delete from pormst;
 delete from invmst;

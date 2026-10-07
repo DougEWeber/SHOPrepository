@@ -1,0 +1,11 @@
+     A*****************************************************************
+     A* FILE NAME:  ORDCTL                                            *
+     A* RELATED PGMS:  ORDENT                                         *
+     A* DESCRIPTION:  ORDER NUMBER CONTROL. ONE RECORD, KEY ALWAYS 1.  *
+     A*          NEXTORD IS THE NEXT ORDER ID TO ASSIGN. READ WITH A   *
+     A*          RECORD LOCK (CHAIN ON UPDATE FILE) SO IDS ARE UNIQUE. *
+     A*****************************************************************
+     A          R ORDCREC
+     A            CTLKEY         1          TEXT('CONTROL KEY, ALWAYS 1')
+     A            NEXTORD        7  0       TEXT('NEXT ORDER ID TO ASSIGN')
+     A          K CTLKEY

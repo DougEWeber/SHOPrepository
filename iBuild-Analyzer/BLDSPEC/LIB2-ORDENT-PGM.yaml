@@ -1,0 +1,62 @@
+---
+targets:
+  LIB2-ORDENT-PGM :
+    objlib: LIB2
+    objname: ORDENT
+    objtype: PGM
+    objattr: RPGLE
+    protected: no
+    excluded: no
+    requisites :
+      -
+        name: QRPGLESRC
+        lib: "*LIBL"
+        objtype: "FILE"
+        member: ORDENT
+      -
+        name: CUSMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: INVMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDMSTL1
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDDTL
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDCTL
+        lib: "*LIBL"
+        objtype: "FILE"
+      -
+        name: ORDENT
+        lib: "*LIBL"
+        objtype: "FILE"
+    requisiteyamlrecords :
+      - LIBL-QRPGLESRC-SRCMBR-ORDENT
+      - LIB2-CUSMSTL1-FILE
+      - LIB2-INVMSTL1-FILE
+      - LIB2-ORDMSTL1-FILE
+      - LIB2-ORDDTL-FILE
+      - LIB2-ORDCTL-FILE
+      - LIB2-ORDENT-FILE
+    command: CRTBNDRPG
+    parameters:
+      - "PGM($(LIB2)/ORDENT)"
+      - "USRPRF(*USER)"
+      - "DFTACTGRP(*YES)"
+      - "SRCFILE(QRPGLESRC)"
+      - "SRCMBR(ORDENT)"
+      - "TGTCCSID(37)"
+      - "SRTSEQ(*HEX)"
+      - "LANGID(*JOBRUN)"
+  LIBL-QRPGLESRC-SRCMBR-ORDENT :
+    objlib: "*LIBL"
+    objname: QRPGLESRC
+    objtype: SRCMBR
+    mbrname: ORDENT

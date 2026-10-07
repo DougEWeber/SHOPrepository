@@ -629,6 +629,7 @@
              exsr NextRandom;
              cuspo = 'PO' + %char(randResult);
              orddt = %date();
+             ordstat = 'O';
              write omlrec1;
              if ordCount < MAXTRACK;
                 ordCount += 1;
