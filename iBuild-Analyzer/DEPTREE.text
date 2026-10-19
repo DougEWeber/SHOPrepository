@@ -261,10 +261,6 @@ Dependency Tree Report (*DEPTREE)
     *SRCMBR         *LIBL/QDDSSRC          (ORDMSTL1)
     *FILE PF        LIB2/ORDMST
       *SRCMBR         *LIBL/QDDSSRC          (ORDMST)
-  *FILE LF        LIB2/ORDMSTL2
-    *SRCMBR         *LIBL/QDDSSRC          (ORDMSTL2)
-    *FILE PF        LIB2/ORDMST
-      *SRCMBR         *LIBL/QDDSSRC          (ORDMST)
   *FILE DSPF      LIB2/POMENU
     *SRCMBR         *LIBL/QDDSSRC          (POMENU)
   *FILE DSPF      LIB2/POMNT
