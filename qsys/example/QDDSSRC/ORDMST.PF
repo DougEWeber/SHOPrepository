@@ -1,11 +1,11 @@
      A*****************************************************************
      A* FILE NAME:  ORDMST                                            *
-     A* RELATED PGMS:  (none yet)                                     *
+     A* RELATED PGMS:  ORDENT                                         *
      A* RELATED FILES:  ORDMSTL1 (LOGICAL FILE, KEYED BY ORDID)       *
-     A*                 ORDMSTL2 (LOGICAL FILE, KEYED BY CUST+CUSPO)  *
-     A*                 CUSMST (CUST MUST EXIST THERE)                *
-     A* DESCRIPTION:  THIS IS THE PHYSICAL FILE ORDMST. IT HAS        *
-     A*          ONE RECORD FORMAT CALLED ORDREC.                     *
+     A*                 ORDDTL   (ORDER LINES, KEYED BY ORDID+LINE)   *
+     A*                 CUSMST   (CUST MUST EXIST, NOT IN COLLECTIONS)*
+     A* DESCRIPTION:  ORDER HEADER. ORDID IS SYSTEM ASSIGNED FROM     *
+     A*          ORDCTL. ORDSTAT: O=IN PROCESS F=FILLED S=SHIPPED.    *
      A*****************************************************************
      A          R ORDREC
      A            ORDID          7  0       TEXT('ORDER ID')
@@ -13,4 +13,5 @@
      A            CUSPO         10          TEXT('CUSTOMER PO NUMBER')
      A            ORDDT           L          TEXT('ORDER DATE')
      A                                      DATFMT(*ISO)
+     A            ORDSTAT        1          TEXT('ORDER STATUS O/F/S')
      A          K ORDID

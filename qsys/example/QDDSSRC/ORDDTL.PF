@@ -1,0 +1,17 @@
+     A*****************************************************************
+     A* FILE NAME:  ORDDTL                                            *
+     A* RELATED PGMS:  ORDENT                                         *
+     A* RELATED FILES:  ORDMST  (ORDER HEADER, KEYED BY ORDID)        *
+     A*                 INVMST  (ITEMID MUST EXIST THERE)             *
+     A* DESCRIPTION:  ORDER LINES. KEYED BY ORDID + LINE. PRICE IS THE *
+     A*          UNIT PRICE AS ENTERED ON THE ORDER, KEPT PER LINE.    *
+     A*****************************************************************
+     A          R ORDDREC
+     A            ORDID          7  0       TEXT('ORDER ID')
+     A            LINE           3  0       TEXT('LINE NUMBER')
+     A            ITEMID        10          TEXT('INVENTORY ITEM ID')
+     A            QTYORD         7  0       TEXT('QUANTITY ORDERED')
+     A            QTYSHP         7  0       TEXT('QUANTITY SHIPPED')
+     A            PRICE          9  2       TEXT('UNIT PRICE')
+     A          K ORDID
+     A          K LINE
