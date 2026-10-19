@@ -1,0 +1,48 @@
+     A*****************************************************************
+     A*     FILE NAME:  ORDENT                                        *
+     A*  RELATED PGMS:  ORDENT (RPGLE)                                *
+     A* RELATED FILES:  CUSMSTL1, INVMSTL1, ORDMSTL1, ORDDTL, ORDCTL  *
+     A*   DESCRIPTION:  ORDER ENTRY DISPLAY FILE. ONE RECORD FORMAT    *
+     A*                 ORDCTLR HOLDS THE CUSTOMER/PO HEADER AND A     *
+     A*                 SUBFILE OF 8 ORDER LINES (ORDLIN).             *
+     A*****************************************************************
+     A                                      CHGINPDFT(CS)
+     A                                      PRINT(QSYSPRT)
+     A                                      INDARA
+     A          R ORDLIN                    SFL
+     A            ITEMID        10   B 11  4
+     A            QTYORD         7  0B 11 18EDTCDE(Z)
+     A            PRICE          9  2B 11 34
+     A          R ORDCTLR                   SFLCTL(ORDLIN)
+     A                                      TEXT('ORDER ENTRY SCREEN')
+     A                                      CA03(03 'EXIT')
+     A                                      CF05(05 'SAVE ORDER')
+     A                                      CA12(12 'CANCEL')
+     A  20                                  SFLCLR
+     A N20                                  SFLDSPCTL
+     A N20                                  SFLDSP
+     A                                      SFLSIZ(0008)
+     A                                      SFLPAG(0008)
+     A                                  2  4TIME
+     A                                      DSPATR(HI)
+     A                                  2 28'ORDER ENTRY'
+     A                                      DSPATR(HI RI)
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                      DSPATR(HI)
+     A                                  4 14'Customer:'
+     A                                      DSPATR(HI)
+     A            CUST           5  0B  4 25EDTCDE(Z)
+     A            CUSNAME       20   O  4 33
+     A                                  6 14'Cust PO:'
+     A                                      DSPATR(HI)
+     A            CUSPO         10   B  6 25
+     A                                  8  4'Item ID'
+     A                                      DSPATR(HI UL)
+     A                                  8 18'Qty Ordered'
+     A                                      DSPATR(HI UL)
+     A                                  8 34'Unit Price'
+     A                                      DSPATR(HI UL)
+     A            ERRTXT        60   O  9  2
+     A                                      DSPATR(HI)
+     A                                 10  2'F3 Exit  F5 Save order  F12 Cancel'

@@ -11,6 +11,8 @@
       //                   customer records.                           *
       //                 2.Search customer record by zip code.         *
       //                 3.Search customer record by name.             *
+      // test
+      // adding changes lets see if they come through
       //****************************************************************
 
      Fmainmenu  cf   e             workstn indds(indicators)
